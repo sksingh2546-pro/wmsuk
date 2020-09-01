@@ -1,6 +1,6 @@
 
 'use strict';
-var client = new Paho.MQTT.Client("192.168.0.69", Number(9001), "clientId");
+var client = new Paho.MQTT.Client("192.168.0.44", Number(9001), "clientId");
 
 //set callback handlers
 client.onConnectionLost = onConnectionLost;
@@ -169,7 +169,11 @@ function openForm1(element) {
     if(response['message']=="Successful") {
     	changeStatus1(bay,batch_no,sku,qty,status);
  alert("Successfully Inserted");
-    	 productionList();
+ var hash={"message":"change location"}
+ 			 var  message = new Paho.MQTT.Message(JSON.stringify(hash));
+ 	        	  	message.destinationName = "location";
+ 	        	  	client.send(message);
+		  window.location.reload(true);
  } 
  else {
  
@@ -222,11 +226,11 @@ alert(response); } }
 			  console.log(XHR2.responseText); 
 		 var response =JSON.parse(XHR2.responseText);
 		 if(response['message']=="Successful") { 
-		  window.location.reload(true);
 		      var hash={"message":"change location"}
 			 var  message = new Paho.MQTT.Message(JSON.stringify(hash));
 	        	  	message.destinationName = "location";
 	        	  	client.send(message);
+		  window.location.reload(true);
 
 		 } else {
 		 

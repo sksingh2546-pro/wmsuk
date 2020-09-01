@@ -40,7 +40,8 @@ public class ProductionController {
 
 
     @PostMapping("/insertProduction")
-    public String insertProduction(@RequestBody Production production, @RequestParam("line_no") String line_no) {
+    public String insertProduction(@RequestBody Production production,
+                                   @RequestParam("line_no") String line_no) {
         int totQty = 0;
         int todayProPlan = 0;
         Date date = new Date();
@@ -51,7 +52,8 @@ public class ProductionController {
         if (production.getStatus() == null) {
             production.setStatus("PASS");
         }
-        List<FilterQty> fList = filterQtyRepo.getFilterData(sdf1.format(date), production.getSku(), line_no, production.getBatch_no());
+        List<FilterQty> fList = filterQtyRepo.getFilterData(sdf1.format(date),
+                production.getSku(), line_no, production.getBatch_no());
 
         for (FilterQty i : fList) {
 
@@ -63,7 +65,8 @@ public class ProductionController {
         List<ProductionPlan> pList = productionPlanRepository.getProductionPlan(production.getSku());
 
         for (ProductionPlan list : pList) {
-            if (line_no.trim().contentEquals(list.getLine_no().trim()) && production.getBatch_no() == list.getBatch_no()) {
+            if (line_no.trim().contentEquals(list.getLine_no().trim())
+                    && production.getBatch_no() == list.getBatch_no()) {
                 todayProPlan = list.getQty();
 
             }
@@ -71,9 +74,15 @@ public class ProductionController {
 
         if (totQty < todayProPlan && totQty + production.getQty() <= todayProPlan) {
 
-
-            filterQtyRepo.insertData(production.getSku(), production.getQty()
-                    , sdf1.format(date), line_no, production.getBatch_no());
+            List<FilterQty> getFilter=filterQtyRepo.getFilterData(sdf1.format(date),production.getSku(),
+                    line_no,production.getBatch_no(),production.getBay_no());
+            if(getFilter.size()>0){
+                filterQtyRepo.updateData(production.getSku(),production.getQty()+getFilter.get(0).getQty(),
+                        sdf1.format(date),line_no,production.getBatch_no(),production.getBay_no());
+            }else {
+                filterQtyRepo.insertData(production.getSku(), production.getQty()
+                        , sdf1.format(date), line_no, production.getBatch_no(), production.getBay_no());
+            }
             List<Production> productionList = productionRepository.getProductionData(production.getBatch_no(),
                     production.getSku(), production.getBay_no(), production.getStatus());
             if (productionList.size() > 0) {
@@ -85,7 +94,9 @@ public class ProductionController {
 
                 }
             } else {
-                int insert = productionRepository.insertProduction(production.getBatch_no(), sdf.format(date), production.getQty(), production.getSku(), production.getBay_no(), production.getStatus());
+                int insert = productionRepository.insertProduction(production.getBatch_no(),
+                        sdf.format(date), production.getQty(), production.getSku(),
+                        production.getBay_no(), production.getStatus());
                 if (insert > 0) {
                     response = "{\"message\":\"Successful\"}";
 
@@ -135,6 +146,41 @@ public class ProductionController {
 
             }
         }
+        else{
+            int insert = productionRepository.insertProduction(production.getBatch_no(), sdf.format(date)
+                    ,  production.getQty()
+                    , production.getSku(), production.getBay_no(), production.getStatus());
+            if (insert > 0) {
+                response = "{\"message\":\"Successful\"}";
+
+            }
+        }
+        return response;
+    }
+
+    @PostMapping("/verify")
+    public String verify(@RequestBody Production production ,@RequestParam("line_no") String line_no) {
+        Date date = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
+
+        String response = "{\"message\":\"Unsuccessful\"}";
+        List<Production> productionList = productionRepository.getProductionData(production.getBatch_no(),
+                production.getSku(), production.getBay_no(), production.getStatus());
+        if (productionList.size() > 0) {
+            int update = productionRepository.updateProduction(production.getBatch_no(), sdf.format(date)
+                    , productionList.get(0).getQty() + production.getQty()
+                    , production.getSku(), production.getBay_no(), production.getStatus());
+            if (update > 0) {
+                response = "{\"message\":\"Successful\"}";
+                List<FilterQty> getFilter=filterQtyRepo.getFilterData(sdf1.format(date),production.getSku(),
+                        line_no,production.getBatch_no(),production.getBay_no());
+                filterQtyRepo.updateData(production.getSku(),production.getQty()+getFilter.get(0).getQty(),
+                        sdf1.format(date),line_no,production.getBatch_no(),production.getBay_no());
+
+            }
+        }
+
         return response;
     }
 

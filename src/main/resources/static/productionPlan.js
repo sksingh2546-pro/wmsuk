@@ -1,5 +1,28 @@
 'use strict';
 
+var client = new Paho.MQTT.Client("192.168.0.44", Number(9001), "clientId");
+
+//set callback handlers
+client.onConnectionLost = onConnectionLost;
+client.onMessageArrived = onMessageArrived;
+
+//connect the client
+client.connect({onSuccess:onConnect});
+		        	  function onConnect() {
+		        	  	//Once a connection has been made, make a subscription and send a message.
+		        	  	console.log("onConnect");
+		        	  	client.subscribe("#");
+		        	  	}
+function onConnectionLost(responseObject) {
+	if (responseObject.errorCode !== 0) {
+	console.log("onConnectionLost:"+responseObject.errorMessage);
+	}
+	}
+
+function onMessageArrived(message) {
+	console.log(message.payloadString)
+	}
+
 
 
 function skuList(){
@@ -51,6 +74,10 @@ function insertProductionPlan(){
 	          console.log(XHR2.responseText);
 	          var response = JSON.parse(XHR2.responseText);
 	          if(response['message']=="Successful") {
+	          var message = new Paho.MQTT.Message("Kuchh Bhi");
+              message.destinationName = "plan";
+              client.send(message);
+
 	               alert("Successfully Inserted");
 	               document.getElementById("sku1").value="";
 	               document.getElementById("line_no").value="";

@@ -1,5 +1,5 @@
 'use strict';
-/*var client = new Paho.MQTT.Client("localhost", Number(9001), "clientId");
+var client = new Paho.MQTT.Client("192.168.0.44", Number(9001), "clientId");
 
 //set callback handlers
 client.onConnectionLost = onConnectionLost;
@@ -20,7 +20,7 @@ function onConnectionLost(responseObject) {
 
 function onMessageArrived(message) {
 	console.log(message.payloadString)
-	}*/
+	}
 
 
 

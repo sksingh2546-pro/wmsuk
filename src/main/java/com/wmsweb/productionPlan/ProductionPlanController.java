@@ -32,7 +32,9 @@ public class ProductionPlanController {
     @ResponseBody
     public String insertProductionPlan(@RequestBody ProductionPlan productionPlan) {
         String message = "{\"message\":\"Unsuccessful\"}";
-
+        Date date=new Date();
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat sdf1=new SimpleDateFormat("yyyy-MM-dd");
         List<ProductionPlan> pList = (List<ProductionPlan>) productionPlanRepository.getProductionPlan(productionPlan.getSku());
         long batch = 0L;
         if (pList.size() == 0) {
@@ -40,9 +42,23 @@ public class ProductionPlanController {
         } else {
             batch = pList.get(0).getBatch_no() + 1L;
         }
-        int insert = productionPlanRepository.insertProduction_plan(batch, sdf.format(this.date), productionPlan.getQty(), productionPlan.getSku(), productionPlan.getLine_no());
-        if (insert > 0) {
-            message = "{\"message\":\"Successful\"}";
+        List<ProductionPlan> getSku=productionPlanRepository.getTodayProductionPlan(productionPlan.getSku()
+                ,sdf1.format(date)+" 00:00:00",sdf.format(date),productionPlan.getLine_no());
+        if(getSku.size()>0)
+        {
+         int update=productionPlanRepository.updateProduction_plan(
+                 getSku.get(0).getQty()+productionPlan.getQty(),
+                 productionPlan.getSku(),productionPlan.getLine_no());
+         if(update>0){
+             message = "{\"message\":\"Successful\"}";
+         }
+        }else {
+            int insert = productionPlanRepository.insertProduction_plan(batch,
+                    sdf.format(this.date), productionPlan.getQty(),
+                    productionPlan.getSku(), productionPlan.getLine_no());
+            if (insert > 0) {
+                message = "{\"message\":\"Successful\"}";
+            }
         }
 
 

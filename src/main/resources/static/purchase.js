@@ -247,12 +247,14 @@ $(document).ready(function(){
    document.getElementById("totalquantity").value=tq;
    getpalletQty(document.getElementById("sku").value,q);
     count = count + 1;
+     var x = document.getElementById("sku");
+      x.remove(x.selectedIndex);
     var permit_no=document.getElementById("permit_no").value;
     output = '<tr id="row_'+count+'">';
       output += '<td>'+permit_no+' <input type="hidden" name="hidden_permit_no[]" id="sku'+count+'" value="'+permit_no+'" /></td>';
    output += '<td>'+sku+' <input type="hidden" name="hidden_sku[]" id="sku'+count+'" value="'+sku+'" /></td>';
     output += '<td>'+quantity+' <input type="hidden" name="hidden_quantity[]" id="quantity'+count+'" value="'+quantity+'" /></td>';
-    output += '<td><button type="button" name="remove_details" class="btn btn-danger btn-xs remove_details" id="'+count+'">Remove</button></td>';
+    output += '<td><button type="button" name="remove_details" class="btn btn-danger btn-xs remove_details" id="'+count+'" onclick="addData(this)">Remove</button></td>';
         output += '</tr>';
     $('#product_data').append(output);
    }
@@ -262,7 +264,7 @@ $(document).ready(function(){
        output += '<td>'+permit_no+' <input type="hidden" name="hidden_permit_no[]" id="sku'+row_id+'" value="'+permit_no+'" /></td>';
        output += '<td>'+sku+' <input type="hidden" name="hidden_sku[]" id="sku'+row_id+'" value="'+sku+'" /></td>';
     output += '<td>'+quantity+' <input type="hidden" name="hidden_quantity[]" id="quantity'+count+'" value="'+quantity+'" /></td>';
-    output += '<td><button type="button" name="remove_details" class="btn btn-danger btn-xs remove_details" id="'+row_id+'">Remove</button></td>';
+    output += '<td><button type="button" name="remove_details" class="btn btn-danger btn-xs remove_details" id="'+row_id+'" onclick="addData(this)">Remove</button></td>';
     $('#row_'+row_id+'').html(output);
    }
 
@@ -274,9 +276,12 @@ $(document).ready(function(){
   if(confirm("Are you sure you want to remove this row data?"))
   {
    $('#row_'+row_id+'').remove();
+
   }
   else
   {
+  var x = document.getElementById("sku");
+        x.remove(x.options.length - 1);
    return false;
   }
  });
@@ -406,7 +411,19 @@ function insertPurchaseOrder(){
 
          	XHR2.send(JSON.stringify(hash));
  }
- 	
+
+ function addData(element){
+ var row = element.parentNode.parentNode.rowIndex
+  var tbl = document.getElementById("product_data");
+  var objCells = tbl.rows.item(row).cells;
+  var sku=objCells.item(1).innerHTML;
+  var skuArray=sku.split(" ");
+  alert(skuArray[0]);
+  var x = document.getElementById("sku");
+  var option = document.createElement("option");
+  option.text = skuArray[0].trim();
+  x.add(option);
+ }
  	
 window.onload=getOrderId();
 window.onload=getSkuList();

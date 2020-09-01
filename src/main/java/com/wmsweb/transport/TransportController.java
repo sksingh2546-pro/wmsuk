@@ -44,6 +44,7 @@ public class TransportController {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         transport.setDate(simpleDateFormat.format(date));
         Transport transport2 = transportRepository.save(transport);
+        System.out.println();
         String[] permitNo = transport2.getPermit_no().split(",");
         int insert = 0;
         for (String permit_no : permitNo) {

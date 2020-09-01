@@ -229,7 +229,8 @@
                                              <option value="Select">Select</option>
                                                <option >1</option>
                                                 <option>2</option>
-                                                
+                                                <option>3</option>
+
 
 
                                                </select>
@@ -268,7 +269,7 @@
                                 <th style="text-align:center">LINE NO</th>
                                 <th style="text-align:center">QTY</th>
                                 <th style="text-align:center">BATCH NO</th>
-                                <th style="text-align:center" >TIME</th>
+                                <th style="text-align:center" >DATE TIME</th>
                                 </tr>
                                 </table>
                                 </div>                            
@@ -337,7 +338,7 @@
 <script src="dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
-
+<script src="paho.js"></script>
 <script src="productionPlan.js"></script>
 
 

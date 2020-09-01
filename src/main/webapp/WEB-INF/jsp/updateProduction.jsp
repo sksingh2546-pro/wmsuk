@@ -176,11 +176,11 @@
         </section>
 
          <div class="container">
-            <h2>Add Product</h2> 
+            <h2>Edit Product</h2>
              <section class="content">
                     <div class="panel panel-primary" style="width:28.5cm">
                         <div class="container">
-                            <b><h2>Add Details</h2></b>
+                            <b><h2>Update Details</h2></b>
                           
                             <table id="proTable" class="table table-bordered table-striped" style="width:27.7cm">
                         <thead>
@@ -190,7 +190,8 @@
                           <th>SKU</th>
                           <th>Quantity</th>
                            <th>Status</th>
-                          <th></th><th></th><th>
+                          <th></th><th></th>
+
                         </tr>
                         </thead>
                         <tbody id="table">

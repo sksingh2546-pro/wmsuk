@@ -121,6 +121,8 @@ else if(permit==""){
 	XHR2.send(JSON.stringify(hash));
 }
 }
+
+
 function getDriverName(){
 	var XHR = new XMLHttpRequest();
 	XHR.onreadystatechange = function() {

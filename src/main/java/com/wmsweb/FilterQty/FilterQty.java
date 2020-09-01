@@ -11,6 +11,7 @@ public class FilterQty {
     private long id;
     private String sku;
     private int qty;
+    private String bay;
     private String date;
     private String line_no;
     private long batch_no;
@@ -61,5 +62,13 @@ public class FilterQty {
 
     public void setLine_no(String line_no) {
         this.line_no = line_no;
+    }
+
+    public String getBay() {
+        return bay;
+    }
+
+    public void setBay(String bay) {
+        this.bay = bay;
     }
 }

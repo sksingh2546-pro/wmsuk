@@ -224,4 +224,10 @@ public class ViewController {
         model.addAttribute("msg", (Object) "Please Enter Your Login Details");
         return "completeProduct";
     }
+
+    @RequestMapping(value = {"verifyProduct"}, method = {RequestMethod.GET})
+    public String verifyProduct(Model model) {
+        model.addAttribute("msg", (Object) "Please Enter Your Login Details");
+        return "varifyProduction";
+    }
 }
