@@ -1,7 +1,7 @@
 'use strict';
 
 
-/*var client = new Paho.MQTT.Client("localhost", Number(9001), "clientId");
+/*var client = new Paho.MQTT.Client(gUrl.mqtt, Number(9001), "clientId");
 
 //set callback handlers
 client.onConnectionLost = onConnectionLost;
@@ -51,7 +51,7 @@ function skuList(){
           }
 	    }
 	};
-	xhttp1.open("GET", "/api/getSkuList", true);
+	xhttp1.open("GET", gUrl.url+"/getSkuList", true);
 
 	xhttp1.send();
 	}
@@ -74,7 +74,7 @@ function insertSku(){
 		 var XHR2 = new XMLHttpRequest();
          var hash={"sku":""+sku+"","cases_of_pallets":""+capacity+""}
 		
-		XHR2.open("POST", "/api/updateSku");
+		XHR2.open("POST", gUrl.url+"/updateSku");
 		XHR2.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
 

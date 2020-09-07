@@ -19,13 +19,17 @@ public class OutGoodsService {
     SortingPurchaseRepository sortingpurchaseRepository;
 
     @PostMapping("/insertOutGoods")
-    public String insertData(@RequestBody OutGoods outgoods) {
+    public String insertData(@RequestBody OutGoods outgoods, @RequestParam("cQty") int cQty) {
         String message = "{\"message\":\"Unsuccessful\"}";
-        int updateQty = sortingpurchaseRepository.updateQty(outgoods.getQty(), outgoods.getOrder_id(), outgoods.getBatch_no(), outgoods.getSku(), outgoods.getBay_no());
+        int updateQty = sortingpurchaseRepository.updateQty(outgoods.getQty(),
+                outgoods.getOrder_id(),
+                outgoods.getBatch_no(), outgoods.getSku(), outgoods.getBay_no());
 
         System.out.println("" + updateQty);
         if (updateQty > 0) {
-            int insertData = outgoodsRepository.insertData(outgoods.getBatch_no(), outgoods.getBay_no(), outgoods.getSku(), outgoods.getQty(), outgoods.getOrder_id());
+            int insertData = outgoodsRepository.insertData(outgoods.getBatch_no(),
+                    outgoods.getBay_no(), outgoods.getSku(), cQty,
+                    outgoods.getOrder_id());
             if (insertData > 0) {
                 message = "{\"message\":\"Successful\"}";
             }

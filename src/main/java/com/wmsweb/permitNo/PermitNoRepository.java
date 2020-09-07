@@ -19,4 +19,8 @@ public interface PermitNoRepository extends CrudRepository<PermitNo, Long> {
 
     @Query("select p.permit_no from PermitNo p where order_id=?1")
     List<String> getPermitList(long id);
+    
+    @Query("select p.permit_no from PermitNo p")
+    List<String> getPermitList();
+
 }

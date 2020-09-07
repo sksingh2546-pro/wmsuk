@@ -32,5 +32,7 @@ public interface FilterQtyRepo extends CrudRepository<FilterQty, Long> {
 
     @Query("select p from FilterQty p where date=?1")
     public List<FilterQty> getAllData(String date);
+    
+    
 
 }

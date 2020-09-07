@@ -1,29 +1,3 @@
-'use strict';
-var client = new Paho.MQTT.Client("192.168.0.44", Number(9001), "clientId");
-
-//set callback handlers
-client.onConnectionLost = onConnectionLost;
-client.onMessageArrived = onMessageArrived;
-
-//connect the client
-client.connect({onSuccess:onConnect});
-		        	  function onConnect() {
-		        	  	//Once a connection has been made, make a subscription and send a message.
-		        	  	console.log("onConnect");
-		        	  	client.subscribe("#");
-		        	  	}
-function onConnectionLost(responseObject) {
-	if (responseObject.errorCode !== 0) {
-	console.log("onConnectionLost:"+responseObject.errorMessage);
-	}
-	}
-
-function onMessageArrived(message) {
-	console.log(message.payloadString)
-	}
-
-
-
 function bayList(){
 	var xhttp1 = new XMLHttpRequest();
 	xhttp1.onreadystatechange = function() {
@@ -49,7 +23,7 @@ function bayList(){
           }
 	    }
 	};
-	xhttp1.open("GET", "/api/getBayList", true);
+	xhttp1.open("GET", gUrl.url+"/getBayList", true);
 
 	xhttp1.send();
 	}
@@ -71,7 +45,7 @@ function insertBay(){
 		 var XHR2 = new XMLHttpRequest();
          var hash={"bay":""+bay+"","capacity":""+capacity+""}
 		
-		XHR2.open("POST", "/api/insertBay");
+		XHR2.open("POST", gUrl.url+"/insertBay");
 		XHR2.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
 

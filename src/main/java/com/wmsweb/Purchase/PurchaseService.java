@@ -2,6 +2,7 @@
 
 package com.wmsweb.Purchase;
 
+import com.wmsweb.SortingPurchase.SortingPurchase;
 import com.wmsweb.SortingPurchase.SortingPurchaseRepository;
 import com.wmsweb.commonData.CommonDataRepository;
 import com.wmsweb.production.Production;
@@ -24,19 +25,24 @@ public class PurchaseService {
     ProductionRepository productionRepository;
     @Autowired
     CommonDataRepository commonDataRepository;
+    int i=1;
 
     @PostMapping({"/insertPurchaseData"})
-    public String insertData(@RequestBody Purchase purchase) {
+    public String insertData(@RequestBody Purchase purchase) throws InterruptedException {
         String message = "{\"message\":\"Unsuccessful\"}";
         Date date = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String CurrentDate = sdf.format(date);
         int insertData = purchaseRepository.insertData(purchase.getOrder_id(), purchase.getPermit_no(), purchase.getSku(), purchase.getQty(), CurrentDate);
         if (insertData > 0) {
+            makeSorting(purchase.getOrder_id(),purchase.getSku());
             message = "{\"message\":\"Successful\"}";
+            try {
+                commonDataRepository.insertData(purchase.getOrder_id(), "order", "1", CurrentDate);
+            }catch (Exception e){
+                System.out.println(e);
+            }
         }
-        commonDataRepository.insertData(purchase.getOrder_id(), "order", "1", CurrentDate);
-        makeSorting(purchase.getOrder_id());
         return message;
     }
 
@@ -58,8 +64,9 @@ public class PurchaseService {
         return hmap;
     }
 
-    public void makeSorting(long order_id) {
-        List<Purchase> getUniqueList = purchaseRepository.getPurchaseList(order_id);
+    public void makeSorting(long order_id,String sku) {
+        sortingPurchaseRepository.deleteQty();
+        List<Purchase> getUniqueList = purchaseRepository.getPurchaseList(order_id,sku);
         HashSet<Purchase> uniqueList = new HashSet<Purchase>(getUniqueList);
         for (Purchase uPurchase : uniqueList) {
             int purchaseQty = 0;
@@ -68,19 +75,65 @@ public class PurchaseService {
             for (Purchase purchase : getPurchaseData) {
                 purchaseQty += purchase.getQty();
             }
-            System.out.println("first loop" + purchaseQty);
             List<Production> getProductionData = productionRepository.getProductionData(uPurchase.getSku(), "PASS");
             for (int count = 0; count < increment; ++count) {
-                int mainQty = purchaseQty - getProductionData.get(count).getQty();
+                int mainQty=0;
+                List<SortingPurchase> getSortingPurchase=sortingPurchaseRepository.getSortingPurchase(
+                        getProductionData.get(count).getSku(),getProductionData.get(count).getBatch_no()
+                        ,getProductionData.get(count).getBay_no()
+                );
+                 if(getSortingPurchase.size()>0){
+                     int qty=getProductionData.get(count).getQty();
+                     int tQty=qty-getSortingPurchase.get(0).getQty();
+                     if(tQty<=0){
+                         ++increment;
+                     }
+                     else if(tQty>0){
+                         int sendQty=0;
+                         if(tQty>purchaseQty){
+                             sendQty=purchaseQty;
+                         }
+                         else{
+                             mainQty+=purchaseQty -tQty;
+                             sendQty=mainQty;
+                         }
+
+
+                         if (mainQty <= 0) {
+                             System.out.println();
+                             sortingPurchaseRepository.insertData(uPurchase.getOrder_id(), uPurchase.getPermit_no(), uPurchase.getSku(), getProductionData.get(count).getBatch_no(), getProductionData.get(count).getBay_no(), sendQty, 0, uPurchase.getDate());
+                             System.out.println("first_1" + mainQty);
+                         } else if (mainQty > 0) {
+                             sortingPurchaseRepository.insertData(uPurchase.getOrder_id(), uPurchase.getPermit_no(), uPurchase.getSku(), getProductionData.get(count).getBatch_no(), getProductionData.get(count).getBay_no(), tQty, 0, uPurchase.getDate());
+                             System.out.println("second_1" + mainQty);
+                             purchaseQty -= tQty;
+                             ++increment;
+                         }
+                     }
+                 }
+                 else{
+                     int sendQty=0;
+                     if(mainQty>0){
+                         sendQty=mainQty;
+
+                     }
+                     else if(mainQty==0){
+                         mainQty+=purchaseQty-getProductionData.get(count).getQty();
+
+                             sendQty=purchaseQty;
+
+                     }
+
+
                 if (mainQty <= 0) {
-                    sortingPurchaseRepository.insertData(uPurchase.getOrder_id(), uPurchase.getPermit_no(), uPurchase.getSku(), getProductionData.get(count).getBatch_no(), getProductionData.get(count).getBay_no(), purchaseQty, 0, uPurchase.getDate());
-                    System.out.println("first" + mainQty);
+                    sortingPurchaseRepository.insertData(uPurchase.getOrder_id(), uPurchase.getPermit_no(), uPurchase.getSku(), getProductionData.get(count).getBatch_no(), getProductionData.get(count).getBay_no(), sendQty, 0, uPurchase.getDate());
+                    System.out.println("first_2" + mainQty);
                 } else if (mainQty > 0) {
                     sortingPurchaseRepository.insertData(uPurchase.getOrder_id(), uPurchase.getPermit_no(), uPurchase.getSku(), getProductionData.get(count).getBatch_no(), getProductionData.get(count).getBay_no(), getProductionData.get(count).getQty(), 0, uPurchase.getDate());
-                    System.out.println("second" + mainQty);
+                    System.out.println("second_2" + mainQty);
                     purchaseQty -= getProductionData.get(count).getQty();
                     ++increment;
-                }
+                }}
             }
             purchaseRepository.updatePurchaseStatus(uPurchase.getOrder_id());
         }
@@ -89,7 +142,7 @@ public class PurchaseService {
     @PostMapping({"/changeStatusWithOrderid"})
     public String changeStatusWithOrderid(@RequestParam("order_id") long order_id) {
         String message = "{\"message\":\"Unsuccessful\"}";
-        int updatePurchaseStatus = purchaseRepository.changeStatusWithOrderid(order_id);
+        int updatePurchaseStatus = purchaseRepository.runChangeStatusWithOrderId(order_id);
         if (updatePurchaseStatus > 0) {
             message = "{\"message\":\"Updated Successfully\"}";
         }

@@ -52,8 +52,9 @@ public interface TransportRepository extends CrudRepository<Transport, Long> {
     @Transactional
     int changeTransportStatusWithOrderId(long order_id);
 
+
     @Modifying
-    @Query(value = "update transport set status=1 where order_id=?1", nativeQuery = true)
+    @Query(value = "update transport set status=?2 where order_id=?1", nativeQuery = true)
     @Transactional
     int updateStatus(long order_id);
 
@@ -69,5 +70,8 @@ public interface TransportRepository extends CrudRepository<Transport, Long> {
     @Query(value = "update transport set total_qty=?2,total_weight=?3 where order_id=?1", nativeQuery = true)
     @Transactional
     public int updatetransport(long order_id, String total_Qty, String total_weight);
+    
+    @Query("select ts from Transport ts where day(date)=?1 and month(date)=?2 and year(date)=?3")
+    List<Transport> getTransportDetails(int day,int month,int year);
 
 }

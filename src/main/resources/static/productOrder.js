@@ -1,5 +1,5 @@
 
-var client = new Paho.MQTT.Client("192.168.0.44", Number(9001), "clientId");
+var client = new Paho.MQTT.Client(gUrl.mqtt, Number(9001), "clientId");
 
 //set callback handlers
 client.onConnectionLost = onConnectionLost;
@@ -53,7 +53,7 @@ function orderProduct() {
             }
 
     };
-    xhttp1.open("GET", "/api/getOrderProduct?order_id="+localStorage.getItem("order_id"), true);
+    xhttp1.open("GET", gUrl.url+"/getOrderProduct?order_id="+localStorage.getItem("order_id"), true);
 
     xhttp1.send();
 }
@@ -70,16 +70,16 @@ function cancelOrder(){
 		           // console.log(result);
                     if(result.message=="Updated Successfully"){
                     
-                var hash={"message":"change order Status"}
-			    var  message = new Paho.MQTT.Message(JSON.stringify(hash));
-	        	  	message.destinationName = "status";
-	        	  	client.send(message);
+
                         alert("Your Ordered has been Canceled");
                         window.location.href="orderDetails"
+			    var  message = new Paho.MQTT.Message(localStorage.getItem("order_id").toString());
+	        	  	message.destinationName = "status";
+	        	  	client.send(message);
                    		            }
 		            }
 		      };
-		       xhttp.open("GET", "/api/cancelOrder?order_id="+localStorage.getItem("order_id"), true);
+		       xhttp.open("GET", gUrl.url+"/cancelOrder?order_id="+localStorage.getItem("order_id"), true);
 		       xhttp.send();
 	   }
 	   function confirmed() {

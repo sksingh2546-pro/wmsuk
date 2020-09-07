@@ -1,6 +1,6 @@
 'use strict';
 
-var client = new Paho.MQTT.Client("192.168.0.44", Number(9001), "clientId");
+var client = new Paho.MQTT.Client(gUrl.mqtt, Number(9001), "clientId");
 
 //set callback handlers
 client.onConnectionLost = onConnectionLost;
@@ -40,7 +40,7 @@ function skuList(){
           }
 	    }
 	};
-	xhttp1.open("GET", "/api/getSkuList", true);
+	xhttp1.open("GET", gUrl.url+"/getSkuList", true);
 
 	xhttp1.send();
 	}
@@ -66,7 +66,7 @@ function insertProductionPlan(){
 		 var XHR2 = new XMLHttpRequest();
          var hash={"sku":""+sku+"","line_no":""+line_no+"","qty":""+qty+""}
 		
-		XHR2.open("POST", "/api/insertProductionPlan");
+		XHR2.open("POST", gUrl.url+"/insertProductionPlan");
 		XHR2.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
 
@@ -74,16 +74,16 @@ function insertProductionPlan(){
 	          console.log(XHR2.responseText);
 	          var response = JSON.parse(XHR2.responseText);
 	          if(response['message']=="Successful") {
-	          var message = new Paho.MQTT.Message("Kuchh Bhi");
-              message.destinationName = "plan";
-              client.send(message);
 
+	           	getProductionPlan();
+	           	skuList();
 	               alert("Successfully Inserted");
 	               document.getElementById("sku1").value="";
 	               document.getElementById("line_no").value="";
 	           	   document.getElementById("qty").value="";
-	           	skuList();
-	           	getProductionPlan();
+	          var message = new Paho.MQTT.Message("Kuchh Bhi");
+              message.destinationName = "plan";
+              client.send(message);
 	          }
 	          
 			  else {
@@ -125,7 +125,7 @@ function insertProductionPlan(){
 	          }
 		    }
 		};
-		xhttp1.open("GET", "/api/getTodayProductionPlan", true);
+		xhttp1.open("GET", gUrl.url+"/getTodayProductionPlan", true);
 
 		xhttp1.send();
 		}

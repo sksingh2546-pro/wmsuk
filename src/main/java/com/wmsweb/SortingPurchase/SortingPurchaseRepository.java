@@ -26,6 +26,9 @@ public interface SortingPurchaseRepository extends CrudRepository<SortingPurchas
     @Query("select sp from SortingPurchase sp where status=0")
     List<SortingPurchase> getSortingPurchase();
 
+    @Query("select sp from SortingPurchase sp where sku=?1 and batch_no=?2 and bay=?3")
+    List<SortingPurchase> getSortingPurchase(String sku,long batch_no,String bay);
+
     @Query("select sp from SortingPurchase sp where status=0 and sku=?1")
     List<SortingPurchase> getSortingPurchase(String sku);
 
@@ -35,7 +38,12 @@ public interface SortingPurchaseRepository extends CrudRepository<SortingPurchas
     @Modifying
     @Query(value = "update sorting_purchase set status=3 where order_id=?1", nativeQuery = true)
     @Transactional
-    int updateWithOrdeId(long order_id);
+    int runUpdateWithOrderId(long order_id);
+
+    @Modifying
+    @Query(value = "update sorting_purchase set status=4 where order_id=?1", nativeQuery = true)
+    @Transactional
+    int updateWithOrderId(long order_id);
 
     @Modifying
     @Query(value = "update sorting_purchase set status=1 where order_id=?1", nativeQuery = true)
@@ -46,4 +54,26 @@ public interface SortingPurchaseRepository extends CrudRepository<SortingPurchas
     @Query(value = "update sorting_purchase set qty=?1 where order_id=?2 and batch_no=?3 and sku=?4 and bay=?5", nativeQuery = true)
     @Transactional
     public int updateQty(int qty, long order_id, long batch_no, String sku, String bay);
+
+    @Modifying
+    @Query(value = "update sorting_purchase set qty=?1,status=?6 where order_id=?2 and batch_no=?3 and sku=?4 and bay=?5", nativeQuery = true)
+    @Transactional
+    public int updateQty(int qty, long order_id, long batch_no, String sku, String bay,int status);
+
+    @Modifying
+    @Query(value = "update sorting_purchase set qty=0 where order_id=?1", nativeQuery = true)
+    @Transactional
+    public int updateQty( long order_id);
+
+    @Modifying
+    @Query(value = "delete from  sorting_purchase where qty=0 or status=3", nativeQuery = true)
+    @Transactional
+    public int deleteQty();
+
+    @Modifying
+    @Query(value = "delete from  sorting_purchase where order_id=?1", nativeQuery = true)
+    @Transactional
+    public int deleteQty(long order_id);
+
+
 }

@@ -110,6 +110,7 @@
         <script src="assets/js/sabuj-api.js"></script>
         <script src="assets/js/jquery.validate.min.js"></script>
         <script src="assets/js/neon-login.js"></script>
+        <script src="url.js"></script>
 
 
         <!-- JavaScripts initializations and stuff -->
@@ -119,6 +120,7 @@
         <!-- Demo Settings -->
         <script src="assets/js/neon-demo.js"></script>
 <script>
+console.log(gUrl.url);
 function login(){
 	var XHR = new XMLHttpRequest();
 	XHR.onreadystatechange = function() {
@@ -135,7 +137,7 @@ alert("Please Enter Correct Username And Password");
 }
 	    }
 	};
-	XHR.open("GET", "/api/getLogin?user_name="+document.getElementById("user_name").value+"&password="+document.getElementById("password").value, true);
+	XHR.open("GET", gUrl.url+"/getLogin?user_name="+document.getElementById("user_name").value+"&password="+document.getElementById("password").value, true);
 	XHR.send();
 	}
 </script>

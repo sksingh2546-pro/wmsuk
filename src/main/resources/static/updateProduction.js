@@ -1,6 +1,6 @@
 
 'use strict';
-var client = new Paho.MQTT.Client("192.168.0.44", Number(9001), "clientId");
+var client = new Paho.MQTT.Client(gUrl.mqtt, Number(9001), "clientId");
 
 //set callback handlers
 client.onConnectionLost = onConnectionLost;
@@ -58,7 +58,7 @@ function productionList() {
 			}
 		}
 	};
-	xhttp1.open("GET", "/api/getProductionData1", true);
+	xhttp1.open("GET", gUrl.url+"/getProductionData1", true);
 
 	xhttp1.send();
 }
@@ -107,7 +107,7 @@ function openForm1(element) {
 	  var XHR2 = new XMLHttpRequest(); 
 	  var hash={"bay_no":""+bay.trim()+"","batch_no":""+batch_no+"" ,"sku":""+sku+"" ,"qty":""+qty+"","status":""+status.trim()+"" } 
 	 console.log(hash)
-	 XHR2.open("POST","/api/changeBayAndStatus");
+	 XHR2.open("POST",gUrl.url+"/changeBayAndStatus");
 	 XHR2.setRequestHeader("Content-Type","application/json;charset=UTF-8");
 	 
 	  XHR2.onload = function() {
@@ -117,7 +117,7 @@ function openForm1(element) {
 		 var XHR3 = new XMLHttpRequest(); 
 		 var hash1={"bay_no":""+bayList[0].trim()+"","batch_no":""+batch_no+"" ,"sku":""+sku+"" ,"qty":""+-qty+"","status":""+status+"" } 
 		 console.log(hash1) 
-		 XHR3.open("POST", "/api/changeBayAndStatus"); XHR3.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+		 XHR3.open("POST", gUrl.url+"/changeBayAndStatus"); XHR3.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 	 
 	  XHR3.onload = function() { 
 		  console.log(XHR3.responseText); 
@@ -154,13 +154,13 @@ function openForm1(element) {
   
   var XHR2 = new XMLHttpRequest(); 
   var hash={"bay_no":""+bay+"","batch_no":""+batch_no+"" ,"sku":""+sku+"" ,"qty":""+qty+"","status":""+status.trim()+"" } 
- XHR2.open("POST","/api/changeBayAndStatus"); XHR2.setRequestHeader("Content-Type","application/json;charset=UTF-8");
+ XHR2.open("POST",gUrl.url+"/changeBayAndStatus"); XHR2.setRequestHeader("Content-Type","application/json;charset=UTF-8");
  
   XHR2.onload = function() { console.log(XHR2.responseText); 
  var response =JSON.parse(XHR2.responseText); if(response['message']=="Successful") { 
 	 var XHR3 = new XMLHttpRequest(); 
 	 var hash1={"bay_no":""+bay+"","batch_no":""+batch_no+"" ,"sku":""+sku+"" ,"qty":""+-qty+"","status":""+statusList[0].trim()+"" } 
-	 XHR3.open("POST", "/api/changeBayAndStatus");
+	 XHR3.open("POST", gUrl.url+"/changeBayAndStatus");
 	  XHR3.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
  
   XHR3.onload = function() { 
@@ -204,7 +204,7 @@ alert(response); } }
 		       }
 		    }
 		};
-		xhttp.open("GET", "/api/getBayList", true);
+		xhttp.open("GET", gUrl.url+"/getBayList", true);
 
 		xhttp.send();
 		}
@@ -218,7 +218,7 @@ alert(response); } }
 		  
 		  var XHR2 = new XMLHttpRequest(); 
 		  var hash={"bay_no":""+bay.trim()+"","batch_no":""+batch+"" ,"sku":""+sku+"" ,"qty":""+qty+"","status":""+status+"","old_bay":""+oldBay+"" } 
-		 XHR2.open("POST","/api/insertChangeLocation");
+		 XHR2.open("POST",gUrl.url+"/insertChangeLocation");
 		  
 		 XHR2.setRequestHeader("Content-Type","application/json;charset=UTF-8");
 		 
@@ -245,7 +245,7 @@ alert(response); } }
 	 function changeStatus1(bay,batch,sku,qty,status){
 		  var XHR2 = new XMLHttpRequest(); 
 		  var hash={"bay_no":""+bay.trim()+"","batch_no":""+batch+"" ,"sku":""+sku+"" ,"qty":""+qty+"","status":""+status+""} 
-		 XHR2.open("POST","/api/insertGoodStatus");
+		 XHR2.open("POST",gUrl.url+"/insertGoodStatus");
 		  
 		 XHR2.setRequestHeader("Content-Type","application/json;charset=UTF-8");
 		 

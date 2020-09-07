@@ -1,8 +1,7 @@
 
 'use strict';
-var client = new Paho.MQTT.Client("192.168.0.44", Number(9001), "clientId");
+var client = new Paho.MQTT.Client(gUrl.mqtt, Number(9001), "clientId");
 
-//set callback handlers
 client.onConnectionLost = onConnectionLost;
 client.onMessageArrived = onMessageArrived;
 
@@ -58,7 +57,7 @@ function productionList() {
 			}
 		}
 	};
-	xhttp1.open("GET", "/api/getAllData", true);
+	xhttp1.open("GET", gUrl.url+"/getAllData", true);
 
 	xhttp1.send();
 }
@@ -91,7 +90,7 @@ qty=[];
   	  var qt=-parseInt(qty[0])+parseInt(qty1);
   	  var hash={"bay_no":""+bay.trim()+"","batch_no":""+batch_no+"" ,"sku":""+sku+"" ,"qty":""+qt+"","status":"PASS" }
   	 console.log(hash)
-  	 XHR2.open("POST","/api/verify?line_no="+line_no);
+  	 XHR2.open("POST",gUrl.url+"/verify?line_no="+line_no);
   	 XHR2.setRequestHeader("Content-Type","application/json;charset=UTF-8");
 
   	  XHR2.onload = function() {

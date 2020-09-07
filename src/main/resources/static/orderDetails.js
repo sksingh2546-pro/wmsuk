@@ -108,7 +108,7 @@ function orderDetails() {
             }
         }
     };
-    xhttp1.open("GET", "/api/getOrderDetails", true);
+    xhttp1.open("GET", gUrl.url+"/getOrderDetails", true);
 
     xhttp1.send();
 }
@@ -123,7 +123,8 @@ console.log(document.getElementById("orderTable").rows[count+1].cells[0].innerHT
 localStorage.clear();
 localStorage.setItem("order_id",document.getElementById("orderTable").rows[count+1].cells[0].innerHTML);
 console.log(document.getElementById("orderTable").rows[count+1].cells[6].innerHTML);
-if(document.getElementById("orderTable").rows[count+1].cells[6].innerHTML=="Pending Order"){
+if(document.getElementById("orderTable").rows[count+1].cells[6].innerHTML=="Pending Order"||
+document.getElementById("orderTable").rows[count+1].cells[6].innerHTML=="Order Process"){
 window.location.href="productOrder";
 }else
 {

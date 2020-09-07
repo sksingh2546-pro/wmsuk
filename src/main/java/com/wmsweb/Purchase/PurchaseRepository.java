@@ -30,8 +30,8 @@ public interface PurchaseRepository extends CrudRepository<Purchase, Long> {
     @Query("select pr from Purchase pr where status=0 and sku=?1 and order_id=?2")
     List<Purchase> getPurchaseDetails(String sku, long order_id);
 
-    @Query("select pr from Purchase pr where order_id=?1")
-    List<Purchase> getPurchaseList(long order_id);
+    @Query("select pr from Purchase pr where order_id=?1 and sku=?2")
+    List<Purchase> getPurchaseList(long order_id,String sku);
 
     @Query("select pr from Purchase pr where order_id=?1")
     List<Purchase> getQuantity(long order_id);
@@ -39,5 +39,10 @@ public interface PurchaseRepository extends CrudRepository<Purchase, Long> {
     @Modifying
     @Query(value = "update purchase set status=3 where order_id=?1", nativeQuery = true)
     @Transactional
-    int changeStatusWithOrderid(long order_id);
+    int runChangeStatusWithOrderId(long order_id);
+
+    @Modifying
+    @Query(value = "update purchase set status=4 where order_id=?1", nativeQuery = true)
+    @Transactional
+    int changeStatusWithOrderId(long order_id);
 }

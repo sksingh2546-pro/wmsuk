@@ -1,5 +1,5 @@
 /*
-var client = new Paho.MQTT.Client("localhost", Number(9001), "clientId");
+var client = new Paho.MQTT.Client(gUrl.mqtt, Number(9001), "clientId");
 
 //set callback handlers
 client.onConnectionLost = onConnectionLost;
@@ -41,7 +41,7 @@ function getAddress(){
 
 	    }
 	};
-	XHR.open("GET", "/api/getAddress", true);
+	XHR.open("GET", gUrl.url+"/getAddress", true);
 
 	XHR.send();
 	}
@@ -97,7 +97,7 @@ else if(permit==""){
 
          }
         console.log(hash);
-		XHR2.open("POST", "/api/insertTransport");
+		XHR2.open("POST", gUrl.url+"/insertTransport");
 		XHR2.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
 
@@ -138,7 +138,7 @@ function getDriverName(){
 
 	    }
 	};
-	XHR.open("GET", "/api/getDriverName", true);
+	XHR.open("GET", gUrl.url+"/getDriverName", true);
 
 	XHR.send();
 	}
@@ -157,7 +157,7 @@ function getContactNo(){
 
 	    }
 	};
-	XHR.open("GET", "/api/getContactNo", true);
+	XHR.open("GET", gUrl.url+"/getContactNo", true);
 
 	XHR.send();
 	}
@@ -176,7 +176,7 @@ function getVehicleNo(){
 
 	    }
 	};
-	XHR.open("GET", "/api/getVehicleNo", true);
+	XHR.open("GET", gUrl.url+"/getVehicleNo", true);
 
 	XHR.send();
 	}
@@ -193,14 +193,35 @@ function getPartyName(){
 
 	    }
 	};
-	XHR.open("GET", "/api/getPartyName", true);
+	XHR.open("GET", gUrl.url+"/getPartyName", true);
+
+	XHR.send();
+	}
+	
+	
+	var permitList=[];
+	function getPermitList(){
+	var XHR = new XMLHttpRequest();
+	XHR.onreadystatechange = function() {
+	    if (this.readyState == 4 && this.status == 200) {
+	        var response = XHR.responseText;
+	         var result=JSON.parse(response);
+	        
+	        for(var key in result.permit){
+	          permitList.push(result.permit[key]);
+             console.log(result.permit[key]);
+	        }
+
+	    }
+	};
+	XHR.open("GET", gUrl.url+"/getPermitNo", true);
 
 	XHR.send();
 	}
 $(document).ready(function() {
     $('#permit').tokenfield({
       autocomplete: {
-        source: ['red','blue','green','yellow','violet','brown','purple','black','white'],
+        source: permitList,
         delay: 100
       },
       showAutocompleteOnFocus: true
@@ -222,3 +243,4 @@ window.onload=getDriverName();
 window.onload=getContactNo();
 window.onload=getVehicleNo();
 window.onload=getPartyName();
+window.onload=getPermitList();

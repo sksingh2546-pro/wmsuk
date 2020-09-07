@@ -29,7 +29,7 @@ function orderProduct() {
             }
 
     };
-    xhttp1.open("GET", "/api/getOrderProduct?order_id="+localStorage.getItem("order_id"), true);
+    xhttp1.open("GET", gUrl.url+"/getOrderProduct?order_id="+localStorage.getItem("order_id"), true);
 
     xhttp1.send();
 }

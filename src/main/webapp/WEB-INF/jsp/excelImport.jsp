@@ -1,3 +1,6 @@
+
+
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -9,12 +12,12 @@
         <!-- Bootstrap 3.3.6 -->
         <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
         <!-- Font Awesome -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
         <!-- Ionicons -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+        <link rel="stylesheet" href="ionicons.min.css">
         <!-- Theme style -->
         <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
-
+       
         <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
         <!-- iCheck -->
         <link rel="stylesheet" href="plugins/iCheck/flat/blue.css">
@@ -25,18 +28,20 @@
         <!-- Date Picker -->
         <link rel="stylesheet" href="plugins/datepicker/datepicker3.css">
         <!-- Daterange picker -->
+        <link rel="stylesheet" href="style.css">
+        
         <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
         <!-- bootstrap wysihtml5 - text editor -->
         <link rel="stylesheet" href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
 
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="bootstrap.min.css">
+
     </head>
     <body class="hold-transition skin-blue sidebar-mini">
         <div class="wrapper">
 
             <header class="main-header">
-
+               
                 <a href="index" class="logo">
                     <!-- mini logo for sidebar mini 50x50 pixels -->
                     <span class="logo-mini"><b>W</b>MS</span>
@@ -55,7 +60,7 @@
                             <!-- Messages: style can be found in dropdown.less-->
                             <li class="dropdown messages-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                </a>
+                                </a> 
                             </li>
                             <!-- Notifications: style can be found in dropdown.less -->
                             <li class="dropdown notifications-menu">
@@ -77,9 +82,9 @@
                                         <img src="Image/logo2.png" class="img-circle" alt="User Image">
 
                                         <p>
-
-                                        <i style="font-size: 18px"><%=session.getAttribute("userid")%></i><br>
-
+                                      
+                                        <i style="font-size: 18px" id="userName"></i><br>
+                                            
                                             <small></small>
                                         </p>
                                     </li>
@@ -115,7 +120,7 @@
 
                         </div>
                     </div>
-
+                   
                     <!-- /.search form -->
                     <!-- sidebar menu: : style can be found in sidebar.less -->
                     <ul class="sidebar-menu">
@@ -128,30 +133,35 @@
                                 </span>
                             </a>
                             <ul class="treeview-menu">
-                               <li class="active"><a href="updateProduction"><i class="fa fa-circle-o"></i>Update Product</a></li>
-                               <li><a href="excelImport" "><i class="fa fa-circle-o"></i>Add SKU</a></li>
-                               <li><a href="changeSkuCapacity" "><i class="fa fa-circle-o"></i>Update SKU</a></li>
-                               <li><a href="changeBayCapacity" "><i class="fa fa-circle-o"></i>Update Bay</a></li>
-                               <li><a href="searchProduct"><i class="fa fa-circle-o"></i>Search Product</a></li>
-                               <li><a href="productionPlan"><i class="fa fa-circle-o"></i>Production Plan</a></li>
+                                <li class="active"><a href="updateProduction"><i class="fa fa-circle-o"></i>Update Product</a></li>
+                                <li><a href="excelImport" "><i class="fa fa-circle-o"></i>Add SKU</a></li>
+                                   <li><a href="changeSkuCapacity" "><i class="fa fa-circle-o"></i>Update SKU</a></li>
+                                    <li><a href="changeBayCapacity" "><i class="fa fa-circle-o"></i>Update Bay</a></li>
+                                <li><a href="searchProduct"><i class="fa fa-circle-o"></i>Search Product</a></li>
+                                <li><a href="productionPlan"><i class="fa fa-circle-o"></i>Production Plan</a></li>
+                                  <li><a href="verifyProduct"><i class="fa fa-circle-o"></i>Verify Production</a></li>
+                                 <li><a href="/api/generateExcel"><i class="fa fa-circle-o"></i>GenerateReport</a></li>
                             </ul>
                         </li>
                         <li class="treeview">
                             <a href="#">
                                 <i class="fa fa-arrow-circle-right"></i>
                                 <span>OUT</span>
-                                <i class="fa fa-angle-left pull-right"></i>
+                                <i class="fa fa-angle-left pull-right"></i>                                                       
                                 </span>
                             </a>
                             <ul class="treeview-menu">
                                 <li><a href="transport"><i class="fa fa-circle-o"></i>Make An Order</a></li>
                                 <li><a href="orderDetails"><i class="fa fa-circle-o"></i> Order Details</a></li>
+                                <li><a href="/api/generateTransportExcel"><i class="fa fa-circle-o"></i> Generate Report</a></li>
                             </ul>
                         </li>
-
-
-
-
+                       <!--  <li class="treeview">
+						<li><a href="changepassword"><i class="fa fa-key"></i>Change Password</a></li>
+						</li> -->
+                       
+                    
+                
                 </li>
             </ul>
 
@@ -167,19 +177,20 @@
         <section class="content-header">
             <h1>
                 Dashboard
-
+                
             </h1>
            <ol class="breadcrumb">
-                <h4><a href="index"><i class="fa fa-home"></i>Home</a></h4>
+        <h4><a href="index"><i class="fa fa-home"></i>Home</a></h4> 
+<!-- <button onclick="getreport()"> Get report</button> -->
 
             </ol>
         </section>
 
         <!-- Main content -->
-        <section class="content" style="margin-top="20px">
+      <section class="content" style="margin-top="20px">
 
 <div class="container" style="width:500px; margin-top:20px;">
-  <div class="jumbotron">
+  <div class="jumbotron" style="background: #3c8dbc;">
     <h1 class="pb-5">EXCEL IMPORT</h1>
     <div class="file-upload pb-5">
         <div class="file-select">
@@ -188,19 +199,20 @@
           <input type="file" name="chooseFile" id="chooseFile">
         </div>
       </div>
+      <br>
     <button class="btn btn-success" onclick="uploadSingleFile()">submit</button>
 </div>
 </div>
 
 
         </section>
-        <!-- /.content -->
+        
     </div>
     <!-- /.content-wrapper -->
     <footer class="main-footer">
         <div class="pull-right hidden-xs">
         </div>
-      <!--    <strong>Copyright &copy; 2018-2019 <a href="#"></a>.</strong> -->
+        <strong>Copyright &copy; 2018-2019 <a href="#"></a>.</strong> 
     </footer>
 
     <!-- Control Sidebar -->
@@ -218,11 +230,15 @@
     <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
-
+<script>
+if(localStorage.getItem("user_id")==null){
+window.location.href="login";
+}
+</script>
 <!-- jQuery 2.2.3 -->
 <script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
-<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+<script src="jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
     $.widget.bridge('uibutton', $.ui.button);
@@ -230,7 +246,7 @@
 <!-- Bootstrap 3.3.6 -->
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <!-- Morris.js charts -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+<script src="raphael-min.js"></script>
 <script src="plugins/morris/morris.min.js"></script>
 <!-- Sparkline -->
 <script src="plugins/sparkline/jquery.sparkline.min.js"></script>
@@ -240,7 +256,7 @@
 <!-- jQuery Knob Chart -->
 <script src="plugins/knob/jquery.knob.js"></script>
 <!-- daterangepicker -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+<script src="moment.min.js"></script>
 <script src="plugins/daterangepicker/daterangepicker.js"></script>
 <!-- datepicker -->
 <script src="plugins/datepicker/bootstrap-datepicker.js"></script>
@@ -256,14 +272,13 @@
 <script src="dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
+ <script src="url.js"></script>
 <script>
 if(localStorage.getItem("user_id")==null){
 window.location.href="login";
 }
 document.getElementById("userName").innerHTML=localStorage.getItem("user_id");
- <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</script>
 <script type="text/javascript">
 'use strict';
     function uploadSingleFile() {
@@ -278,7 +293,7 @@ document.getElementById("userName").innerHTML=localStorage.getItem("user_id");
         formData.append("file", file[0]);
 
         var xhr = new XMLHttpRequest();
-        xhr.open("POST", "/api/uploadExcel");
+        xhr.open("POST", gUrl.url+"/uploadExcel");
 
         xhr.onload = function() {
             console.log(xhr.responseText);
@@ -299,6 +314,17 @@ document.getElementById("userName").innerHTML=localStorage.getItem("user_id");
     }
 
 </script>
-</script>
+<!-- <script type="text/javascript">
+
+function getreport()
+{
+	window.open("/api/generateExcel");
+
+	
+	}
+</script> -->
+
 </body>
+
 </html>
+ 

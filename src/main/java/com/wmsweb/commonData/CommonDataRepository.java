@@ -15,7 +15,7 @@ import java.util.List;
 @Repository
 public interface CommonDataRepository extends CrudRepository<CommonData, Long> {
     @Modifying
-    @Query(value = "insert into common_data(order_id,type,priority,date,status)values(?1,?2,?3,?4,0)", nativeQuery = true)
+    @Query(value = "insert into common_data(order_id,type,priority,date,status)SELECT * FROM (SELECT ?1,?2,?3,?4,0) as TEMP WHERE NOT EXISTS ( SELECT order_id FROM common_data WHERE order_id =?1 and type=?2 )", nativeQuery = true)
     @Transactional
     public int insertData(long order_id, String type, String priority, String date);
 
@@ -25,10 +25,21 @@ public interface CommonDataRepository extends CrudRepository<CommonData, Long> {
     public int updateCommonDataStatus(long id, int status);
 
     @Modifying
-    @Query(value = "update  common_data set status=4 where id=?1", nativeQuery = true)
+    @Query(value = "update  common_data set status=3 where order_id=?1", nativeQuery = true)
+    @Transactional
+    public int runCancelOrder(long id);
+
+    @Modifying
+    @Query(value = "update  common_data set status=4 where order_id=?1", nativeQuery = true)
     @Transactional
     public int cancelOrder(long id);
 
     @Query("select cd from CommonData cd where status !=2 and status!=4")
     public List<CommonData> getCommonData();
+
+    @Query("select cd from CommonData cd where id=?1")
+    public List<CommonData> getCommonData(long id);
+
+    @Query("select cd from CommonData cd where order_id=?1 ")
+    public List<CommonData> getCommonData1(long order_id);
 }

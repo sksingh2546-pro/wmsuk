@@ -2,14 +2,12 @@
 
 package com.wmsweb.commonData;
 
+import com.wmsweb.transport.TransportRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api")
@@ -17,27 +15,21 @@ import java.util.Map;
 public class CommonDataService {
     @Autowired
     CommonDataRepository commonDataRepository;
+    @Autowired
+    TransportRepository transportRepository;
 
-    @PostMapping("/insertCommonData")
-    public String insertData(@RequestBody CommonData commonData) {
-        String message = "{\"message\":\"Unsuccessful\"}";
-        Date date = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String CurrentDate = sdf.format(date);
-        int insertData = commonDataRepository.insertData(commonData.getOrder_id(), commonData.getType(), commonData.getPriority(), CurrentDate);
-        if (insertData > 0) {
-            message = "{\"message\":\"Successful\"}";
-        }
-        return message;
-    }
 
     @PostMapping("/updateCommonDataStatus")
     public String updateCommonDataStatus(@RequestParam("id") long id, @RequestParam("status") int status) {
         String message = "{\"message\":\"Unsuccessful\"}";
         int updateCommonDataStatus = commonDataRepository.updateCommonDataStatus(id, status);
         if (updateCommonDataStatus > 0) {
+            List<CommonData> getCommonData=commonDataRepository.getCommonData(id);
+            if(getCommonData.size()>0){
+            int insert=transportRepository.updateStatus(getCommonData.get(0).getOrder_id(),status);
+            if(insert>0){
             message = "{\"message\":\"Updated Successfully\"}";
-        }
+        }}}
         return message;
     }
 

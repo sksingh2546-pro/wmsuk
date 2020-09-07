@@ -11,9 +11,17 @@ import com.wmsweb.bayCapacity.BayCapacityRepository;
 import com.wmsweb.model.ProductionModel;
 import com.wmsweb.productionPlan.ProductionPlan;
 import com.wmsweb.productionPlan.ProductionPlanRepository;
+
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.BorderStyle;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.HorizontalAlignment;
+import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.VerticalAlignment;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -195,7 +203,7 @@ public class ProductionController {
 
     @GetMapping("/getAllProductionData")
     public Map<String, ArrayList<ProductionModel>> getAllData() {
-        this.productionRepository.deleteProduction();
+        productionRepository.deleteProduction();
         List<BayCapacity> bayList = this.bayCapacityRepository.getBay();
         ArrayList<ProductionModel> productionList = new ArrayList<ProductionModel>();
         for (BayCapacity bayCapacity : bayList) {
@@ -208,6 +216,7 @@ public class ProductionController {
                 productionList.add(new ProductionModel("Empty", 0L, 0, bayCapacity.getBay(), "Empty", "Empty"));
             }
         }
+
         HashMap<String, ArrayList<ProductionModel>> hmap = new HashMap<String, ArrayList<ProductionModel>>();
         hmap.put("production", productionList);
         return hmap;
@@ -253,6 +262,7 @@ public class ProductionController {
     @GetMapping("/getProductionData1")
     public Map<String, ArrayList<Production>> getProductionComplete() {
         HashMap<String, ArrayList<Production>> hmap = new HashMap<String, ArrayList<Production>>();
+        productionRepository.deleteProduction();
         ArrayList<Production> list = (ArrayList<Production>) productionRepository.getProductionComplete();
         hmap.put("productionData", list);
         return hmap;
@@ -261,32 +271,101 @@ public class ProductionController {
     @GetMapping("/generateExcel")
     public void createProductionSheet(HttpServletResponse response1) throws IOException {
         Workbook workbook = new HSSFWorkbook();
+        HSSFCellStyle style1=(HSSFCellStyle) workbook.createCellStyle();
+		  CellStyle style0 = workbook.createCellStyle();  
+		  
+		  style0.setVerticalAlignment(VerticalAlignment.CENTER);
+		  style0.setAlignment(HorizontalAlignment.CENTER);;
+		  style0.setBorderBottom(BorderStyle.THIN);
+		  style0.setBorderTop(BorderStyle.THIN);
+		  style0.setBorderLeft(BorderStyle.THIN);
+		  style0.setBorderRight(BorderStyle.THIN);
+		  
+
+		    
+		  style1.setAlignment(HorizontalAlignment.CENTER);
+		  style1.setVerticalAlignment(VerticalAlignment.CENTER);
+		  style1.setBorderBottom(BorderStyle.THIN);
+		  style1.setBorderTop(BorderStyle.THIN);
+		  style1.setBorderLeft(BorderStyle.THIN);
+		  style1.setBorderRight(BorderStyle.THIN);
+		  
+		  org.apache.poi.ss.usermodel.Font font=workbook.createFont();
+        font.setBold(true);
+        font.setFontHeightInPoints((short)10);
+        
+        org.apache.poi.ss.usermodel.Font font1= workbook.createFont();
+        font1.setFontHeightInPoints((short)10);
+        
+        style0.setFont((org.apache.poi.ss.usermodel.Font) font);
+        style0.setWrapText(true);
+        
+        style1.setFont((org.apache.poi.ss.usermodel.Font) font1);
+        style1.setWrapText(true);
+        
         try {
+        	
+    		
 
             List<Production> productionList = productionRepository.getAllProductionData();
             try {
-                Sheet sheet = workbook.createSheet("All Data");
+                Sheet sheet = workbook.createSheet("All Production");
                 Row row0 = sheet.createRow(0);
-
-                row0.createCell(0).setCellValue("Sr.No.");
-                row0.createCell(1).setCellValue("Date");
-                row0.createCell(2).setCellValue("Bay No");
-                row0.createCell(3).setCellValue("SKU");
-                row0.createCell(4).setCellValue("Batch No");
-                row0.createCell(5).setCellValue("Quantity");
-                row0.createCell(6).setCellValue("Status");
+                
+                row0.setHeight((short)600);
+                sheet.setColumnWidth(0,5000);
+         		  
+         		  sheet.setColumnWidth(6,5000);
+         		  sheet.setColumnWidth(5,5000);
+         		  sheet.setColumnWidth(4,5000);
+         		  sheet.setColumnWidth(3,5000);
+         		  sheet.setColumnWidth(2,5000);
+         		  sheet.setColumnWidth(1,5000);
+         		  
+                
+                Cell cell0=row0.createCell(0);
+                Cell cell1=row0.createCell(1);
+                Cell cell2=row0.createCell(2);
+                Cell cell3=row0.createCell(3);
+                Cell cell4=row0.createCell(4);
+                Cell cell5=row0.createCell(5);
+                Cell cell6=row0.createCell(6);
+                
+                cell0.setCellStyle(style0);cell1.setCellStyle(style0);cell2.setCellStyle(style0);cell3.setCellStyle(style0);
+                cell5.setCellStyle(style0);cell4.setCellStyle(style0);cell6.setCellStyle(style0);
+                
+                cell0.setCellValue("Sr.No.");
+                cell1.setCellValue("Date");
+                cell2.setCellValue("Bay No");
+                cell3.setCellValue("SKU");
+                cell4.setCellValue("Batch No");
+                cell5.setCellValue("Quantity");
+                cell6.setCellValue("Status");
 
                 int j = 1;
                 for (Production productionData : productionList) {
                     System.out.println("bay no " + productionData.getBay_no());
                     Row row1 = sheet.createRow(j++);
-                    row1.createCell(0).setCellValue(j - 1);
-                    row1.createCell(1).setCellValue(productionData.getDate());
-                    row1.createCell(2).setCellValue(productionData.getBay_no());
-                    row1.createCell(3).setCellValue(productionData.getSku());
-                    row1.createCell(4).setCellValue(productionData.getBatch_no());
-                    row1.createCell(5).setCellValue(productionData.getQty());
-                    row1.createCell(6).setCellValue(productionData.getStatus());
+                    Cell cell11=row1.createCell(0);
+                    Cell cell12=row1.createCell(1);
+                    Cell cell13=row1.createCell(2);
+                    
+                    Cell cell14=row1.createCell(3);
+                    Cell cell15=row1.createCell(4);
+                    Cell cell16=row1.createCell(5);
+                    Cell cell17=row1.createCell(6);
+                    
+                    cell11.setCellStyle(style1);cell12.setCellStyle(style1);cell13.setCellStyle(style1);cell14.setCellStyle(style1);
+                    cell17.setCellStyle(style1);cell16.setCellStyle(style1);cell15.setCellStyle(style1);
+                    
+                    
+                    cell11.setCellValue(j-1);
+                    cell12.setCellValue(productionData.getDate());
+                    cell13.setCellValue(productionData.getBay_no());
+                    cell14.setCellValue(productionData.getSku());
+                    cell15.setCellValue(productionData.getBatch_no());
+                    cell16.setCellValue(productionData.getQty());
+                    cell17.setCellValue(productionData.getStatus());
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -296,32 +375,73 @@ public class ProductionController {
             e.printStackTrace();
         }
 
-        try {
+        try {	
+        	Date date=new Date();
+            SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 
-            List<Production> productionList = productionRepository.getTodayProductionData();
+        	List<FilterQty>todat_list =filterQtyRepo.getAllData(sdf.format(date)); 
             try {
-                Sheet sheet1 = workbook.createSheet("Yesterday's Data");
+                Sheet sheet1 = workbook.createSheet("Today's Data");
+                sheet1.setColumnWidth(0,5000);
+         		  sheet1.setColumnWidth(7,6000);
+         		  sheet1.setColumnWidth(6,5000);
+         		  sheet1.setColumnWidth(5,5000);
+         		  sheet1.setColumnWidth(4,5000);
+         		  sheet1.setColumnWidth(3,5000);
+         		  sheet1.setColumnWidth(2,5000);
+         		  sheet1.setColumnWidth(1,5000);
+         		  
+                
                 Row row0 = sheet1.createRow(0);
+                row0.setHeight((short)600);
 
-                row0.createCell(0).setCellValue("Sr.No.");
-                row0.createCell(1).setCellValue("Date");
-                row0.createCell(2).setCellValue("Bay No");
-                row0.createCell(3).setCellValue("SKU");
-                row0.createCell(4).setCellValue("Batch No");
-                row0.createCell(5).setCellValue("Quantity");
-                row0.createCell(6).setCellValue("Status");
+                Cell cell0=row0.createCell(0);
+                Cell cell1=row0.createCell(1);
+                Cell cell2=row0.createCell(2);
+                Cell cell3=row0.createCell(3);
+                Cell cell4=row0.createCell(4);
+                Cell cell5=row0.createCell(5);
+                Cell cell6=row0.createCell(6);
+                
+                cell0.setCellStyle(style0);cell1.setCellStyle(style0);cell2.setCellStyle(style0);cell3.setCellStyle(style0);
+                cell5.setCellStyle(style0);cell4.setCellStyle(style0);cell6.setCellStyle(style0);
+                
+                cell0.setCellValue("Sr.No.");
+                cell1.setCellValue("Date");
+                cell2.setCellValue("Bay No");
+                cell3.setCellValue("SKU");
+                cell4.setCellValue("Batch No");
+                cell5.setCellValue("Quantity");
+                cell6.setCellValue("Line No.");
 
                 int j = 1;
-                for (Production productionData : productionList) {
-                    System.out.println("bay no " + productionData.getBay_no());
+                for (FilterQty fq:todat_list)
+                {
+                	
+                    System.out.println("bay no " + fq.getBay());
                     Row row1 = sheet1.createRow(j++);
-                    row1.createCell(0).setCellValue(j - 1);
-                    row1.createCell(1).setCellValue(productionData.getDate());
-                    row1.createCell(2).setCellValue(productionData.getBay_no());
-                    row1.createCell(3).setCellValue(productionData.getSku());
-                    row1.createCell(4).setCellValue(productionData.getBatch_no());
-                    row1.createCell(5).setCellValue(productionData.getQty());
-                    row1.createCell(6).setCellValue(productionData.getStatus());
+                    
+                    
+                    Cell cell11=row1.createCell(0);
+                    Cell cell12=row1.createCell(1);
+                    Cell cell13=row1.createCell(2);
+                    Cell cell14=row1.createCell(3);
+                    Cell cell15=row1.createCell(4);
+                    Cell cell16=row1.createCell(5);
+                    Cell cell17=row1.createCell(6);
+                    
+                    cell11.setCellStyle(style1);cell12.setCellStyle(style1);cell13.setCellStyle(style1);cell14.setCellStyle(style1);
+                    cell17.setCellStyle(style1);cell16.setCellStyle(style1);cell15.setCellStyle(style1);
+                    
+                    
+                    
+                    cell11.setCellValue(j - 1);
+                    cell12.setCellValue(fq.getDate());
+                    cell13.setCellValue(fq.getBay());
+                    cell14.setCellValue(fq.getSku());
+                    cell15.setCellValue(fq.getBatch_no());
+                    cell16.setCellValue(fq.getQty());
+                    cell17.setCellValue(fq.getLine_no());
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -330,8 +450,86 @@ public class ProductionController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        
+        try {	
+        	Date date=new Date();
+            SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+            Date oneDayBefore = new Date(date.getTime() -(24 * 3600000));
+            
+            
+        	List<FilterQty>previous_list =filterQtyRepo.getAllData(sdf.format(oneDayBefore)); 
+            try {
+                Sheet sheet2 = workbook.createSheet("Yesterday's Data");
+                
+                sheet2.setColumnWidth(0,5000);
+         		  sheet2.setColumnWidth(7,6000);
+         		  sheet2.setColumnWidth(6,5000);
+         		  sheet2.setColumnWidth(5,5000);
+         		  sheet2.setColumnWidth(4,5000);
+         		  sheet2.setColumnWidth(3,5000);
+         		  sheet2.setColumnWidth(2,5000);
+         		  sheet2.setColumnWidth(1,5000);
+         		  
+//                sheet2.setDefaultRowHeight(height);
+                Row row0 = sheet2.createRow(0);
+                row0.setHeight((short)600);
 
-        response1.setHeader("content-disposition", "attachment;filename=Production Report.xls");
+                Cell cell0=row0.createCell(0);
+                Cell cell1=row0.createCell(1);
+                Cell cell2=row0.createCell(2);
+                Cell cell3=row0.createCell(3);
+                Cell cell4=row0.createCell(4);
+                Cell cell5=row0.createCell(5);
+                Cell cell6=row0.createCell(6);
+                
+                cell0.setCellStyle(style0);cell1.setCellStyle(style0);cell2.setCellStyle(style0);cell3.setCellStyle(style0);
+                cell5.setCellStyle(style0);cell4.setCellStyle(style0);cell6.setCellStyle(style0);
+                
+                cell0.setCellValue("Sr.No.");
+                cell1.setCellValue("Date");
+                cell2.setCellValue("Bay No");
+                cell3.setCellValue("SKU");
+                cell4.setCellValue("Batch No");
+                cell5.setCellValue("Quantity");
+                cell6.setCellValue("Line No.");
+
+                int j = 1;
+                for (FilterQty fq:previous_list)
+                {
+                    System.out.println("bay no " + fq.getBay());
+                    Row row1 = sheet2.createRow(j++);
+
+                    Cell cell11=row1.createCell(0);
+                    Cell cell12=row1.createCell(1);
+                    Cell cell13=row1.createCell(2);
+                    Cell cell14=row1.createCell(3);
+                    Cell cell15=row1.createCell(4);
+                    Cell cell16=row1.createCell(5);
+                    Cell cell17=row1.createCell(6);
+                    
+                    cell11.setCellStyle(style1);cell12.setCellStyle(style1);cell13.setCellStyle(style1);cell14.setCellStyle(style1);
+                    cell17.setCellStyle(style1);cell16.setCellStyle(style1);cell15.setCellStyle(style1);
+                    
+                    
+                    
+                    cell11.setCellValue(j - 1);
+                    cell12.setCellValue(fq.getDate());
+                    cell13.setCellValue(fq.getBay());
+                    cell14.setCellValue(fq.getSku());
+                    cell15.setCellValue(fq.getBatch_no());
+                    cell16.setCellValue(fq.getQty());
+                    cell17.setCellValue(fq.getLine_no());
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Date date=new Date();
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        response1.setHeader("content-disposition", "attachment;filename=Production Report_"+sdf.format(date)+".xls");
         workbook.write(response1.getOutputStream());
     }
 

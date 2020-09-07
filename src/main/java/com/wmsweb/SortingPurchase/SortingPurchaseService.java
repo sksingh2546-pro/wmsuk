@@ -44,7 +44,7 @@ public class SortingPurchaseService {
     @PostMapping({"/updateWithOrderId"})
     public String updateWithOrderId(@RequestParam("order_id") long order_id) {
         String message = "{\"message\":\"Unsuccessful\"}";
-        int updateSortingPurchaseStatus = sortingPurchaseRepository.updateWithOrdeId(order_id);
+        int updateSortingPurchaseStatus = sortingPurchaseRepository.updateWithOrderId(order_id);
         if (updateSortingPurchaseStatus > 0) {
             message = "{\"message\":\"Updated Successfully\"}";
         }

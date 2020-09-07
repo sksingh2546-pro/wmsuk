@@ -12,7 +12,7 @@ function getSku(){
 		       }
 		    }
 		};
-		xhttp.open("GET", "/api/getSkuListData", true);
+		xhttp.open("GET", gUrl.url+"/getSkuListData", true);
 
 		xhttp.send();
 		}
@@ -30,7 +30,7 @@ function getSku(){
 		       }
 		    }
 		};
-		xhttp.open("GET", "/api/getBayList", true);
+		xhttp.open("GET", gUrl.url+"/getBayList", true);
 
 		xhttp.send();
 		}
@@ -50,7 +50,7 @@ function getBatchNo(){
 		       }
 		    }
 		};
-		xhttp.open("GET", "/api/getBatchNo", true);
+		xhttp.open("GET", gUrl.url+"/getBatchNo", true);
 
 		xhttp.send();
 		}
@@ -86,7 +86,7 @@ function getSearchWithSku(){
 
 		};
 				   var sku=document.getElementById("sku").value;
-		xhttp.open("GET", "/api/getSearchProduct?sku="+sku, true);
+		xhttp.open("GET", gUrl.url+"/getSearchProduct?sku="+sku, true);
 
 		xhttp.send();
 		}
@@ -122,7 +122,7 @@ function getSearchWithBatch(){
 
 		};
 				   var batch_no=document.getElementById("batch").value;
-		xhttp.open("GET", "/api/getSearchProduct?batch_no="+batch_no, true);
+		xhttp.open("GET", gUrl.url+"/getSearchProduct?batch_no="+batch_no, true);
 
 		xhttp.send();
 		}
@@ -157,7 +157,7 @@ function getSearchWithBay(){
 
 		};
 				   var bay_no=document.getElementById("bay").value;
-		xhttp.open("GET", "/api/getSearchProduct?bay_no="+bay_no, true);
+		xhttp.open("GET", gUrl.url+"/getSearchProduct?bay_no="+bay_no, true);
 
 		xhttp.send();
 		}

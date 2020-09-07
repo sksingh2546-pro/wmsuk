@@ -1,6 +1,6 @@
  
 /*
-var client = new Paho.MQTT.Client("localhost", Number(9001), "clientId");
+var client = new Paho.MQTT.Client(gUrl.mqtt, Number(9001), "clientId");
 
 //set callback handlers
 client.onConnectionLost = onConnectionLost;
@@ -49,7 +49,7 @@ if(localStorage.getItem("state")==null){
 
  	    }
  	};
- 	XHR.open("GET", "/api/getSkuData?sku="+localStorage.getItem("state"), true);
+ 	XHR.open("GET", gUrl.url+"/getSkuData?sku="+localStorage.getItem("state"), true);
 
  	XHR.send();
  	}
@@ -70,7 +70,7 @@ if(localStorage.getItem("state")==null){
              }
  	    }
  	};
- 	XHR.open("GET", "/api/getTransportData", true);
+ 	XHR.open("GET", gUrl.url+"/getTransportData", true);
 
  	XHR.send();
  	}
@@ -95,7 +95,7 @@ if(localStorage.getItem("state")==null){
  	         }
  	    }
  	};
- 	XHR.open("GET", "/api/getQuantity?sku="+document.getElementById("sku").value, true);
+ 	XHR.open("GET", gUrl.url+"/getQuantity?sku="+document.getElementById("sku").value, true);
 
  	XHR.send();
  	}
@@ -242,6 +242,7 @@ $(document).ready(function(){
     {
    if($('#save').text() == 'Save')
    {
+   document.getElementById("save").disabled = true;
    tq+=parseInt(document.getElementById("quantity").value);
    var q=parseInt(document.getElementById("quantity").value);
    document.getElementById("totalquantity").value=tq;
@@ -335,7 +336,7 @@ function insertPurchaseOrder(){
 
 
                  console.log(hash);
-         		XHR2.open("POST", "/api/insertPurchaseData");
+         		XHR2.open("POST", gUrl.url+"/insertPurchaseData");
          		XHR2.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
 
@@ -343,9 +344,6 @@ function insertPurchaseOrder(){
          	          console.log(XHR2.responseText);
          	          var response = JSON.parse(XHR2.responseText);
          	          if(response['message']=="Successful") {
-                      updateTotalWeightAndQty(tmpOrder[1].trim(),
-                      document.getElementById("totalquantity").value,
-                      document.getElementById("totalweight").value);
                       window.location.href="transport";
          	          }
 
@@ -359,6 +357,8 @@ function insertPurchaseOrder(){
 
          	XHR2.send(JSON.stringify(hash));
         }
+        updateTotalWeightAndQty(tmpOrder[1].trim(),document.getElementById("totalquantity").value
+        ,document.getElementById("totalweight").value);
         }
         else{
         alert("Please Add At Least One Row")
@@ -382,7 +382,7 @@ function insertPurchaseOrder(){
 
  	    
  	};
- 	XHR.open("GET", "api/getPalletWeight?sku="+sku, true);
+ 	XHR.open("GET", gUrl.url+"/getPalletWeight?sku="+sku, true);
 
  	XHR.send();
  	}
@@ -398,7 +398,7 @@ function insertPurchaseOrder(){
 
 
                  console.log(hash);
-         		XHR2.open("POST", "/api/updateTransport");
+         		XHR2.open("POST", gUrl.url+"/updateTransport");
          		XHR2.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
 

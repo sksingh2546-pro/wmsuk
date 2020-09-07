@@ -18,4 +18,7 @@ public interface OutGoodsRepository extends CrudRepository<OutGoods, Long> {
 
     @Query("select og from OutGoods og")
     List<OutGoods> getoutGoodsData();
+
+    @Query("select og from OutGoods og where order_id=?1")
+    List<OutGoods> getOutGoodsData(long order_id);
 }
