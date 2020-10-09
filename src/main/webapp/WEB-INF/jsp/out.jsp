@@ -91,7 +91,7 @@
                                             <a href="#" class="btn btn-default btn-flat">Profile</a>
                                         </div>
                                         <div class="pull-right">
-                                            <a href="logout" class="btn btn-default btn-flat">Sign out</a>
+                                            <a href="login" class="btn btn-default btn-flat">Sign out</a>
                                         </div>
                                     </li>
                                 </ul>
@@ -120,41 +120,49 @@
                     <!-- /.search form -->
                     <!-- sidebar menu: : style can be found in sidebar.less -->
                     <ul class="sidebar-menu">
-                        <li class="header">MAIN NAVIGATION</li>
-                        <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-arrow-circle-left"></i> <span>IN</span>
-                                <span class="pull-right-container">
-                                    <i class="fa fa-angle-left pull-right"></i>
-                                </span>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li class="active"><a href="updateProduction"><i class="fa fa-circle-o"></i>Update Product</a></li>
-                                <li><a href="excelImport" "><i class="fa fa-circle-o"></i>Add SKU</a></li>
-                                <li><a href="changeSkuCapacity" "><i class="fa fa-circle-o"></i>Update SKU</a></li>
-                                <li><a href="changeBayCapacity" "><i class="fa fa-circle-o"></i>Update Bay</a></li>
-                                <li><a href="searchProduct"><i class="fa fa-circle-o"></i>Search Product</a></li>
-                                <li><a href="productionPlan"><i class="fa fa-circle-o"></i>Production Plan</a></li> </ul>
-                                  <li><a href="verifyProduct"><i class="fa fa-circle-o"></i>Verify Production</a></li>
-                        </li>
-                        <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-arrow-circle-right"></i>
-                                <span>OUT</span>
-                                <i class="fa fa-angle-left pull-right"></i>                                                       
-                                </span>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li><a href="transport"><i class="fa fa-circle-o"></i>Make An Order</a></li>
-                                <li><a href="orderDetails"><i class="fa fa-circle-o"></i> Order Details</a></li>
-                            </ul>
-                        </li>
+                                           <li class="header">MAIN NAVIGATION</li>
+                                           <li class="treeview">
+                                               <a href="#">
+                                                   <i class="fa fa-arrow-circle-left"></i> <span>IN</span>
+                                                   <span class="pull-right-container">
+                                                       <i class="fa fa-angle-left pull-right"></i>
+                                                   </span>
+                                               </a>
+                                               <ul class="treeview-menu">
+                                            <li><a href="productionPlan"><i class="fa fa-circle-o"></i>Production Plan</a></li>
+                                                   <li class="active"><a href="insertProduction"><i class="fa fa-circle-o"></i>Manual Insert Product</a></li>
+                                                   <li class="active"><a href="updateProduction"><i class="fa fa-circle-o"></i>Update Product</a></li>
+                                                    <li><a href="verifyProduct"><i class="fa fa-circle-o"></i>Verify Production</a></li>
+                                                   <li><a href="searchProduct"><i class="fa fa-circle-o"></i>Search Product</a></li>
+                                                   <li><a href="excelImport" "><i class="fa fa-circle-o"></i>Add SKU</a></li>
+                                                       <li><a href="changeBayCapacity"><i class="fa fa-circle-o"></i>Update Bay</a></li>
+                                                      <li><a href="changeSkuCapacity"><i class="fa fa-circle-o"></i>Update SKU</a></li>
+                                                    <li><a href="/api/generateExcel"><i class="fa fa-circle-o"></i>GenerateReport</a></li>
 
-                       
-                    
-                
-                </li>
-            </ul>
+                                               </ul>
+                                           </li>
+                                           <li class="treeview">
+                                               <a href="#">
+                                                   <i class="fa fa-arrow-circle-right"></i>
+                                                   <span>OUT</span>
+                                                   <i class="fa fa-angle-left pull-right"></i>
+                                                   </span>
+                                               </a>
+                                               <ul class="treeview-menu">
+                                                           <li><a href="transport"><i class="fa fa-circle-o"></i>Make A Plan</a></li>
+                                                           <li><a href="addDriverDetails"><i class="fa fa-circle-o"></i> Place Order To Bay</a></li>
+                                                           <li><a href="orderDetails"><i class="fa fa-circle-o"></i> Order List</a></li>
+                                                           <li><a href="/api/generateTExcel"><i class="fa fa-circle-o"></i> Generate Report</a></li>
+                                               </ul>
+                                           </li>
+                                          <!--  <li class="treeview">
+                   						<li><a href="changepassword"><i class="fa fa-key"></i>Change Password</a></li>
+                   						</li> -->
+
+
+
+                                   </li>
+                               </ul>
 
 
 
@@ -184,8 +192,8 @@
                     <!-- small box -->
                     <a class="small-box bg-aqua" href="transport"><div class="small-box bg-aqua">
                         <div class="inner">
-                            <h3>Make An</h3>
-                            <h3>Order</h3>
+                            <h3>Make A</h3>
+                            <h3>Plan</h3>
                         </div>
                         <div class="icon">
                             <i class="fa fa-shopping-cart"></i>
@@ -196,6 +204,22 @@
                 <!-- ./col -->
                 <div class="col-lg-4 col-xs-6" style="margin-left:120px;margin-top:50px;">
                     <!-- small box -->
+                        <a class="small-box bg-green" href="addDriverDetails"><div class="small-box bg-green">
+                        <div class="inner">
+                            <h3>Place Order<sup style="font-size: 20px"></sup></h3>
+                            <h3>To Bay</h3>
+
+                        </div>
+                        <div class="icon">
+                                    <i class="fa fa-first-order"></i>
+                                </div>
+                               
+                    </div></a>
+                
+                </div>
+
+                <div class="col-lg-4 col-xs-6" style="margin-left:120px;margin-top:50px;">
+                    <!-- small box -->
                         <a class="small-box bg-green" href="orderDetails"><div class="small-box bg-green">
                         <div class="inner">
                             <h3>Order<sup style="font-size: 20px"></sup></h3>
@@ -203,11 +227,27 @@
 
                         </div>
                         <div class="icon">
-                                    <i class="ion ion-android-menu"></i>
+                                    <i class="fa fa-list"></i>
                                 </div>
-                               
+
                     </div></a>
-                
+
+                </div>
+
+                <div class="col-lg-4 col-xs-6" style="margin-left:120px;margin-top:50px;">
+                    <!-- small box -->
+                        <a class="small-box bg-green" href="/api/generateTExcel"><div class="small-box bg-green">
+                        <div class="inner">
+                            <h3>Generate<sup style="font-size: 20px"></sup></h3>
+                            <h3>Report</h3>
+
+                        </div>
+                        <div class="icon">
+                                    <i class="fa fa-file-excel-o"></i>
+                                </div>
+
+                    </div></a>
+
                 </div>
 
 

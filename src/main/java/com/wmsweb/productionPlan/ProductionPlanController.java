@@ -35,15 +35,12 @@ public class ProductionPlanController {
         Date date=new Date();
         SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         SimpleDateFormat sdf1=new SimpleDateFormat("yyyy-MM-dd");
-        List<ProductionPlan> pList = (List<ProductionPlan>) productionPlanRepository.getProductionPlan(productionPlan.getSku());
-        long batch = 0L;
-        if (pList.size() == 0) {
-            batch = 1L;
-        } else {
-            batch = pList.get(0).getBatch_no() + 1L;
-        }
+        SimpleDateFormat sdf2=new SimpleDateFormat("yy");
+        int month=Calendar.getInstance().get(Calendar.MONTH);
+        String batch_format=String.format("%04d", Integer.parseInt(productionPlan.getBatch_no()));
+        String batch_no=12+"-"+batch_format+"-"+(month+1)+sdf2.format(date);
         List<ProductionPlan> getSku=productionPlanRepository.getTodayProductionPlan(productionPlan.getSku()
-                ,sdf1.format(date)+" 00:00:00",sdf.format(date),productionPlan.getLine_no());
+                ,sdf1.format(date)+" 00:00:00",sdf.format(date),productionPlan.getLine_no(),batch_no);
         if(getSku.size()>0)
         {
          int update=productionPlanRepository.updateProduction_plan(
@@ -53,7 +50,7 @@ public class ProductionPlanController {
              message = "{\"message\":\"Successful\"}";
          }
         }else {
-            int insert = productionPlanRepository.insertProduction_plan(batch,
+            int insert = productionPlanRepository.insertProduction_plan(batch_no,
                     sdf.format(this.date), productionPlan.getQty(),
                     productionPlan.getSku(), productionPlan.getLine_no());
             if (insert > 0) {

@@ -72,10 +72,10 @@ function cancelOrder(){
                     
 
                         alert("Your Ordered has been Canceled");
-                        window.location.href="orderDetails"
 			    var  message = new Paho.MQTT.Message(localStorage.getItem("order_id").toString());
 	        	  	message.destinationName = "status";
 	        	  	client.send(message);
+                        window.location.href="orderDetails"
                    		            }
 		            }
 		      };

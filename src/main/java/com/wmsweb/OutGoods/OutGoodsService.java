@@ -38,9 +38,9 @@ public class OutGoodsService {
     }
 
     @GetMapping("/getOutGoods")
-    public Map<String, ArrayList<OutGoods>> getPalletqty() {
+    public Map<String, ArrayList<OutGoods>> getPalletQty() {
         HashMap<String, ArrayList<OutGoods>> hmap = new HashMap<String, ArrayList<OutGoods>>();
-        ArrayList<OutGoods> PalletQty = (ArrayList<OutGoods>) outgoodsRepository.getoutGoodsData();
+        ArrayList<OutGoods> PalletQty = (ArrayList<OutGoods>) outgoodsRepository.getOutGoodsData();
         hmap.put("outGoods", PalletQty);
         return hmap;
     }

@@ -19,10 +19,10 @@
         <!-- Bootstrap 3.3.6 -->
         <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
         <!-- Font Awesome -->
-        <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
-        <!-- Ionicons -->
-        <link rel="stylesheet" href="ionicons.min.css">
-        <!-- Theme style -->
+         <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
+                <!-- Ionicons -->
+                <link rel="stylesheet" href="ionicons.min.css">
+                <!-- Theme style -->
         <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
        
         <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
@@ -95,9 +95,7 @@
                                     <!-- User image -->
                                     <li class="user-header">
                                         <img src="Image/logo2.png" class="img-circle" alt="User Image">
-
                                         <p>
-                                      
                                         <i style="font-size: 18px"><%=session.getAttribute("userid")%></i><br>
                                             
                                             <small></small>
@@ -138,46 +136,46 @@
                    
                     <!-- /.search form -->
                     <!-- sidebar menu: : style can be found in sidebar.less -->
-                    <ul class="sidebar-menu">
-                        <li class="header">MAIN NAVIGATION</li>
-                        <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-arrow-circle-left"></i> <span>IN</span>
-                                <span class="pull-right-container">
-                                    <i class="fa fa-angle-left pull-right"></i>
-                                </span>
-                            </a>
-                            <ul class="treeview-menu">
-                                 <li class="active"><a href="updateProduction"><i class="fa fa-circle-o"></i>Update Product</a></li>
-                                 <li><a href="excelImport" "><i class="fa fa-circle-o"></i>Add SKU</a></li>
-                                  <li><a href="changeSkuCapacity" "><i class="fa fa-circle-o"></i>Update SKU</a></li>
-                                  <li><a href="changeBayCapacity" "><i class="fa fa-circle-o"></i>Update Bay</a></li>
-                                  <li><a href="searchProduct"><i class="fa fa-circle-o"></i>Search Product</a></li>
-                                  <li><a href="productionPlan"><i class="fa fa-circle-o"></i>Production Plan</a></li>
-                                    <li><a href="verifyProduct"><i class="fa fa-circle-o"></i>Verify Production</a></li>
-                            </ul>
-                        </li>
-                        <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-arrow-circle-right"></i>
-                                <span>OUT</span>
-                                <i class="fa fa-angle-left pull-right"></i>                                                       
-                                </span>
-                            </a>
-                            <ul class="treeview-menu">
-                                 <li><a href="transport"><i class="fa fa-circle-o"></i>Make An Order</a></li>
-                                 <li><a href="orderDetails"><i class="fa fa-circle-o"></i> Order Details</a></li>
-                            </ul>
-                        </li>
-
-                       
-                    
-                
-                </li>
-            </ul>
-
-
-
+                  <ul class="sidebar-menu">
+                                         <li class="header">MAIN NAVIGATION</li>
+                                         <li class="treeview">
+                                             <a href="#">
+                                                 <i class="fa fa-arrow-circle-left"></i> <span>IN</span>
+                                                 <span class="pull-right-container">
+                                                     <i class="fa fa-angle-left pull-right"></i>
+                                                 </span>
+                                             </a>
+                                             <ul class="treeview-menu">
+                                             <li><a href="productionPlan"><i class="fa fa-circle-o"></i>Production Plan</a></li>
+                                                    <li class="active"><a href="insertProduction"><i class="fa fa-circle-o"></i>Manual Insert Product</a></li>
+                                                    <li class="active"><a href="updateProduction"><i class="fa fa-circle-o"></i>Update Product</a></li>
+                                                     <li><a href="verifyProduct"><i class="fa fa-circle-o"></i>Verify Production</a></li>
+                                                    <li><a href="searchProduct"><i class="fa fa-circle-o"></i>Search Product</a></li>
+                                                    <li><a href="excelImport" "><i class="fa fa-circle-o"></i>Add SKU</a></li>
+                                                        <li><a href="changeBayCapacity"><i class="fa fa-circle-o"></i>Update Bay</a></li>
+                                                       <li><a href="changeSkuCapacity"><i class="fa fa-circle-o"></i>Update SKU</a></li>
+                                                     <li><a href="/api/generateExcel"><i class="fa fa-circle-o"></i>GenerateReport</a></li>
+                                       </ul>
+                                         </li>
+                                         <li class="treeview">
+                                             <a href="#">
+                                                 <i class="fa fa-arrow-circle-right"></i>
+                                                 <span>OUT</span>
+                                                 <i class="fa fa-angle-left pull-right"></i>
+                                                 </span>
+                                             </a>
+                                             <ul class="treeview-menu">
+                                                                   <li><a href="transport"><i class="fa fa-circle-o"></i>Make A Plan</a></li>
+                                                                   <li><a href="addDriverDetails"><i class="fa fa-circle-o"></i> Place Order To Bay</a></li>
+                                                                   <li><a href="orderDetails"><i class="fa fa-circle-o"></i> Order List</a></li>
+                                                                   <li><a href="/api/generateTExcel"><i class="fa fa-circle-o"></i> Generate Report</a></li>
+                                            </ul>
+                                         </li>
+                                        <!--  <li class="treeview">
+                 						<li><a href="changepassword"><i class="fa fa-key"></i>Change Password</a></li>
+                 						</li> -->
+                                 </li>
+                             </ul>
         </section>
         <!-- /.sidebar -->
     </aside>
@@ -192,23 +190,19 @@
             </h1>
             <ol class="breadcrumb">
                <h4 style="float: left;margin-right:20px;" ><a href="in"><i class="fa fa-arrow-circle-left"></i>&nbsp;IN</a></h4> <h4 style="float: right "><a href="index"><i class="fa fa-home"></i>&nbsp;Home</a></h4>
-
             </ol>
         </section>
-
         <!-- Main content -->
         <section class="content">
                     <div class="panel panel-primary">
-                    
                         <div class="container" >
                         <div style="width:30%;display:inline-block">
                             <h2 style="margin-left:20px"><b>Add Product Plan</b></h2></div>
                             <div style="width:69%;display:inline-block">
                             <h2 style="margin-left:20%"><b>Today Product Plan Limit</b></h2>
                             </div>
-                           <div style="width:25%;height:450px;display:inline-block;border-right:solid;border-color:#3c8dbc;" >
+                           <div style="width:25%;height:500px;display:inline-block;border-right:solid;border-color:#3c8dbc;" >
                                 <table style="margin-left:40px">
-                               
                                     <tr>
                                         <td>
                                             <div class="form-group" >
@@ -217,9 +211,14 @@
                                               <input list="sku" id="sku1" name="sku" class="form-control" placeholder="Enter SKU ...">
                                               <datalist id="sku">  </datalist>
                                     </div>    </td>
-										
                                     </tr>
-                                   
+                                    <tr>
+                                    <td>
+                                    <div class="form-group" >
+                                    <h5 style="font-weight:bold;"> Batch No : &nbsp;<label for="product_name" style="font-weight:bold;color:red;"> *</label></h5>
+                                    <input type="number" id="batch_no"  class="form-control" placeholder="Enter batch_no ...">
+                                    </div>    </td>
+                                    </tr>
                                     <tr>
                                         <td>
                                             <div class="form-group" >
@@ -231,9 +230,6 @@
                                                <option >1</option>
                                                 <option>2</option>
                                                 <option>3</option>
-
-
-
                                                </select>
                                     </div>    </td>
                                         </tr>
@@ -264,7 +260,7 @@
                                 </table>
                                 </div>
                                 <div style="width:65%;display:inline-block;height:450px">
-                                <table  border="1" style="width:100%; margin-left:15px" id="pp">
+                                <table  border="1" style="width:100%; margin-left:15px;margin-top:-30px" id="pp">
                                 <tr  style="background:#3c8dbc;color:white;height:40px;text-align:center">
                                 <th style="text-align:center">SKU</th>
                                 <th style="text-align:center">LINE NO</th>
@@ -313,7 +309,6 @@
 <!-- Bootstrap 3.3.6 -->
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <!-- Morris.js charts -->
-<script src="raphael-min.js"></script>
 <script src="plugins/morris/morris.min.js"></script>
 <!-- Sparkline -->
 <script src="plugins/sparkline/jquery.sparkline.min.js"></script>
@@ -323,7 +318,6 @@
 <!-- jQuery Knob Chart -->
 <script src="plugins/knob/jquery.knob.js"></script>
 <!-- daterangepicker -->
-<script src="moment.min.js"></script>
 <script src="plugins/daterangepicker/daterangepicker.js"></script>
 <!-- datepicker -->
 <script src="plugins/datepicker/bootstrap-datepicker.js"></script>
@@ -342,8 +336,6 @@
 <script src="paho.js"></script>
  <script src="url.js"></script>
 <script src="productionPlan.js"></script>
-
-
 </body>
 </html>
 <%-- <%}%> --%>

@@ -38,7 +38,7 @@ public class PurchaseService {
             makeSorting(purchase.getOrder_id(),purchase.getSku());
             message = "{\"message\":\"Successful\"}";
             try {
-                commonDataRepository.insertData(purchase.getOrder_id(), "order", "1", CurrentDate);
+            //    commonDataRepository.insertData(purchase.getOrder_id(), "order", "1", CurrentDate);
             }catch (Exception e){
                 System.out.println(e);
             }
@@ -84,7 +84,10 @@ public class PurchaseService {
                 );
                  if(getSortingPurchase.size()>0){
                      int qty=getProductionData.get(count).getQty();
-                     int tQty=qty-getSortingPurchase.get(0).getQty();
+                     int tmpQty = 0;
+                     for(SortingPurchase sp:getSortingPurchase){
+                     tmpQty+=sp.getQty();}
+                     int tQty=qty-tmpQty;
                      if(tQty<=0){
                          ++increment;
                      }
@@ -148,4 +151,24 @@ public class PurchaseService {
         }
         return message;
     }
+
+    @PostMapping({"/insertBatchPurchaseData"})
+    public String insertBatchPurchaseData(@RequestBody Purchase purchase) throws InterruptedException {
+        String message = "{\"message\":\"Unsuccessful\"}";
+        Date date = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String CurrentDate = sdf.format(date);
+        int insertData = purchaseRepository.insertData(purchase.getOrder_id(),
+                purchase.getPermit_no(), purchase.getSku(), purchase.getQty(),
+                CurrentDate,purchase.getBay_no(),purchase.getBatch_no());
+        if (insertData > 0) {
+            int insert=sortingPurchaseRepository.insertData(purchase.getOrder_id(),
+                    purchase.getPermit_no(),purchase.getSku(),purchase.getBatch_no(),
+                    purchase.getBay_no(),purchase.getQty(),0,CurrentDate);
+            if (insert>0){
+            message = "{\"message\":\"Successful\"}";
+        }}
+        return message;
+    }
+
 }

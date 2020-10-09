@@ -14,12 +14,11 @@
 <!-- Bootstrap 3.3.6 -->
 <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 <!-- Font Awesome -->
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-<!-- Ionicons -->
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-<!-- Theme style -->
+ <!-- Font Awesome -->
+        <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
+        <!-- Ionicons -->
+        <link rel="stylesheet" href="ionicons.min.css">
+        <!-- Theme style -->
 <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
 
 <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
@@ -42,8 +41,67 @@
 <link rel="stylesheet" href="dist/boot3.css">
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet"href="jquery-ui.css">
-<script src="jquery-1.12.4.js"></script>
-  <script src="jquery-ui.js"></script>
+<style>
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+</style>
 
 
 </head>
@@ -97,7 +155,7 @@
 										<a href="#" class="btn btn-default btn-flat">Profile</a>
 									</div>
 									<div class="pull-right">
-										<a href="logout" class="btn btn-default btn-flat">Sign out</a>
+										<a href="login" class="btn btn-default btn-flat">Sign out</a>
 									</div>
 								</li>
 							</ul></li>
@@ -124,38 +182,45 @@
 
 				<!-- /.search form -->
 				<!-- sidebar menu: : style can be found in sidebar.less -->
-				<ul class="sidebar-menu">
-					<li class="header">MAIN NAVIGATION</li>
-					<li class="treeview"><a href="#"> <i
-							class="fa fa-arrow-circle-left"></i> <span>IN</span> <span
-							class="pull-right-container"> <i
-								class="fa fa-angle-left pull-right"></i>
-						</span>
-					</a>
-						<ul class="treeview-menu">
-							<li class="active"><a href="update"><i
-									class="fa fa-circle-o"></i>Add Product</a></li>
-							<li><a href="#" onclick="alert('Inserted SKU!');"><i
-									class="fa fa-circle-o"></i>Add SKU</a></li>
-							<li><a href="productlist"><i class="fa fa-circle-o"></i>Search
-									Product</a></li>
-						</ul></li>
-					<li class="treeview"><a href="#"> <i
-							class="fa fa-arrow-circle-right"></i> <span>OUT</span> <i
-							class="fa fa-angle-left pull-right"></i> </span>
-					</a>
-						<ul class="treeview-menu">
-							<li><a href="transport"><i class="fa fa-circle-o"></i>Make
-									An Order</a></li>
-							<li><a href="orderlist"><i class="fa fa-circle-o"></i>
-									Order List</a></li>
-						</ul></li>
+				   <ul class="sidebar-menu">
+                                        <li class="header">MAIN NAVIGATION</li>
+                                        <li class="treeview">
+                                            <a href="#">
+                                                <i class="fa fa-arrow-circle-left"></i> <span>IN</span>
+                                                <span class="pull-right-container">
+                                                    <i class="fa fa-angle-left pull-right"></i>
+                                                </span>
+                                            </a>
+                                            <ul class="treeview-menu">
+                                             <li><a href="productionPlan"><i class="fa fa-circle-o"></i>Production Plan</a></li>
+                                                    <li class="active"><a href="insertProduction"><i class="fa fa-circle-o"></i>Update Product</a></li>
+                                                    <li class="active"><a href="updateProduction"><i class="fa fa-circle-o"></i>Update Product</a></li>
+                                                     <li><a href="verifyProduct"><i class="fa fa-circle-o"></i>Verify Production</a></li>
+                                                    <li><a href="searchProduct"><i class="fa fa-circle-o"></i>Search Product</a></li>
+                                                    <li><a href="excelImport" "><i class="fa fa-circle-o"></i>Add SKU</a></li>
+                                                        <li><a href="changeBayCapacity"><i class="fa fa-circle-o"></i>Update Bay</a></li>
+                                                       <li><a href="changeSkuCapacity"><i class="fa fa-circle-o"></i>Update SKU</a></li>
+                                                     <li><a href="/api/generateExcel"><i class="fa fa-circle-o"></i>GenerateReport</a></li>
+                                         </ul>
+                                        </li>
+                                        <li class="treeview">
+                                            <a href="#">
+                                                <i class="fa fa-arrow-circle-right"></i>
+                                                <span>OUT</span>
+                                                <i class="fa fa-angle-left pull-right"></i>
+                                                </span>
+                                            </a>
+                                            <ul class="treeview-menu">
+                                                <li><a href="transport"><i class="fa fa-circle-o"></i>Make An Order</a></li>
+                                                <li><a href="orderDetails"><i class="fa fa-circle-o"></i> Order Details</a></li>
+                                            </ul>
+                                        </li>
 
 
 
 
-					</li>
-				</ul>
+                                </li>
+                            </ul>
 
 
 
@@ -185,53 +250,19 @@
 			<!-- Main content -->
 			<section class="content">
 				<div class="panel panel-primary">
+				<div align="left">
+			<a   href="purchase">Previous Order</a><div>
+			<div align="right" style="margin-top:-20px">
+		    <a   href="addDriverDetails">Place Order To Bay</a></div >
+            <div align="center" style="margin-top:-10px">
+            <h2>Make Custom Bay Order<h2>
+            <label class="switch">
+              <input type="checkbox" id="myChecked" >
+              <span class="slider round"></span>
+            </label>
+		    </div>
 					<div class="container" style="margin-left: 12%;">
 						<table>
-
-							<tr>
-								<td>
-									<div class="form-group">
-										<h5 style="font-weight: bold;">
-											Driver Name:&nbsp;<label for="product_name"
-												style="font-weight: bold; color: red;">*</label>
-										</h5>
-										<input list="driver1" class="form-control" id="driverName"
-											name="driverName" placeholder="Enter Driver Name" required>
-										<datalist id="driver1"></datalist>
-									</div>
-								</td>
-
-
-
-
-								<td>
-									<div class="form-group" style="margin-left: 100px;">
-										<h5 style="font-weight: bold;">
-											Contact No:&nbsp;<label for="product_name"
-												style="font-weight: bold; color: red;">*</label>
-										</h5>
-										<input list="contact1" class="form-control" id="contactNo"
-											name="contactNo" placeholder="Enter Contact No" required>
-										<datalist id="contact1"></datalist>
-									</div>
-								</td>
-
-
-								<td>
-
-
-									<div class="form-group" style="margin-left: 100px;">
-										<h5 style="font-weight: bold;">
-											Vehicle No:&nbsp;<label for="product_name"
-												style="font-weight: bold; color: red;">*</label>
-										</h5>
-										<input list="vehicle1" class="form-control" id="vehicleNo"
-											name="vehicleNo" placeholder="Enter Vehicle No" required>
-										<datalist id="vehicle1"></datalist>
-									</div>
-								</td>
-							</tr>
-
 							<tr>
 								<td>
 									<div class="form-group">
@@ -267,66 +298,21 @@
 												style="font-weight: bold; color: red;">*</label>
 										</h5>
 
-										<select class="form-control" id="state" name="state"
-											placeholder="Enter State" required>
+										<select class="form-control" id="state" name="state">
 											<option value="Select">Select</option>
-											<option value="CHD">CHD</option>
-											<option value="HAR">HAR</option>
-											<option value="HIM">HIM</option>
-											<option value="PJB">PJB</option>
-											<option value="UCH">UCH</option>
-											<option value="JNK">JNK</option>
-
-
+											<option value="PJBCVL">PJBCVL</option>
+											<option value="CHDITBP">CHDITBP</option>
+											<option value="HARCSD">HARCSD</option>
+											<option value="CHDCVL">CHDCVL</option>
+											<option value="PJBCSD">PJBCSD</option>
+											<option value="HIMCVL">HIMCVL</option>
+											<option value="HIMCSD">HIMCSD</option>
+											<option value="HARCVL">HARCVL</option>
+											<option value="DAMCVL">DAMCVL</option>
+											<option value="ALLSTATE">ALLSTATE</option>
 										</select>
-
-
-
 									</div>
 								</td>
-
-							</tr>
-							<tr>
-
-								<!--  <td>
-                                            <div class="form-group">
-                                                 <h5 style="font-weight:bold;">Pallet Weight:&nbsp;<label for="code" style="font-weight:bold;color:red;">*</label><h5>
-                                                <input type="number" class="form-control" id="palletweight" name="palletweight" placeholder="Enter Pallet Weight" required>
-                                                <datalist id="party1"></datalist>
-                                    </div>    </td> -->
-								<!--  <td>
-
-                                            <div class="form-group" style="margin-left:100px;">
-                                               <h5 style="font-weight:bold;">Total Weight:&nbsp; <label for="code" style="font-weight:bold;color:red;">*</label></h5>
-                                                <input type="number" class="form-control" id="totalweight" name="totalweight" placeholder="Enter Total Weight" required>
-                                                 <datalist id="transport1"></datalist>
-
-                                            </div>
-                                        </td> -->
-
-								<td>
-
-									<div class="form-group">
-
-										<h5 style="font-weight: bold;">
-											Truck Bay No:&nbsp;<label for="code"
-												style="font-weight: bold; color: red;">*</label>
-										</h5>
-										<select class="form-control" id="truckbay" name="truckbay"
-											placeholder="Enter State" required>
-											<option value="Select">Select</option>
-											<option value="1">1</option>
-											<option value="2">2</option>
-
-
-
-										</select>
-
-
-
-									</div>
-								</td>
-
 							</tr>
 						</table>
 						<div class="form-group" style="width: 69%">
@@ -373,8 +359,10 @@
          immediately after the control sidebar -->
 		<div class="control-sidebar-bg"></div>
 	</div>
-	<script src="paho.js"></script>
+	<script src="jquery-1.12.4.js"></script>
+     <script src="jquery-ui.js"></script>
 	<script src="dist/bootstrap-tokenfield.js"></script>
+	<script src="paho.js"></script>
  <script src="url.js"></script>
 	<script src="transport.js"></script>
 

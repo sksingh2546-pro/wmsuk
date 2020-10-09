@@ -91,7 +91,7 @@
                                             <a href="#" class="btn btn-default btn-flat">Profile</a>
                                         </div>
                                         <div class="pull-right">
-                                            <a href="logout" class="btn btn-default btn-flat">Sign out</a>
+                                            <a href="login" class="btn btn-default btn-flat">Sign out</a>
                                         </div>
                                     </li>
                                 </ul>
@@ -119,45 +119,47 @@
                    
                     <!-- /.search form -->
                     <!-- sidebar menu: : style can be found in sidebar.less -->
-                    <ul class="sidebar-menu">
-                        <li class="header">MAIN NAVIGATION</li>
-                        <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-arrow-circle-left"></i> <span>IN</span>
-                                <span class="pull-right-container">
-                                    <i class="fa fa-angle-left pull-right"></i>
-                                </span>
-                            </a>
-                            <ul class="treeview-menu">
-                              <li class="active"><a href="updateProduction"><i class="fa fa-circle-o"></i>Update Product</a></li>
-                               <li><a href="excelImport" "><i class="fa fa-circle-o"></i>Add SKU</a></li>
-                               <li><a href="changeSkuCapacity" "><i class="fa fa-circle-o"></i>Update SKU</a></li>
-                               <li><a href="changeBayCapacity" "><i class="fa fa-circle-o"></i>Update Bay</a></li>
-                               <li><a href="searchProduct"><i class="fa fa-circle-o"></i>Search Product</a></li>
-                               <li><a href="productionPlan"><i class="fa fa-circle-o"></i>Production Plan</a></li>
-                               <li><a href="varifyProduction"><i class="fa fa-circle-o"></i>Verify Production</a></li>
-                                 <li><a href="verifyProduct"><i class="fa fa-circle-o"></i>Verify Production</a></li>
-                            </ul>
-                        </li>
-                        <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-arrow-circle-right"></i>
-                                <span>OUT</span>
-                                <i class="fa fa-angle-left pull-right"></i>                                                       
-                                </span>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li><a href="transport"><i class="fa fa-circle-o"></i>Make An Order</a></li>
-                                <li><a href="orderDetails"><i class="fa fa-circle-o"></i> Order Details</a></li>
-                            </ul>
-                        </li>
+               <ul class="sidebar-menu">
+                                      <li class="header">MAIN NAVIGATION</li>
+                                      <li class="treeview">
+                                          <a href="#">
+                                              <i class="fa fa-arrow-circle-left"></i> <span>IN</span>
+                                              <span class="pull-right-container">
+                                                  <i class="fa fa-angle-left pull-right"></i>
+                                              </span>
+                                          </a>
+                                          <ul class="treeview-menu">
+                                             <li><a href="productionPlan"><i class="fa fa-circle-o"></i>Production Plan</a></li>
+                                                    <li class="active"><a href="insertProduction"><i class="fa fa-circle-o"></i>Manual Insert Product</a></li>
+                                                    <li class="active"><a href="updateProduction"><i class="fa fa-circle-o"></i>Update Product</a></li>
+                                                     <li><a href="verifyProduct"><i class="fa fa-circle-o"></i>Verify Production</a></li>
+                                                    <li><a href="searchProduct"><i class="fa fa-circle-o"></i>Search Product</a></li>
+                                                    <li><a href="excelImport" "><i class="fa fa-circle-o"></i>Add SKU</a></li>
+                                                        <li><a href="changeBayCapacity"><i class="fa fa-circle-o"></i>Update Bay</a></li>
+                                                       <li><a href="changeSkuCapacity"><i class="fa fa-circle-o"></i>Update SKU</a></li>
+                                                     <li><a href="/api/generateExcel"><i class="fa fa-circle-o"></i>GenerateReport</a></li>
 
-                       
-                    
-                
-                </li>
-            </ul>
+                                          </ul>
+                                      </li>
+                                      <li class="treeview">
+                                          <a href="#">
+                                              <i class="fa fa-arrow-circle-right"></i>
+                                              <span>OUT</span>
+                                              <i class="fa fa-angle-left pull-right"></i>
+                                              </span>
+                                          </a>
+                                          <ul class="treeview-menu">
+                                                  <li><a href="transport"><i class="fa fa-circle-o"></i>Make A Plan</a></li>
+                                                  <li><a href="addDriverDetails"><i class="fa fa-circle-o"></i> Place Order To Bay</a></li>
+                                                  <li><a href="orderDetails"><i class="fa fa-circle-o"></i> Order List</a></li>
+                                                  <li><a href="/api/generateTExcel"><i class="fa fa-circle-o"></i> Generate Report</a></li>
+                                           </ul>
+                                      </li>
 
+
+
+                              </li>
+                          </ul>
 
 
         </section>
@@ -181,7 +183,61 @@
         <!-- Main content -->
         <section class="content">
             <!-- Small boxes (Stat box) -->
-            <div class="row">
+         <div class="row">
+         <div class="col-lg-4 col-xs-6" style="margin-left:100px;margin-top:35px;">
+                          <a class="small-box bg-red" href="productionPlan"><div class="small-box bg-red">
+                          <div class="inner">
+                          <h3>Production <sup style="font-size: 20px"></sup></h3>
+                          <h3>Plan</h3>
+                          </div>
+                          <div class="icon">
+                          <i class="fa fa-calendar"></i>
+                          </div>
+
+                          </div></a>
+                          </div>
+
+
+         <div class="col-lg-4 col-xs-6" style="margin-left:100px;margin-top:35px;">
+                          <a class="small-box bg-red" href="insertProduction"><div class="small-box bg-red">
+                          <div class="inner">
+                          <h3>Insert <sup style="font-size: 20px"></sup></h3>
+                          <h3>Production</h3>
+                          </div>
+                          <div class="icon">
+                          <i class="fa fa-calendar"></i>
+                          </div>
+
+                          </div></a>
+                          </div>
+
+
+          <div class="col-lg-4 col-xs-6" style="margin-left:100px;margin-top:35px;">
+                             <!-- small box -->
+                            <a class="small-box bg-aqua" href="updateProduction"> <div class="small-box bg-aqua">
+                                 <div class="inner">
+                                     <h3>Update</h3>
+                                     <h3>Product</h3>
+                                 </div>
+                                 <div class="icon">
+                                     <i class="fa fa-shopping-basket"></i>
+                                 </div>
+
+                             </div></a>
+                         </div>
+
+                           <div class="col-lg-4 col-xs-6" style="margin-left:100px;margin-top:35px;">
+                                          <a class="small-box bg-red" href="verifyProduct"><div class="small-box bg-red">
+                                          <div class="inner">
+                                          <h3>Verify<sup style="font-size: 20px"></sup></h3>
+                                          <h3>Production</h3>
+                                          </div>
+                                          <div class="icon">
+                                          <i class="fa fa-shopping-basket"></i>
+                                          </div>
+
+                                          </div></a>
+                                          </div>
              <div class="col-lg-4 col-xs-6" style="margin-left:100px;margin-top:35px;">
 
               <a class="small-box bg-green" href="searchProduct"><div class="small-box bg-green">
@@ -196,19 +252,7 @@
               </div></a>
               </div>
 
-                <div class="col-lg-4 col-xs-6" style="margin-left:100px;margin-top:35px;">
-                    <!-- small box -->
-                   <a class="small-box bg-aqua" href="updateProduction"> <div class="small-box bg-aqua">
-                        <div class="inner">
-                            <h3>Update</h3>
-                            <h3>Product</h3>
-                        </div>
-                        <div class="icon">
-                            <i class="fa fa-shopping-basket"></i>
-                        </div>
 
-                    </div></a>
-                </div>
                 <!-- ./col -->
 
 
@@ -255,8 +299,24 @@
 
                  </div></a>
                  </div>
-             
-              
+
+
+
+      <div class="col-lg-4 col-xs-6" style="margin-left:100px;margin-top:35px;">
+                 <a class="small-box bg-red" href="/api/generateTExcel"><div class="small-box bg-red">
+                 <div class="inner">
+                 <h3>Generate<sup style="font-size: 20px"></sup></h3>
+                 <h3>Report</h3>
+                 </div>
+                 <div class="icon">
+                 <i class="fa fa-file-excel-o"></i>
+                 </div>
+
+                 </div></a>
+                 </div>
+
+        </div>
+
            
          
         </section>

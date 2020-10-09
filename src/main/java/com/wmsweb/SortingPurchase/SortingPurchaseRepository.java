@@ -16,7 +16,7 @@ public interface SortingPurchaseRepository extends CrudRepository<SortingPurchas
     @Modifying
     @Query(value = "insert into sorting_purchase(order_id,permit_no,sku,batch_no,bay,qty,status,date)values(?1,?2,?3,?4,?5,?6,?7,?8)", nativeQuery = true)
     @Transactional
-    int insertData(long order_id, String permit_no, String sku, long batch_no, String bay, int qty, int Status, String date);
+    int insertData(long order_id, String permit_no, String sku, String batch_no, String bay, int qty, int Status, String date);
 
     @Modifying
     @Query(value = "update sorting_purchase set status=?2 where id=?1", nativeQuery = true)
@@ -27,7 +27,7 @@ public interface SortingPurchaseRepository extends CrudRepository<SortingPurchas
     List<SortingPurchase> getSortingPurchase();
 
     @Query("select sp from SortingPurchase sp where sku=?1 and batch_no=?2 and bay=?3")
-    List<SortingPurchase> getSortingPurchase(String sku,long batch_no,String bay);
+    List<SortingPurchase> getSortingPurchase(String sku,String batch_no,String bay);
 
     @Query("select sp from SortingPurchase sp where status=0 and sku=?1")
     List<SortingPurchase> getSortingPurchase(String sku);
@@ -53,12 +53,12 @@ public interface SortingPurchaseRepository extends CrudRepository<SortingPurchas
     @Modifying
     @Query(value = "update sorting_purchase set qty=?1 where order_id=?2 and batch_no=?3 and sku=?4 and bay=?5", nativeQuery = true)
     @Transactional
-    public int updateQty(int qty, long order_id, long batch_no, String sku, String bay);
+    public int updateQty(int qty, long order_id, String batch_no, String sku, String bay);
 
     @Modifying
     @Query(value = "update sorting_purchase set qty=?1,status=?6 where order_id=?2 and batch_no=?3 and sku=?4 and bay=?5", nativeQuery = true)
     @Transactional
-    public int updateQty(int qty, long order_id, long batch_no, String sku, String bay,int status);
+    public int updateQty(int qty, long order_id, String batch_no, String sku, String bay,int status);
 
     @Modifying
     @Query(value = "update sorting_purchase set qty=0 where order_id=?1", nativeQuery = true)

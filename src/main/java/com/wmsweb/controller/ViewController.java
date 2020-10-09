@@ -230,4 +230,19 @@ public class ViewController {
         model.addAttribute("msg", (Object) "Please Enter Your Login Details");
         return "varifyProduction";
     }
+    @RequestMapping(value = {"addDriverDetails"}, method = {RequestMethod.GET})
+    public String addDriverDetails(Model model) {
+        model.addAttribute("msg", (Object) "Please Enter Your Login Details");
+        return "addDriverDetails";
+    }
+   @RequestMapping(value = {"customOrder"}, method = {RequestMethod.GET})
+    public String customOrder(Model model) {
+        model.addAttribute("msg", (Object) "Please Enter Your Login Details");
+        return "customOrder";
+    }
+ @RequestMapping(value = {"insertProduction"}, method = {RequestMethod.GET})
+    public String insertProduction(Model model) {
+        model.addAttribute("msg", (Object) "Please Enter Your Login Details");
+        return "insertProduction";
+    }
 }

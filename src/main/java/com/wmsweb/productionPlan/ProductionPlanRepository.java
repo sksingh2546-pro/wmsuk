@@ -14,7 +14,7 @@ public interface ProductionPlanRepository extends CrudRepository<ProductionPlan,
     @Modifying
     @Query(value = "insert into production_plan(batch_no,date,qty,sku,line_no)values(?1,?2,?3,?4,?5)", nativeQuery = true)
     @Transactional
-    int insertProduction_plan(long batch_no, String date, int qty, String sku, String line_no);
+    int insertProduction_plan(String batch_no, String date, int qty, String sku, String line_no);
 
     @Modifying
     @Query(value = "update production_plan set qty=?1 where sku=?2 and line_no=?3", nativeQuery = true)
@@ -27,8 +27,9 @@ public interface ProductionPlanRepository extends CrudRepository<ProductionPlan,
     @Query("select pp from ProductionPlan pp where  date between ?1 and ?2")
     List<ProductionPlan> getTodayProductionPlan(String fromDate, String toDate);
 
-    @Query("select pp from ProductionPlan pp where sku=?1 and date between ?2 and ?3 and line_no=?4")
-    List<ProductionPlan> getTodayProductionPlan(String sku,String fromDate, String toDate,String line_no);
+    @Query("select pp from ProductionPlan pp where sku=?1 and date between ?2 and ?3 and line_no=?4 and batch_no=?5")
+    List<ProductionPlan> getTodayProductionPlan(String sku,String fromDate, String toDate,String line_no,
+                                                String batch_no);
 
     /*
      * @Query("select pp.qty from ProductionPlan pp where sku=?1") public int

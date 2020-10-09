@@ -40,7 +40,7 @@ function skuList(){
           }
 	    }
 	};
-	xhttp1.open("GET", gUrl.url+"/getSkuList", true);
+	xhttp1.open("GET", "/api/getSkuList", true);
 
 	xhttp1.send();
 	}
@@ -52,6 +52,7 @@ function insertProductionPlan(){
 	var sku=document.getElementById("sku1").value;
 	var line_no=document.getElementById("line_no").value;
 	var qty=document.getElementById("qty").value;
+	var batch_no=document.getElementById("batch_no").value;
 	if(sku==""){
 		alert("Please Enter Sku");
 	}
@@ -64,9 +65,9 @@ function insertProductionPlan(){
 	else{
 		console.log(sku);
 		 var XHR2 = new XMLHttpRequest();
-         var hash={"sku":""+sku+"","line_no":""+line_no+"","qty":""+qty+""}
+         var hash={"sku":""+sku+"","line_no":""+line_no+"","qty":""+qty+"","batch_no":""+batch_no+""}
 		
-		XHR2.open("POST", gUrl.url+"/insertProductionPlan");
+		XHR2.open("POST", "/api/insertProductionPlan");
 		XHR2.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
 
@@ -74,16 +75,16 @@ function insertProductionPlan(){
 	          console.log(XHR2.responseText);
 	          var response = JSON.parse(XHR2.responseText);
 	          if(response['message']=="Successful") {
+	          var message = new Paho.MQTT.Message("Kuchh Bhi");
+              message.destinationName = "plan";
+              client.send(message);
 
-	           	getProductionPlan();
-	           	skuList();
 	               alert("Successfully Inserted");
 	               document.getElementById("sku1").value="";
 	               document.getElementById("line_no").value="";
 	           	   document.getElementById("qty").value="";
-	          var message = new Paho.MQTT.Message("Kuchh Bhi");
-              message.destinationName = "plan";
-              client.send(message);
+	           	skuList();
+	           	getProductionPlan();
 	          }
 	          
 			  else {

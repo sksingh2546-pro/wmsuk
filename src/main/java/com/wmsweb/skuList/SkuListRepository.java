@@ -18,7 +18,7 @@ public interface SkuListRepository extends CrudRepository<SkuList, Long> {
     int insertSku(String sku, double cases_of_pallets, double pallet_weight);
 
     @Modifying
-    @Query(value = "update sku set cases_of_pallets=?2 and pallet_weight=?3 where sku=?1", nativeQuery = true)
+    @Query(value = "update sku set cases_of_pallets=?2, pallet_weight=?3 where sku=?1", nativeQuery = true)
     @Transactional
     int updateSku(String sku, double cases_of_pallets, double pallet_weight);
 

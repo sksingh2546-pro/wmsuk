@@ -33,7 +33,7 @@
         <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
         <!-- bootstrap wysihtml5 - text editor -->
         <link rel="stylesheet" href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="jquery-ui.css">
         <link rel="stylesheet" href="bootstrap.min.css" />
   <script src="jquery-1.12.4.js"></script>
   <script src="jquery-ui.js"></script>
@@ -104,7 +104,7 @@
                                             <a href="#" class="btn btn-default btn-flat">Profile</a>
                                         </div>
                                         <div class="pull-right">
-                                            <a href="logout" class="btn btn-default btn-flat">Sign out</a>
+                                            <a href="#" class="btn btn-default btn-flat">Sign out</a>
                                         </div>
                                     </li>
                                 </ul>
@@ -141,14 +141,7 @@
                                     <i class="fa fa-angle-left pull-right"></i>
                                 </span>
                             </a>
-                            <ul class="treeview-menu">
-                                <li class="active"><a href="updateProduction"><i class="fa fa-circle-o"></i>Update Product</a></li>
-                                <li><a href="excelImport" "><i class="fa fa-circle-o"></i>Add SKU</a></li>
-                                <li><a href="changeSkuCapacity" "><i class="fa fa-circle-o"></i>Update SKU</a></li>
-                                <li><a href="changeBayCapacity" "><i class="fa fa-circle-o"></i>Update Bay</a></li>
-                                <li><a href="searchProduct"><i class="fa fa-circle-o"></i>Search Product</a></li>
-                                <li><a href="productionPlan"><i class="fa fa-circle-o"></i>Production Plan</a></li>
-                            </ul>
+
                         </li>
                         <li class="treeview">
                             <a href="#">
@@ -157,10 +150,7 @@
                                 <i class="fa fa-angle-left pull-right"></i>                                                       
                                 </span>
                             </a>
-                            <ul class="treeview-menu">
-                                 <li><a href="transport"><i class="fa fa-circle-o"></i>Make An Order</a></li>
-                                 <li><a href="orderDetails"><i class="fa fa-circle-o"></i> Order Details</a></li>
-                            </ul>
+
                         </li>
 
                        
@@ -180,6 +170,7 @@
         <!-- Content Header (Page header) -->
         <section class="content">
                     <div class="panel panel-primary">
+                    <a align="left" href="transport"> Back</a>
                         <div align="center">
                             <b><h5 id="orderId">Order Id :</h5></b></div>
                             <div style="margin-left:547px">
@@ -190,10 +181,6 @@
   <form>
   <table>
   <tr>
-  <td style=>
-  <label for="totalweight">Total Weight:</label>
-  <input type="number" id="totalweight" name="totalweight" readonly>
-  </td>
   <td>
   <label for="totalquantity">Total Quantity:</label>
   <input type="number" id="totalquantity" name="totalquantity" readonly >

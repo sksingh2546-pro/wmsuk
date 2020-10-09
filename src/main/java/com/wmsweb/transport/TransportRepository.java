@@ -66,12 +66,24 @@ public interface TransportRepository extends CrudRepository<Transport, Long> {
     @Query("select ts from Transport ts where status!=2 and status!=4")
     List<Transport> getOrderId();
 
+    @Query("select ts from Transport ts where driver_name=''")
+    List<Transport> getTransportDetails();
+
     @Modifying
-    @Query(value = "update transport set total_qty=?2,total_weight=?3 where order_id=?1", nativeQuery = true)
+    @Query(value = "update transport set total_qty=?2,sku=?3 where order_id=?1", nativeQuery = true)
     @Transactional
-    public int updatetransport(long order_id, String total_Qty, String total_weight);
-    
-    @Query("select ts from Transport ts where day(date)=?1 and month(date)=?2 and year(date)=?3")
-    List<Transport> getTransportDetails(int day,int month,int year);
+    public int updateTransport(long order_id, String total_Qty, String sku);
+
+    @Modifying
+    @Query(value = "update transport set driver_name=?2,vehicle_no=?3,contact_no=?4,truck_bay_no=?5 where order_id=?1", nativeQuery = true)
+    @Transactional
+    public int addDriverDetails(long order_id,String  driver_name, String vehicle_no, String contact_no,String truck_bay);
+
+    @Query("select ts from Transport ts where day(date)=?1 and month(date)=?2 and year(date)=?3 and state=?4")
+    List<Transport> getTransportDetails(int day,int month,int year,String state);
+
+
+    @Query("select ts.state from Transport ts where day(date)=?1 and month(date)=?2 and year(date)=?3")
+    List<String> getTransportDetails(int day,int month,int year);
 
 }

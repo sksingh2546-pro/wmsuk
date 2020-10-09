@@ -10,7 +10,7 @@ public class OutGoods {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private long batch_no;
+    private String batch_no;
     private String bay_no;
     private String sku;
     private int qty;
@@ -24,11 +24,11 @@ public class OutGoods {
         this.id = id;
     }
 
-    public long getBatch_no() {
+    public String getBatch_no() {
         return batch_no;
     }
 
-    public void setBatch_no(long batch_no) {
+    public void setBatch_no(String batch_no) {
         this.batch_no = batch_no;
     }
 

@@ -14,13 +14,13 @@ public class FilterQty {
     private String bay;
     private String date;
     private String line_no;
-    private long batch_no;
+    private String batch_no;
 
-    public long getBatch_no() {
+    public String getBatch_no() {
         return batch_no;
     }
 
-    public void setBatch_no(long batch_no) {
+    public void setBatch_no(String batch_no) {
         this.batch_no = batch_no;
     }
 

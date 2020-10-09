@@ -1,12 +1,3 @@
-<%-- <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-    <%
-    if ((session.getAttribute("userid") == null) || (session.getAttribute("userid") == "")) {
-%>
-<h1>You are not logged in</h1><br/>
-<a href="login">Please Login</a>
-<%} else {
-%> --%>
 
 <!DOCTYPE html>
 <html>
@@ -19,9 +10,9 @@
         <!-- Bootstrap 3.3.6 -->
         <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
         <!-- Font Awesome -->
-         <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
-               <!-- Ionicons -->
-               <link rel="stylesheet" href="ionicons.css">
+        <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
+        <!-- Ionicons -->
+        <link rel="stylesheet" href="ionicons.min.css">
         <!-- Theme style -->
         <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
        
@@ -39,18 +30,8 @@
         <!-- bootstrap wysihtml5 - text editor -->
         <link rel="stylesheet" href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
 
-<link rel="stylesheet" href="bootstrap.css">
-  <script src="jquery-min.js"></script>
-        <script>
-            $(document).ready(function(){
-                 $("#town").change(function(){
-                     var value = $(this).val();
-                     $.get("data",{bayno:value},function(data){
-                      $("#javaquery").html(data);
-                     });
-                 });
-             });
-        </script>
+        <link rel="stylesheet" href="bootstrap.min.css">
+
     </head>
     <body class="hold-transition skin-blue sidebar-mini">
         <div class="wrapper">
@@ -138,51 +119,50 @@
                    
                     <!-- /.search form -->
                     <!-- sidebar menu: : style can be found in sidebar.less -->
-                    <ul class="sidebar-menu">
-                        <li class="header">MAIN NAVIGATION</li>
-                        <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-arrow-circle-left"></i> <span>IN</span>
-                                <span class="pull-right-container">
-                                    <i class="fa fa-angle-left pull-right"></i>
-                                </span>
-                            </a>
-                            <ul class="treeview-menu">
-                                            <li><a href="productionPlan"><i class="fa fa-circle-o"></i>Production Plan</a></li>
-                                                   <li class="active"><a href="insertProduction"><i class="fa fa-circle-o"></i>Manual Insert Product</a></li>
-                                                   <li class="active"><a href="updateProduction"><i class="fa fa-circle-o"></i>Update Product</a></li>
-                                                    <li><a href="verifyProduct"><i class="fa fa-circle-o"></i>Verify Production</a></li>
-                                                   <li><a href="searchProduct"><i class="fa fa-circle-o"></i>Search Product</a></li>
-                                                   <li><a href="excelImport" "><i class="fa fa-circle-o"></i>Add SKU</a></li>
-                                                       <li><a href="changeBayCapacity"><i class="fa fa-circle-o"></i>Update Bay</a></li>
-                                                      <li><a href="changeSkuCapacity"><i class="fa fa-circle-o"></i>Update SKU</a></li>
-                                                    <li><a href="/api/generateExcel"><i class="fa fa-circle-o"></i>GenerateReport</a></li>
+                   <ul class="sidebar-menu">
+                                          <li class="header">MAIN NAVIGATION</li>
+                                          <li class="treeview">
+                                              <a href="#">
+                                                  <i class="fa fa-arrow-circle-left"></i> <span>IN</span>
+                                                  <span class="pull-right-container">
+                                                      <i class="fa fa-angle-left pull-right"></i>
+                                                  </span>
+                                              </a>
+                                              <ul class="treeview-menu">
+                                                  <li><a href="productionPlan"><i class="fa fa-circle-o"></i>Production Plan</a></li>
+                                                  <li class="active"><a href="insertProduction"><i class="fa fa-circle-o"></i>Manual Insert Product</a></li>
+                                                  <li class="active"><a href="updateProduction"><i class="fa fa-circle-o"></i>Update Product</a></li>
+                                                   <li><a href="verifyProduct"><i class="fa fa-circle-o"></i>Verify Production</a></li>
+                                                  <li><a href="searchProduct"><i class="fa fa-circle-o"></i>Search Product</a></li>
+                                                  <li><a href="excelImport" "><i class="fa fa-circle-o"></i>Add SKU</a></li>
+                                                      <li><a href="changeBayCapacity"><i class="fa fa-circle-o"></i>Update Bay</a></li>
+                                                     <li><a href="changeSkuCapacity"><i class="fa fa-circle-o"></i>Update SKU</a></li>
+                                                   <li><a href="/api/generateExcel"><i class="fa fa-circle-o"></i>GenerateReport</a></li>
 
-                            </ul>
-                        </li>
-                        <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-arrow-circle-right"></i>
-                                <span>OUT</span>
-                                <i class="fa fa-angle-left pull-right"></i>                                                       
-                                </span>
-                            </a>
-                            <ul class="treeview-menu">
+                                              </ul>
+                                          </li>
+                                          <li class="treeview">
+                                              <a href="#">
+                                                  <i class="fa fa-arrow-circle-right"></i>
+                                                  <span>OUT</span>
+                                                  <i class="fa fa-angle-left pull-right"></i>
+                                                  </span>
+                                              </a>
+                                              <ul class="treeview-menu">
                                                   <li><a href="transport"><i class="fa fa-circle-o"></i>Make A Plan</a></li>
                                                   <li><a href="addDriverDetails"><i class="fa fa-circle-o"></i> Place Order To Bay</a></li>
                                                   <li><a href="orderDetails"><i class="fa fa-circle-o"></i> Order List</a></li>
                                                   <li><a href="/api/generateTExcel"><i class="fa fa-circle-o"></i> Generate Report</a></li>
-
-                            </ul>
-                        </li>
-
-                       
-                    
-                
-                </li>
-            </ul>
+                                              </ul>
+                                          </li>
+                                         <!--  <li class="treeview">
+                  						<li><a href="changepassword"><i class="fa fa-key"></i>Change Password</a></li>
+                  						</li> -->
 
 
+
+                                  </li>
+                              </ul>
 
         </section>
         <!-- /.sidebar -->
@@ -194,100 +174,106 @@
         <section class="content-header">
             <h1>
                 Dashboard
-                <small></small>
+                
             </h1>
-            <ol class="breadcrumb">
-               <h4 style="float: left;margin-right:20px;"><a href="in"><i class="fa fa-arrow-circle-left"></i>&nbsp;IN</a></h4> <h4 style="float: right "><a href="index"><i class="fa fa-home"></i>&nbsp;Home</a></h4>
+           <ol class="breadcrumb">
+  <h4 style="float: left;margin-right:20px;" ><a href="in"><i class="fa fa-arrow-circle-left"></i>&nbsp;IN</a></h4> <h4 style="float: right "><a href="index"><i class="fa fa-home"></i>&nbsp;Home</a></h4>
 
             </ol>
         </section>
 
-        <!-- Main content -->
-        <section class="content">
-                    <div class="panel panel-primary">
-                    
-                        <div class="container" >
-                        <div style="width:30%;display:inline-block">
-                            <h2 style="margin-left:10px"><b>Add SKU Capacity</b></h2></div>
-                            <div style="width:69%;display:inline-block">
-                            <h2 style="margin-left:20%"><b>All SKU And Capacity</b></h2>
-                            </div>
-                           <div style="width:25%;height:450px;display:inline-block;border-right:solid;border-color:#3c8dbc;" >
-                                <table style="margin-left:40px">
-                               
-                                    <tr>
-                                        <td>
-                                            <div class="form-group" >
-                                           
-                                               <h5 style="font-weight:bold;"> SKU: &nbsp;<label for="product_name" style="font-weight:bold;color:red;"> *</label></h5>
-                                              <input list="sku" id="sku1" name="sku" class="form-control" placeholder="Enter SKU ...">
-                                              <datalist id="sku">  </datalist>
-                                    </div>    </td>
-										
-                                    </tr>
-                                        <tr>
-                                        <td>
+         <div class="container">
+            <h2>Transport Details</h2>
+             <section class="content">
+                    <div class="panel panel-primary" style="width:28.5cm">
+                        <div class="container">
+                            <b><h2>Add Driver Details</h2></b>
+                          <div style="height:300px;overflow:scroll">
+                            <table id="proTable" class="table table-bordered table-striped" style="width:27.7cm">
+                        <thead>
+                        <tr>
+                          <th>Order Id.</th>
+                          <th>Party name</th>
+                          <th>Address</th>
+                          <th>State</th>
+                          <th></th>
 
-                                            <div class="form-group" >
-                                            <br>
-                                               <h5 style="font-weight:bold;">Capacity: &nbsp; <label for="code" style="font-weight:bold;color:red;"> *</label><br></h5>
-                                                <input type="number" class="form-control" id="capacity" name="capacity" placeholder="Enter Capacity ..." required>
-
-                                            </div>
-											
-                                        </td>
-                                        
-                                    </tr>                                    
-                                   
-                                       
-                 <tr>
-                                        <td>
-
-                                            <div class="form-group" >
-                                            <br>
-                                               <h5 style="font-weight:bold;">Pallet Weight: &nbsp; <label for="code" style="font-weight:bold;color:red;"> *</label><br></h5>
-                                                <input type="number" class="form-control" id="weight" name="weight" placeholder="Enter Capacity ..." required>
-
-                                            </div>
-
-                                        </td>
-
-                                    </tr>
-
-
-
-                                    <tr>
-
-                                        <td>
-										<br><br>
-                                            <div class="form-group" style="margin-left:20%;">
-                                            <button  class="btn btn-danger" onclick="insertSku()" >Submit</button>
-                                       </div> </td>
-                                    </tr>
-                                    
-                                   
-                                    
-                                </table>
-                                </div>
-                                <div style="width:65%;display:inline-block;height:450px;overflow:auto">
-                                <table  border="1" style="width:100%; margin-left:15px" id="pp">
-                                <tr  style="background:#3c8dbc;color:white;height:40px;text-align:center">
-                                <th style="text-align:center">SKU</th>
-                                <th style="text-align:center" >CAPACITY</th>
-                                <th style="text-align:center" >WEIGHT</th>
-                                </tr>
-                                </table>
-                                </div>                            
+                        </tr>
+                        </thead>
+                        <tbody id="table">
+                        
+                        </tbody>
+                      </table>
+					  <div>
+						
                         </div>
                     </div>
                 </section>
-        <!-- /.content -->
+                
+                
+                
+                
+                
+                </div>
+            
+       
     </div>
+	
+	
+	
+	 <div id="verify" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                    <div class="modal-header modal-success">
+                      <button type="button" id="myBtn" class="close" data-dismiss="modal">&times;</button>
+                      <h4 class="modal-title">Change Bay</h4>
+                       
+                        
+                      
+                     </div>
+                   <br>
+				             <table id="table1" class="table table-bordered table-striped" style="width:15cm;margin-left:.4cm">
+                        <thead>
+                        <tr>
+                          <th>Order Id</th>
+                          <th>Driver Name</th>
+                          <th>Contact No</th>
+                          <th>Vehicle No.</th>
+                          <th>Truck Bay No.</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                        <td  id="orderId"></td>
+                        <td contenteditable='true' id="driverName" ></td>
+                        <td contenteditable='true' id="Contact" ></td>
+                        <td contenteditable='true' id="Vehicle" ></td>
+                        <td ><select  style="width:2.5cm;height:1cm" id="bayNo" >
+                        <option value="select">Select</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        </select></td>
+                        </tr>
+                        </tbody>
+                      </table>
+				   
+				   
+                    <div class="modal-footer">
+                    <button type="submit" id="deleteJoinee" class="btn btn-success" onclick="addDriverDetails()"  >Done</button>
+                      <button type="submit" class="btn btn-warning" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+	</div>
+	</div>
+
+	
+	
     <!-- /.content-wrapper -->
     <footer class="main-footer">
         <div class="pull-right hidden-xs">
         </div>
-      <!--  <strong>Copyright &copy; 2018-2019 <a href="#"></a>.</strong> -->
+       <!--  <strong>Powered By His group Pvt Ltd. <a href="#"></a>.</strong> -->
     </footer>
 
     <!-- Control Sidebar -->
@@ -344,9 +330,7 @@
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
  <script src="url.js"></script>
-<script src="changeSkuCapacity.js"></script>
-
+<script src="addDriverDetails.js"></script>
 
 </body>
 </html>
-<%-- <%}%> --%>

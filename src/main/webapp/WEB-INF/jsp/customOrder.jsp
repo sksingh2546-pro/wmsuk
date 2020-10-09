@@ -1,12 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <%
-    if ((session.getAttribute("userid") == null) || (session.getAttribute("userid") == "")) {
-%>
-<h1>You are not logged in</h1><br/>
-<a href="login">Please Login</a>
-<%} else {
-%>
+
+
 
 <!DOCTYPE html>
 <html>
@@ -24,7 +19,7 @@
         <link rel="stylesheet" href="ionicons.min.css">
         <!-- Theme style -->
         <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
-       
+
         <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
         <!-- iCheck -->
         <link rel="stylesheet" href="plugins/iCheck/flat/blue.css">
@@ -38,16 +33,24 @@
         <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
         <!-- bootstrap wysihtml5 - text editor -->
         <link rel="stylesheet" href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+<link rel="stylesheet" href="jquery-ui.css">
+        <link rel="stylesheet" href="bootstrap.min.css" />
+  <script src="jquery-1.12.4.js"></script>
+  <script src="jquery-ui.js"></script>
 
+  <link rel="stylesheet" href="style.css">
         <link rel="stylesheet" href="bootstrap.min.css">
-
+		<script src="jquery-1.10.2.js"></script>
+		<script type="text/javascript" src="paho.js"></script>
+		 <script src="url.js"></script>
+<script src="customOrder.js"></script>
     </head>
     <body class="hold-transition skin-blue sidebar-mini">
         <div class="wrapper">
 
             <header class="main-header">
-               
-                <a href="index" class="logo">
+
+                <a href="#" onclick="alert('Please Complete The Order!');" class="logo">
                     <!-- mini logo for sidebar mini 50x50 pixels -->
                     <span class="logo-mini"><b>W</b>MS</span>
                     <!-- logo for regular state and mobile devices -->
@@ -65,7 +68,7 @@
                             <!-- Messages: style can be found in dropdown.less-->
                             <li class="dropdown messages-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                </a> 
+                                </a>
                             </li>
                             <!-- Notifications: style can be found in dropdown.less -->
                             <li class="dropdown notifications-menu">
@@ -87,9 +90,9 @@
                                         <img src="Image/logo2.png" class="img-circle" alt="User Image">
 
                                         <p>
-                                      
-                                        <i style="font-size: 18px"><%=session.getAttribute("userid")%></i><br>
-                                            
+
+                                        <i style="font-size: 18px"></i><br>
+
                                             <small></small>
                                         </p>
                                     </li>
@@ -100,7 +103,7 @@
                                             <a href="#" class="btn btn-default btn-flat">Profile</a>
                                         </div>
                                         <div class="pull-right">
-                                            <a href="logout" class="btn btn-default btn-flat">Sign out</a>
+                                            <a href="#" class="btn btn-default btn-flat">Sign out</a>
                                         </div>
                                     </li>
                                 </ul>
@@ -125,7 +128,7 @@
 
                         </div>
                     </div>
-                   
+
                     <!-- /.search form -->
                     <!-- sidebar menu: : style can be found in sidebar.less -->
                     <ul class="sidebar-menu">
@@ -137,28 +140,21 @@
                                     <i class="fa fa-angle-left pull-right"></i>
                                 </span>
                             </a>
-                            <ul class="treeview-menu">
-                                <li class="active"><a href="update"><i class="fa fa-circle-o"></i>Add Product</a></li>
-                                <li><a href="sku"><i class="fa fa-circle-o"></i>Add SKU</a></li>
-                                <li><a href="productlist"><i class="fa fa-circle-o"></i>Search Product</a></li>
-                            </ul>
+
                         </li>
                         <li class="treeview">
                             <a href="#">
                                 <i class="fa fa-arrow-circle-right"></i>
                                 <span>OUT</span>
-                                <i class="fa fa-angle-left pull-right"></i>                                                       
+                                <i class="fa fa-angle-left pull-right"></i>
                                 </span>
                             </a>
-                            <ul class="treeview-menu">
-                                <li><a href="transport"><i class="fa fa-circle-o"></i>Make An Order</a></li>
-                                <li><a href="orderlist"><i class="fa fa-circle-o"></i> Order List</a></li>
-                            </ul>
+
                         </li>
 
-                       
-                    
-                
+
+
+
                 </li>
             </ul>
 
@@ -171,113 +167,106 @@
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
-        <section class="content-header">
-            <h1>
-                Dashboard
-                
-            </h1>
-           <ol class="breadcrumb">
-                <h4 style="float: left;margin-right:20px;" ><a href="out"><i class="fa fa-arrow-circle-right"></i>&nbsp;OUT</a></h4> <h4 style="float: right "><a href="index"><i class="fa fa-home"></i>&nbsp;Home</a></h4>
-
-            </ol>
-        </section>
-
-         <div class="container">
-            
-            <p>Products Out in the Store</p> 
-             <section class="content">
+        <section class="content">
                     <div class="panel panel-primary">
-                        <div class="container">
-                            <b><h2>Order History</h2></b>
-                                                       
-                            
-                            <table class="table table-hover">
-                        <thead>
-                            <tr>
-                               
-                                <th>SKU</th>
-                                <th>Bay No</th>
-                                <th>Lot No</th>
-                                <th>Quantity</th>
-                                
-                                
-                                
-                            </tr>
-                        </thead>
-                        <tbody>
-                        <%@page import="java.sql.*,java.util.*" %>
-<%
+                    <a align="left" href="transport"> Back</a>
+                        <div align="center">
+                            <b><h5 id="orderId">Order Id :</h5></b></div>
+                            <div style="margin-left:547px">
+    <button type="button" name="add" id="add" class="btn btn-success btn-xs">Add</button>
+   </div>
 
-try{
-	int orderid=Integer.parseInt(request.getParameter("orderid"));
-	ArrayList<String> sku=new ArrayList<String>();
-	ArrayList<String> bay=new ArrayList<String>();
-	ArrayList<Integer> lot=new ArrayList<Integer>();
-	ArrayList<Integer> quantity=new ArrayList<Integer>();
-	  
-		Class.forName("com.mysql.jdbc.Driver");
-Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/wms","root","");
+   <div style="margin-left:680px;margin-top:-43px">
+  <form>
+  <table>
+  <tr>
+  <td>
+  <label for="totalquantity">Total Quantity:</label>
+  <input type="number" id="totalquantity" name="totalquantity" readonly >
+  </td>
+  </tr>
+  </table>
+</form>
 
-PreparedStatement ps=con.prepareStatement("select * from get_order_details where order_id="+orderid+"  ");
-ResultSet rs=ps.executeQuery();
 
-while(rs.next()){
-	sku.add(rs.getString(2));
-	bay.add(rs.getString(3));
-	lot.add(rs.getInt(4));
-	quantity.add(rs.getInt(5));
-	
-}  
-String skuarray[]=sku.toArray(new String[sku.size()]);
-String bayarray[]=bay.toArray(new String[bay.size()]);
-Integer lotarray[]=lot.toArray(new Integer[lot.size()]);
-Integer quantityarray[]=quantity.toArray(new Integer[quantity.size()]);
-%>
+   </div>
+   <br>
+   <div align="center">
+   <form method="post" action="purchase1" >
+    <div class="table-responsive" style="overflow:auto;height:380px">
+     <table class="table table-striped table-bordered" id="product_data">
+      <tr>
+       <th>Permit No.</th>
+       <th>SKU</th>
+       <th>Bay No</th>
+       <th>Batch No</th>
+       <th>Quantity</th>
+       <th>Remove</th>
+      </tr>
+     </table>
+    </div>
+   </form>
+   </div>
 
-	<%for(int list=0;list<skuarray.length;list++){
-		
-	%>
-	<form>
-	<tr>
-		<td><label type="text" name="sku" style="background: rgba(0, 0, 0, 0);font-weight:bold;border: none;outline: none; "value=""><%out.print(skuarray[list]); %></label></td>
-		<td><label type="text" name="bay" size="4" style="background: rgba(0, 0, 0, 0);font-weight:bold;border: none;outline: none; "value=""><%out.print(bayarray[list]); %></label></td>
-		<td><label type="text" name="lot" size="4" style="background: rgba(0, 0, 0, 0);font-weight:bold;border: none;outline: none; "value=""><%out.print(lotarray[list]); %></label></td>
-		<td><label type="text" name="qty" size="4" style="background: rgba(0, 0, 0, 0);font-weight:bold;border: none;outline: none; "value=""><%out.print(quantityarray[list]); %></label></td>
-		
-		</tr>
-		</form>
-	<%
-	
-	}%>
-	
-	<%}catch(Exception e){
-	
-	
-	
-}%>
- 
-                          
-                           
-                    </tbody>
-                </table>
-                
-                        </div>
+       <div align="center"><input type="submit" name="insert" id="insert" onclick="insertPurchaseOrder()" class="btn btn-primary" value="Proceed" align="center" formaction="purchase1"/><div>
+   <br>
+  </div>
+
+  <div id="product_dialog" title="Add Data">
+  <div class="form-group" align = "left">
+                <label>Permit No.</label>
+                <select name = "permit_no" id = "permit_no" class="form-control">
+                <option value="permit">permit</option>
+                </select>
+        <span id="error_serial_no" class="text-danger"></span>
+   </div>
+
+    <div class="form-group" align = "left">
+               <label>SKU.</label>
+               <select name = "sku" id = "sku" class="form-control" onchange="getBatchNo()">
+               </select>
+        <span id="error_serial_no" class="text-danger"></span>
+   </div>
+    <div class="form-group" align = "left">
+               <label>Batch No</label>
+               <select name = "batch_no" id = "batch_no" class="form-control" onchange="getBay()">
+               </select>
+        <span id="error_serial_no" class="text-danger"></span>
+   </div>
+    <div class="form-group" align = "left">
+               <label>Bay No</label>
+               <select name = "bay_no" id = "bay_no" class="form-control" onchange="getRangeQty()">
+               </select>
+        <span id="error_serial_no" class="text-danger"></span>
+   </div>
+   <div class="form-group" align = "left">
+    <label>Quantity</label>
+    <input type="number" name="quantity" id="quantity" class="form-control" readonly onkeyup="setQuantityValidation()"/>
+    <span id="error_quantity" class="text-danger"></span>
+   </div>
+   <div class="form-group" align="center">
+    <input type="hidden" name="row_id" id="hidden_row_id" />
+        <input type="hidden" name="tempQty" id="tempQty" />
+
+    <div align="center" id="rangeQty" style="color:red"></div>
+    <button type="button" name="save" id="save" class="btn btn-info" disabled >Save</button>
+   </div>
+  </div>
+  <div id="action_alert" title="Action">
+
+  </div>
+   </div>
+
                     </div>
+                      </div>
                 </section>
-                
-                
-                
-                
-                
-                </div>
-            
-       
+        <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
     <footer class="main-footer">
         <div class="pull-right hidden-xs">
         </div>
-      <!--   <strong>Copyright &copy; 2016-2017 <a href="#"></a>.</strong> -->
+      <!--  <strong>Copyright &copy; 2018-2019 <a href="#"></a>.</strong> -->
     </footer>
 
     <!-- Control Sidebar -->
@@ -299,7 +288,7 @@ Integer quantityarray[]=quantity.toArray(new Integer[quantity.size()]);
 <!-- jQuery 2.2.3 -->
 <script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
-<script src="jquery-ui.min.js"></script>
+<script src="dist/jui.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
     $.widget.bridge('uibutton', $.ui.button);
@@ -333,6 +322,8 @@ Integer quantityarray[]=quantity.toArray(new Integer[quantity.size()]);
 <script src="dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
+
+
 </body>
 </html>
-<%}%>
+

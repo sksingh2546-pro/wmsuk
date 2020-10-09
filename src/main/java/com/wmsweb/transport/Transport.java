@@ -24,7 +24,15 @@ public class Transport {
     private String truck_bay_no;
     private String total_qty;
     private String total_weight;
+    private String sku;
 
+    public String getSku() {
+        return sku;
+    }
+
+    public void setSku(String sku) {
+        this.sku = sku;
+    }
 
     public String getTotal_qty() {
         return total_qty;

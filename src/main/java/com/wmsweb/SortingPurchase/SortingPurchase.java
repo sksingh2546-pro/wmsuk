@@ -15,7 +15,7 @@ public class SortingPurchase {
     private long order_id;
     private String permit_no;
     private String sku;
-    private long batch_no;
+    private String batch_no;
     private String bay;
     private int qty;
     private int status;
@@ -53,11 +53,11 @@ public class SortingPurchase {
         this.sku = sku;
     }
 
-    public long getBatch_no() {
-        return this.batch_no;
+    public String getBatch_no() {
+        return batch_no;
     }
 
-    public void setBatch_no(long batch_no) {
+    public void setBatch_no(String batch_no) {
         this.batch_no = batch_no;
     }
 

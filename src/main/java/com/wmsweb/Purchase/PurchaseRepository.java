@@ -20,6 +20,11 @@ public interface PurchaseRepository extends CrudRepository<Purchase, Long> {
     int insertData(long order_id, String permit_no, String sku, int qty, String date);
 
     @Modifying
+    @Query(value = "insert into purchase (order_id,permit_no,sku,qty,date,status,bay_no,batch_no)values(?1,?2,?3,?4,?5,1,?6,?7)", nativeQuery = true)
+    @Transactional
+    int insertData(long order_id, String permit_no, String sku, int qty, String date,String bay,String batch_no);
+
+    @Modifying
     @Query(value = "update purchase set status=1 where order_id=?1", nativeQuery = true)
     @Transactional
     int updatePurchaseStatus(long order_id);

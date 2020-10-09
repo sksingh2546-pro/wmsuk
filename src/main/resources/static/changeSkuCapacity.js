@@ -40,13 +40,15 @@ function skuList(){
 	      ppTable.innerHTML+='<tr  style="background:#3c8dbc;color:white;height:40px;text-align:center">'+
           '<th style="text-align:center">SKU</th>'+
           '<th style="text-align:center">CAPACITY</th>'+
+          '<th style="text-align:center">WEIGHT</th>'+
           '</tr>'
 	      sku.innerHTML="";
           for(var key in result.sku){
         	  sku.innerHTML+='<option value='+result.sku[key].sku+'>';
         	  ppTable.innerHTML+='<tr  style="text-align:center">'+
               '<td style="text-align:center">'+result.sku[key].sku+'</td>'+
-              '<td style="text-align:center">'+parseInt(result.sku[key].cases_of_pallets)+'</td></tr>'
+              '<td style="text-align:center">'+parseInt(result.sku[key].cases_of_pallets)+'</td>'+
+              '<td style="text-align:center">'+parseInt(result.sku[key].pallet_weight)+'</td></tr>'
         	  
           }
 	    }
@@ -62,17 +64,21 @@ function insertSku(){
 	
 	var sku=document.getElementById("sku1").value;
 	var capacity=document.getElementById("capacity").value;
+	var weight=document.getElementById("weight").value;
 	if(sku==""){
 		alert("Please Enter Sku");
 	}
 	else if(capacity==""){
 		alert("Please Enter Capacity");
 	}
-	
+	else if(weight==""){
+		alert("Please Enter weight");
+	}
+
 	else{
 		console.log(sku);
 		 var XHR2 = new XMLHttpRequest();
-         var hash={"sku":""+sku+"","cases_of_pallets":""+capacity+""}
+         var hash={"sku":""+sku+"","cases_of_pallets":""+capacity+"","pallet_weight":""+weight+""}
 		
 		XHR2.open("POST", gUrl.url+"/updateSku");
 		XHR2.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
@@ -87,6 +93,7 @@ function insertSku(){
 	               alert("Successfully Inserted");
 	               document.getElementById("sku1").value="";
 	               document.getElementById("capacity").value="";
+	               document.getElementById("weight").value="";
 	           	   skuList();
 	          }
 	          
