@@ -182,7 +182,7 @@
         </section>
 
          <div class="container">
-            <h2>Edit Product</h2>
+            <h2>Verify Product</h2>
              <section class="content">
                     <div class="panel panel-primary" style="width:28.5cm">
                         <div class="container">

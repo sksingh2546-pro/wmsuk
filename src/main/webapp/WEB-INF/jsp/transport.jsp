@@ -300,16 +300,7 @@ input:checked + .slider:before {
 
 										<select class="form-control" id="state" name="state">
 											<option value="Select">Select</option>
-											<option value="PJBCVL">PJBCVL</option>
-											<option value="CHDITBP">CHDITBP</option>
-											<option value="HARCSD">HARCSD</option>
-											<option value="CHDCVL">CHDCVL</option>
-											<option value="PJBCSD">PJBCSD</option>
-											<option value="HIMCVL">HIMCVL</option>
-											<option value="HIMCSD">HIMCSD</option>
-											<option value="HARCVL">HARCVL</option>
-											<option value="DAMCVL">DAMCVL</option>
-											<option value="ALLSTATE">ALLSTATE</option>
+
 										</select>
 									</div>
 								</td>

@@ -30,7 +30,8 @@ public interface ProductionPlanRepository extends CrudRepository<ProductionPlan,
     @Query("select pp from ProductionPlan pp where sku=?1 and date between ?2 and ?3 and line_no=?4 and batch_no=?5")
     List<ProductionPlan> getTodayProductionPlan(String sku,String fromDate, String toDate,String line_no,
                                                 String batch_no);
-
+    @Query("select pp.line_no from ProductionPlan pp")
+    List<String>getLineNo();
     /*
      * @Query("select pp.qty from ProductionPlan pp where sku=?1") public int
      * get_qty(String sku);

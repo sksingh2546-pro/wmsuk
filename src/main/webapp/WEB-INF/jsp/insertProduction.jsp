@@ -201,7 +201,7 @@
                             <div style="width:69%;display:inline-block">
                             <h2 style="margin-left:20%"><b>All Production List</b></h2>
                             </div>
-                           <div style="width:25%;height:500px;display:inline-block;border-right:solid;border-color:#3c8dbc;" >
+                           <div style="width:25%;height:600px;display:inline-block;border-right:solid;border-color:#3c8dbc;" >
                                 <table style="margin-left:40px">
                                     <tr>
                                         <td>
@@ -215,9 +215,16 @@
                                     <tr>
                                     <td>
                                     <div class="form-group" >
-                                    <h5 style="font-weight:bold;"> Batch No : &nbsp;<label for="product_name" style="font-weight:bold;color:red;"> *</label></h5>
+                                    <h5 style="font-weight:bold;"> Batch :<label for="product_name" style="font-weight:bold;color:red;"> *</label></h5>
                                     <input type="number" id="batch_no"  class="form-control" placeholder="Enter batch_no ...">
-                                    </div>    </td>
+                                    </div>    </td></tr>
+                                    <tr>
+                                    <td>
+                                     <div class="form-group" >
+                                      <h5 style="font-weight:bold;"> Date :<label for="product_name" style="font-weight:bold;color:red;"> *</label></h5>
+                                      <input type="month" id="date"  class="form-control" placeholder="Enter batch_no ...">
+                                      </div>
+                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
@@ -256,8 +263,8 @@
                                     </tr>
                                 </table>
                                 </div>
-                                <div style="width:65%;display:inline-block;height:450px;overflow:auto">
-                                <table  border="1" style="width:100%; margin-left:15px;margin-top:-30px" id="pp">
+                                <div style="width:65%;display:inline-block;height:600px;overflow:auto">
+                                <table  border="1" style="width:100%; margin-left:15px" id="pp">
                                 <tr  style="background:#3c8dbc;color:white;height:40px;text-align:center">
                                 <th style="text-align:center">BAY</th>
                                 <th style="text-align:center">SKU</th>

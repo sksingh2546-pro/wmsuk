@@ -1,34 +1,8 @@
-'use strict';
-
-var client = new Paho.MQTT.Client(gUrl.mqtt, Number(9001), "clientId");
-
-//set callback handlers
-client.onConnectionLost = onConnectionLost;
-client.onMessageArrived = onMessageArrived;
-
-//connect the client
-client.connect({onSuccess:onConnect});
-		        	  function onConnect() {
-		        	  	//Once a connection has been made, make a subscription and send a message.
-		        	  	console.log("onConnect");
-		        	  	client.subscribe("#");
-		        	  	}
-function onConnectionLost(responseObject) {
-	if (responseObject.errorCode !== 0) {
-	console.log("onConnectionLost:"+responseObject.errorMessage);
-	}
-	}
-
-function onMessageArrived(message) {
-	console.log(message.payloadString)
-	}
-
 
 function bayList(){
 	var xhttp1 = new XMLHttpRequest();
 	xhttp1.onreadystatechange = function() {
 	    if (this.readyState == 4 && this.status == 200) {
-	       // Typical action to be performed when the document is ready:
 	        var response = xhttp1.responseText;
 	        var result=JSON.parse(response);
 	        console.log(result);
@@ -110,6 +84,7 @@ function insertManualProduction(){
 	var batch_no=document.getElementById("batch_no").value;
 	var bay=document.getElementById("bay").value;
 	var qty=document.getElementById("qty").value;
+	var date=document.getElementById("date").value;
 	if(sku==""||sku=="select"){
 		alert("Please Select Sku");
 	}
@@ -122,11 +97,14 @@ function insertManualProduction(){
     else if(qty==""){
 		alert("Please Enter Quantity")
 	}
+	else if(date==""){
+		alert("Select Any Date")
+	}
 	else{
 		 var XHR2 = new XMLHttpRequest();
          var hash={"sku":""+sku+"","batch_no":""+batch_no+"","bay_no":""+bay+"","qty":""+qty+""}
 
-		XHR2.open("POST", "/api/insertManualProduction");
+		XHR2.open("POST", "/api/insertManualProduction?month="+date);
 		XHR2.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
 
@@ -134,11 +112,7 @@ function insertManualProduction(){
 	          console.log(XHR2.responseText);
 	          var response = JSON.parse(XHR2.responseText);
 	          if(response['message']=="Successful") {
-	          var message = new Paho.MQTT.Message("Kuchh Bhi");
-              message.destinationName = "production";
-              client.send(message);
-
-	               alert("Successfully Inserted");
+	   	               alert("Successfully Inserted");
 	               document.getElementById("sku").value="";
 	               document.getElementById("batch_no").value="";
 	           	   document.getElementById("bay").value="";

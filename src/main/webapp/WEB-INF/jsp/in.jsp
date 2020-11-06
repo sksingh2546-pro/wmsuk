@@ -201,7 +201,7 @@
          <div class="col-lg-4 col-xs-6" style="margin-left:100px;margin-top:35px;">
                           <a class="small-box bg-red" href="insertProduction"><div class="small-box bg-red">
                           <div class="inner">
-                          <h3>Insert <sup style="font-size: 20px"></sup></h3>
+                          <h3>Manual Insert<sup style="font-size: 20px"></sup></h3>
                           <h3>Production</h3>
                           </div>
                           <div class="icon">
@@ -303,7 +303,7 @@
 
 
       <div class="col-lg-4 col-xs-6" style="margin-left:100px;margin-top:35px;">
-                 <a class="small-box bg-red" href="/api/generateTExcel"><div class="small-box bg-red">
+                 <a class="small-box bg-red" href="/api/generateExcel"><div class="small-box bg-red">
                  <div class="inner">
                  <h3>Generate<sup style="font-size: 20px"></sup></h3>
                  <h3>Report</h3>

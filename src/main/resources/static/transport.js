@@ -144,5 +144,27 @@ function searchInput(){
 
 }
 
+function getState(){
+	var XHR = new XMLHttpRequest();
+	XHR.onreadystatechange = function() {
+	    if (this.readyState == 4 && this.status == 200) {
+	       // Typical action to be performed when the document is ready:
+	        var response = XHR.responseText;
+	         var result=JSON.parse(response);
+            	        console.log(result);
+	        var state=document.getElementById("state")
+	        for(var key in result.state){
+	        state.innerHTML+='<option value='+result.state[key]+'>'+result.state[key]+'</option>';
+	        }
+
+	    }
+	};
+	XHR.open("GET", gUrl.url+"/getStateList", true);
+
+	XHR.send();
+	}
+
+
 window.onload=getAddress();
 window.onload=getPartyName();
+window.onload=getState();

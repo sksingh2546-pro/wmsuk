@@ -2,6 +2,7 @@
 
 package com.wmsweb.productionPlan;
 
+import com.wmsweb.companyCode.CompanyCodeRepository;
 import com.wmsweb.skuList.SkuList;
 import com.wmsweb.skuList.SkuListRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,8 @@ public class ProductionPlanController {
     SkuListRepository skuListRepository;
     @Autowired
     ProductionPlanRepository productionPlanRepository;
+    @Autowired
+    CompanyCodeRepository companyCodeRepository;
 
 
     Date date;
@@ -38,7 +41,7 @@ public class ProductionPlanController {
         SimpleDateFormat sdf2=new SimpleDateFormat("yy");
         int month=Calendar.getInstance().get(Calendar.MONTH);
         String batch_format=String.format("%04d", Integer.parseInt(productionPlan.getBatch_no()));
-        String batch_no=12+"-"+batch_format+"-"+(month+1)+sdf2.format(date);
+        String batch_no=companyCodeRepository.getCompanyCode()+"-"+batch_format+"-"+(month+1)+sdf2.format(date);
         List<ProductionPlan> getSku=productionPlanRepository.getTodayProductionPlan(productionPlan.getSku()
                 ,sdf1.format(date)+" 00:00:00",sdf.format(date),productionPlan.getLine_no(),batch_no);
         if(getSku.size()>0)
@@ -80,5 +83,15 @@ public class ProductionPlanController {
         System.out.println(productionPlanList.size());
         hmap.put("proplan", productionPlanList);
         return hmap;
+    }
+
+    @GetMapping("getLineNo")
+    public Map<String,TreeSet<String>>getLineNo(){
+        TreeSet<String>tempSet=new TreeSet<>();
+        List<String>duplicateData=productionPlanRepository.getLineNo();
+        TreeSet<String> tList=new TreeSet<>(duplicateData);
+        HashMap<String,TreeSet<String>>hMap=new HashMap<>();
+        hMap.put("dp",tList);
+        return hMap;
     }
 }

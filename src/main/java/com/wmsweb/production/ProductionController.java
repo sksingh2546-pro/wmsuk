@@ -8,6 +8,7 @@ import com.wmsweb.SortingPurchase.SortingPurchase;
 import com.wmsweb.SortingPurchase.SortingPurchaseRepository;
 import com.wmsweb.bayCapacity.BayCapacity;
 import com.wmsweb.bayCapacity.BayCapacityRepository;
+import com.wmsweb.companyCode.CompanyCodeRepository;
 import com.wmsweb.model.ProductionModel;
 import com.wmsweb.productionPlan.ProductionPlan;
 import com.wmsweb.productionPlan.ProductionPlanRepository;
@@ -28,6 +29,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -45,6 +47,8 @@ public class ProductionController {
     FilterQtyRepo filterQtyRepo;
     @Autowired
     ProductionPlanRepository productionPlanRepository;
+    @Autowired
+    CompanyCodeRepository companyCodeRepository;
 
 
     @PostMapping("/insertProduction")
@@ -117,21 +121,21 @@ public class ProductionController {
         return response;
     }
 
-    @PostMapping("updateProductionOrder")
-    public String updateProductionOrder(@RequestBody Production production) {
-       /* System.out.println("sku:"+production.getSku()+"  qty:"+production.getQty()
-                +" bay:"+production.getBay_no()
-        +" batch_no:"+production.getBatch_no());*/
+    @PostMapping("/updateProductionOrder")
+    public String updateProductionOrder(@RequestBody Production production,
+                                        @RequestParam("order_id") long order_id) {
         List<Production> productionList=null;
         productionList = productionRepository.getProductionData(production.getBatch_no(),
                 production.getSku(), production.getBay_no(), "PASS");
         String response = "{\"message\":\"Unsuccessful\"}";
+        System.out.println("order_id:"+order_id);
         if (productionList.size() > 0) {
             if(production.getQty()<0){
                 production.setQty(-production.getQty());
                 int update = productionRepository.updateProduction(production.getBatch_no(),
                         productionList.get(0).getDate(), productionList.get(0).getQty() + production.getQty()
                         , production.getSku(), production.getBay_no(), "PASS");
+                sortingPurchaseRepository.updateWithOrderId(order_id);
                 if (update > 0) {
                     response = "{\"message\":\"Successful\"}";
                 }
@@ -140,14 +144,22 @@ public class ProductionController {
                 int update = productionRepository.updateProduction(production.getBatch_no(),
                         productionList.get(0).getDate(), productionList.get(0).getQty() - production.getQty()
                         , production.getSku(), production.getBay_no(), "PASS");
+                sortingPurchaseRepository.updateWithOrderId(order_id);
                 if (update > 0) {
                     response = "{\"message\":\"Successful\"}";
                 }
             }
-            //   System.out.println("cancel"+update);
-            System.out.println("sku:"+productionList.get(0).getSku()+"  qty:"+productionList.get(0).getQty()
-                    +" bay:"+productionList.get(0).getBay_no()
-                    +" batch_no:"+productionList.get(0).getBatch_no());
+           }
+        else{
+            Date date=new Date();
+            SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            int insert=productionRepository.insertProduction(production.getBatch_no(),
+                    sdf.format(date), productionList.get(0).getQty() + production.getQty()
+                    , production.getSku(), production.getBay_no(), "PASS");
+            sortingPurchaseRepository.updateWithOrderId(order_id);
+            if(insert>0){
+                response = "{\"message\":\"Successful\"}";
+            }
 
         }
         return response;
@@ -281,10 +293,10 @@ public class ProductionController {
     }
 
     @GetMapping("/getBatchNo")
-    public Map<String, HashSet<Long>> getSkuData() {
-        ArrayList<Long> allData = (ArrayList<Long>) productionRepository.getBatchNo();
-        HashSet<Long> uniqueSku = new HashSet<Long>(allData);
-        HashMap<String, HashSet<Long>> hmap = new HashMap<String, HashSet<Long>>();
+    public Map<String, HashSet<String>> getSkuData() {
+        ArrayList<String> allData = (ArrayList<String>) productionRepository.getBatchNo();
+        HashSet<String> uniqueSku = new HashSet<String>(allData);
+        HashMap<String, HashSet<String>> hmap = new HashMap<String, HashSet<String>>();
         hmap.put("BatchNo", uniqueSku);
         return hmap;
     }
@@ -601,23 +613,28 @@ public class ProductionController {
         return  hMap;
     }
 @PostMapping("/insertManualProduction")
-public String insertManualProduction(@RequestBody Production production){
-    Date date = new Date();
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
+public String insertManualProduction(@RequestBody Production production ,@RequestParam("month") String month) throws ParseException {
 
-    String response = "{\"message\":\"Unsuccessful\"}";
+
+     SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM");
+     SimpleDateFormat sdf1=new SimpleDateFormat("HH:mm:ss");
+     Date date1=new Date();
+    Date date=sdf.parse(month);
+      String response = "{\"message\":\"Unsuccessful\"}";
     if (production.getStatus() == null) {
         production.setStatus("PASS");
     }
     SimpleDateFormat sdf2=new SimpleDateFormat("yy");
-    int month=Calendar.getInstance().get(Calendar.MONTH);
+    SimpleDateFormat sdf3=new SimpleDateFormat("MM");
+    SimpleDateFormat sdf4=new SimpleDateFormat("dd");
+    int mn=Integer.parseInt(sdf3.format(date));
     String batch_format=String.format("%04d", Integer.parseInt(production.getBatch_no()));
-    String batch_no=12+"-"+batch_format+"-"+(month+1)+sdf2.format(date);
+    String batch_no=companyCodeRepository.getCompanyCode()+"-"+batch_format+"-"+mn+sdf2.format(date);
     List<Production> productionList = productionRepository.getProductionData(batch_no,
             production.getSku(), production.getBay_no(), production.getStatus());
     if (productionList.size() > 0) {
-        int update = productionRepository.updateProduction(batch_no, sdf.format(date)
+        int update = productionRepository.updateProduction(batch_no, sdf.format(date)+"-"+
+                        sdf4.format(date1)+" "+sdf1.format(date1)
                 , productionList.get(0).getQty() + production.getQty()
                 , production.getSku(), production.getBay_no(), production.getStatus());
         if (update > 0) {
@@ -626,7 +643,8 @@ public String insertManualProduction(@RequestBody Production production){
         }
     }
     else{
-        int insert = productionRepository.insertProduction(batch_no, sdf.format(date)
+        int insert = productionRepository.insertProduction(batch_no, sdf.format(date)+"-"+
+                        sdf4.format(date1)+" "+sdf1.format(date1)
                 ,  production.getQty()
                 , production.getSku(), production.getBay_no(), production.getStatus());
         if (insert > 0) {

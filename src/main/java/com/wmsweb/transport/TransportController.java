@@ -13,6 +13,7 @@ import com.wmsweb.model.OrderDetailsModel;
 import com.wmsweb.model.PermitListModel;
 import com.wmsweb.permitNo.PermitNoRepository;
 
+import com.wmsweb.production.Production;
 import com.wmsweb.production.ProductionRepository;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -166,8 +167,7 @@ public class TransportController {
     }
 
     @GetMapping("/cancelOrder")
-    public String changeTransportStatusWithOrderId(@RequestParam("order_id") long order_id)
-    {
+    public String changeTransportStatusWithOrderId(@RequestParam("order_id") long order_id) throws InterruptedException {
         Date date =new Date();
         SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:dd");
         String message = "{\"message\":\"Unsuccessful\"}";
@@ -185,8 +185,12 @@ public class TransportController {
                     sortingPurchaseRepository.insertData(outGoods.getOrder_id(),
                             "NA",outGoods.getSku(),outGoods.getBatch_no(),
                             outGoods.getBay_no(),outGoods.getQty(),3,sdf.format(date));
+
+                    
+
+
                 }
-                    message = "{\"message\":\"Updated Successfully\"}";
+
 
                 }
                 else{
@@ -213,6 +217,20 @@ public class TransportController {
         }
 
         return message;
+    }
+
+    public void updateProduction(String sku,String bay_no,String batch_no,int qty,String status){
+        Date date=new Date();
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        List<Production> productionList=productionRepository.getProductionData(batch_no,sku,bay_no,status);
+        if(productionList.size()>0){
+            productionRepository.updateProduction(batch_no,sdf.format(date),qty+productionList.get(0).getQty(),
+                    sku,bay_no,status);
+
+        }
+        else{
+            productionRepository.insertProduction(batch_no,sdf.format(date),qty,sku,bay_no,status);
+        }
     }
 
     @GetMapping("/getOrderId")
@@ -1090,8 +1108,15 @@ public class TransportController {
     @GetMapping("/getTransDetails")
     public Map<String,List<Transport>> getTransportDetails(){
       List<Transport> getTransportList=transportRepository.getTransportDetails();
+      List<Transport> newList=new ArrayList<>();
+      for(Transport transport:getTransportList){
+          List<Purchase> checkOrder=purchaseRepository.getQuantity(transport.getOrder_id());
+          if(checkOrder.size()>0){
+              newList.add(transport);
+          }
+      }
       HashMap<String,List<Transport>> hMap=new HashMap<>();
-      hMap.put("trans",getTransportList);
+      hMap.put("trans",newList);
       return  hMap;
     }
 

@@ -33,9 +33,9 @@ public class PurchaseService {
         Date date = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String CurrentDate = sdf.format(date);
+
         int insertData = purchaseRepository.insertData(purchase.getOrder_id(), purchase.getPermit_no(), purchase.getSku(), purchase.getQty(), CurrentDate);
         if (insertData > 0) {
-            makeSorting(purchase.getOrder_id(),purchase.getSku());
             message = "{\"message\":\"Successful\"}";
             try {
             //    commonDataRepository.insertData(purchase.getOrder_id(), "order", "1", CurrentDate);
@@ -43,6 +43,8 @@ public class PurchaseService {
                 System.out.println(e);
             }
         }
+        Thread.sleep(2000);
+        makeSorting(purchase.getOrder_id(),purchase.getSku());
         return message;
     }
 

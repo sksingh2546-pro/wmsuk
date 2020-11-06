@@ -225,12 +225,11 @@
                                             <br>
                                                 <h5 style="font-weight:bold;">Line No:&nbsp; <label for="product_name" style="font-weight:bold;color:red;">*</label><br></h5>
                                                 <!-- <input type="text" class="form-control" id="line_no" name="lINE_no" placeholder="Enter Line No ..." required> -->
-                                                 <select class="form-control" id="line_no" name="state" placeholder="Enter State" required >
-                                             <option value="Select">Select</option>
-                                               <option >1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                               </select>
+                                             <input list="select1" id="line_no" name="sku" class="form-control" placeholder="Enter SKU ...">
+                                             <datalist id="select1">
+
+
+                                                </datalist>
                                     </div>    </td>
                                         </tr>
                                         <tr>

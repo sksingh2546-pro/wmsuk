@@ -52,7 +52,7 @@ public interface ProductionRepository extends CrudRepository<Production, Long> {
     List<Production> getQuantity(String sku, String status,String bay_no,String batch_no);
 
     @Query("select p.batch_no from Production p ")
-    List<Long> getBatchNo();
+    List<String> getBatchNo();
 
     @Query("select p from Production p where sku=?1 OR batch_no=?2 OR bay_no=?3")
     List<Production> getSearchProduct(String sku, String batch_no, String bay_no);

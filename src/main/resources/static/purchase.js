@@ -45,31 +45,69 @@ if(localStorage.getItem("state")==null){
 
  	XHR.send();
  	}
- 	function getRangeQty(){
- 	var XHR = new XMLHttpRequest();
- 	XHR.onreadystatechange = function() {
- 	    if (this.readyState == 4 && this.status == 200) {
- 	       // Typical action to be performed when the document is ready:
- 	        var response = XHR.responseText;
- 	         var result=JSON.parse(response);
- 	         if(result.quantity==0){
- 	         document.getElementById("rangeQty").innerHTML="";
- 	         document.getElementById("tempQty").value=0;
- 	         document.getElementById("quantity").value=0;
- 	         document.getElementById("quantity").readOnly = true;
- 	         }
- 	         else{
-             document.getElementById("rangeQty").innerHTML="Enter Quantity Up To "+result.quantity;
-             document.getElementById("tempQty").value=result.quantity;
-             document.getElementById("quantity").readOnly = false;
+ 		var tempQty=[];
+     	var tQty=[];
+     	function getRangeQty(){
+     	var XHR = new XMLHttpRequest();
+     	XHR.onreadystatechange = function() {
+     	    if (this.readyState == 4 && this.status == 200) {
+     	       // Typical action to be performed when the document is ready:
+     	        var response = XHR.responseText;
+     	         var result=JSON.parse(response);
+     	         console.log(result);
+     	         if(result.quantity==0){
+     	         document.getElementById("rangeQty").innerHTML="";
+     	         document.getElementById("tempQty").value=0;
+     	         document.getElementById("quantity").value=0;
+     	         document.getElementById("quantity").readOnly = true;
+     	         }
+     	         else{
 
- 	         }
- 	    }
- 	};
- 	XHR.open("GET", gUrl.url+"/getQuantity?sku="+document.getElementById("sku").value, true);
+     	         var hash={"sku":document.getElementById("sku").value,
+                      	                   "qty":result.quantity};
+                      	                   tQty.push(hash)
+}
 
- 	XHR.send();
- 	}
+                 var data1 = tQty.filter((thing, index) => {
+                         return index === tQty.findIndex(obj => {
+                           return JSON.stringify(obj) === JSON.stringify(thing);
+                         });
+                       });
+                       console.log(data1);
+
+                       if(tempQty.length==0){
+                                  document.getElementById("rangeQty").innerHTML="Enter Quantity Up To "+(data1[0].qty);
+                                  document.getElementById("tempQty").value=(data1[0].qty);
+                                  document.getElementById("quantity").readOnly = false;
+                       }
+                       else{
+                       var tempTotQty=0;
+                       for(var key in tempQty){
+                       if(document.getElementById("sku").value==tempQty[key].sku){
+                         tempTotQty+=parseInt(tempQty[key].qty);
+
+                       }
+                       }
+
+                       for(var key1 in data1){
+
+                       if(document.getElementById("sku").value==data1[key1].sku){
+                        document.getElementById("rangeQty").innerHTML="Enter Quantity Up To "+(data1[key1].qty-tempTotQty);
+                        document.getElementById("tempQty").value=(data1[key1].qty-tempTotQty);
+                        document.getElementById("quantity").readOnly = false;
+                       }
+                       }
+
+
+}
+     	    }
+     	};
+     	XHR.open("GET", gUrl.url+"/getQuantity?sku="+document.getElementById("sku").value, true);
+
+     	XHR.send();
+     	}
+
+
 
  	function setQuantityValidation(){
        var qty=document.getElementById("tempQty").value;
@@ -211,8 +249,10 @@ $(document).ready(function(){
    document.getElementById("totalquantity").value=tq;
    getpalletQty(document.getElementById("sku").value,q);
     count = count + 1;
-     var x = document.getElementById("sku");
-      x.remove(x.selectedIndex);
+var hash={"sku":document.getElementById("sku").value,
+    "qty":document.getElementById("quantity").value};
+    tempQty.push(hash);
+
     var permit_no=document.getElementById("permit_no").value;
     output = '<tr id="row_'+count+'">';
       output += '<td>'+permit_no+' <input type="hidden" name="hidden_permit_no[]" id="sku'+count+'" value="'+permit_no+'" /></td>';
@@ -244,8 +284,6 @@ $(document).ready(function(){
   }
   else
   {
-  var x = document.getElementById("sku");
-        x.remove(x.options.length - 1);
    return false;
   }
  });
@@ -290,15 +328,57 @@ function insertPurchaseOrder(){
  	var tempOrderId=document.getElementById("orderId").innerHTML;
  	var tmpOrder=tempOrderId.split(":");
         if(permit_no.length>0){
-        for(var i=0;i< permit_no.length; i++){
-         		 var XHR2 = new XMLHttpRequest();
+           var allItem=[];
+         		  for(var i=0;i< permit_no.length; i++){
                   var hash={"permit_no":""+permit_no[i].value+"",
                   "sku":""+sku[i].value+"",
                   "qty":""+quantity[i].value+"",
                   "order_id":""+tmpOrder[1].trim()+""}
+                  allItem.push(hash);
+                }
+                var uniqueItem=[];
 
+                for(i=0;i<allItem.length;i++){
+                if(uniqueItem.length==0){
+                 var hash={"permit_no":allItem[i].permit_no,
+                           "sku":allItem[i].sku,
+                           "qty":allItem[i].qty,
+                           "order_id":allItem[0].order_id
+                           }
+                           uniqueItem.push(hash)
+                }
+                else{
+                var count=0,id=0;
 
-                 console.log(hash);
+                for(var j=0;j<uniqueItem.length;j++){
+                if(allItem[i].sku==uniqueItem[j].sku){
+                count=1;
+                id=j;
+                }
+
+                }
+                var totQty=0;
+                if(count>0){
+                totQty=parseInt(uniqueItem[id].qty);
+                totQty+=parseInt(allItem[i].qty)
+                uniqueItem[id].qty=totQty;
+                }
+                else{
+                 var hash={"permit_no":allItem[i].permit_no,
+                                           "sku":allItem[i].sku,
+                                           "qty":allItem[i].qty,
+                                           "order_id":allItem[0].order_id
+                                           }
+                                           uniqueItem.push(hash)
+                }
+
+                }
+                }
+                 console.log(uniqueItem);
+                 var suc=0;
+                 for(var key=0;key<uniqueItem.length;key++){
+                 var XHR2 = new XMLHttpRequest();
+
          		XHR2.open("POST", gUrl.url+"/insertPurchaseData");
          		XHR2.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
@@ -307,6 +387,7 @@ function insertPurchaseOrder(){
          	          console.log(XHR2.responseText);
          	          var response = JSON.parse(XHR2.responseText);
          	          if(response['message']=="Successful") {
+         	          suc++;
          	          }
 
          			  else {
@@ -316,8 +397,7 @@ function insertPurchaseOrder(){
          	          }
          	      }
 
-
-         	XHR2.send(JSON.stringify(hash));
+         	XHR2.send(JSON.stringify(uniqueItem[key]));
         }
         updateTotalWeightAndQty(tmpOrder[1].trim(),document.getElementById("totalquantity").value);
         console.log(tmpOrder[1].trim()+" "+document.getElementById("totalquantity").value)
@@ -386,13 +466,10 @@ function insertPurchaseOrder(){
  var row = element.parentNode.parentNode.rowIndex
   var tbl = document.getElementById("product_data");
   var objCells = tbl.rows.item(row).cells;
-  var sku=objCells.item(1).innerHTML;
-  var skuArray=sku.split(" ");
-  alert(skuArray[0]);
-  var x = document.getElementById("sku");
-  var option = document.createElement("option");
-  option.text = skuArray[0].trim();
-  x.add(option);
+    var qty=objCells.item(2).innerHTML;
+      var qtyArray=qty.split(" ");
+  tq-=parseInt(qtyArray[0]);
+  document.getElementById("totalquantity").value=tq;
  }
 
 window.onload=getOrderId();

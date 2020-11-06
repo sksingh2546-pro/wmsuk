@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table border="1" width="100%" id="main">
+    <script>
+function getData(element){
+var xmlHttp = new XMLHttpRequest();
+xmlHttp.onreadystatechange = function (){
+if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+var result = JSON.parse(xmlHttp.responseText);
+console.log(result);
+document.getElementById("main").innerHTML ="<tr>" +
+    "<th>id</th>"+
+    "<th>sku</th>"+
+    "<th>batch_no</th>"+
+    "<th>qty</th>"+
+    "<th>line_no</th>"+
+    "<th>date</th>"+
+
+"</tr>";
+
+for(var key in result.data){
+document.getElementById("main").innerHTML +="<tr>" +
+"<td>"+
+result.data[key].id+
+    "</td>"+
+    "<td>"+
+        result.data[key].sku+
+        "</td>"+
+    "<td>"+
+    result.data[key].batch_no+
+    "</td>"+
+    "<td>"+
+    result.data[key].qty+
+    "</td>"+
+     "<td>"+
+    result.data[key].line_no+
+    "</td>"+
+"<td>"+
+    result.data[key].date+
+    "</td>"+
+
+    "</tr>";
+
+}
+};
+
+
+xmlHttp.open("GET","http://localhost:9080/api/getLineNo",true);
+xmlHttp.send();
+}
+window.onload = getData();
+</script>
+</table>
+
+
+
+</body>
+</html>

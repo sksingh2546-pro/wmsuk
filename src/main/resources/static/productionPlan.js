@@ -84,7 +84,9 @@ function insertProductionPlan(){
 	               document.getElementById("line_no").value="";
 	           	   document.getElementById("qty").value="";
 	           	skuList();
+
 	           	getProductionPlan();
+	           	getData();
 	          }
 	          
 			  else {
@@ -131,3 +133,30 @@ function insertProductionPlan(){
 		xhttp1.send();
 		}
 window.onload=getProductionPlan();
+
+
+
+function getData(){
+var xmlHttp = new XMLHttpRequest();
+xmlHttp.onreadystatechange = function (){
+if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+var result = JSON.parse(xmlHttp.responseText);
+console.log(result);
+
+document.getElementById("select1").innerHTML="";
+for(var key in result.dp){
+document.getElementById("select1").innerHTML +='<option>'+result.dp[key]+'</option>'
+
+
+
+}
+};
+
+
+xmlHttp.open("GET", gUrl.url+"/getLineNo",true);
+xmlHttp.send();
+}
+window.onload = getData();
+
+    var ip = location.host;
+    alert(ip);

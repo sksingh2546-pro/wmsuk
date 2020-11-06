@@ -66,7 +66,7 @@ public interface SortingPurchaseRepository extends CrudRepository<SortingPurchas
     public int updateQty( long order_id);
 
     @Modifying
-    @Query(value = "delete from  sorting_purchase where qty=0 or status=3", nativeQuery = true)
+    @Query(value = "delete from  sorting_purchase where qty=0 or status=4", nativeQuery = true)
     @Transactional
     public int deleteQty();
 

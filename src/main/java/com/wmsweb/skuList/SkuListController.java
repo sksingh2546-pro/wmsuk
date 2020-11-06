@@ -15,10 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @RequestMapping({"/api"})
@@ -118,7 +115,24 @@ public class SkuListController {
 
     }
 
-
+        @GetMapping("getStateList")
+    public Map<String,HashSet<String>>getAllSku(){
+        List<String>list=skuListRepository.getAllSku();
+        ArrayList<String>ls=new ArrayList<>();
+        for(String sku:list){
+            String state = "";
+            for(int i=0;i<sku.toCharArray().length;i++){
+                if(i>sku.toCharArray().length-7){
+                    state+=sku.toCharArray()[i];
+                }
+            }
+            ls.add(state);
+        }
+            HashSet<String>sk=new HashSet<>(ls);
+            HashMap<String,HashSet<String>> hMap=new HashMap<>();
+            hMap.put("state",sk);
+            return  hMap;
+        }
 }
     
     
