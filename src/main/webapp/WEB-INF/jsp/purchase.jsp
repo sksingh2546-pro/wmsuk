@@ -37,7 +37,7 @@
         <link rel="stylesheet" href="bootstrap.min.css" />
   <script src="jquery-1.12.4.js"></script>
   <script src="jquery-ui.js"></script>
-
+  <link rel="stylesheet" type="text/css" href="toastify.min.css">
   <link rel="stylesheet" href="style.css">
         <link rel="stylesheet" href="bootstrap.min.css">
 		<script src="jquery-1.10.2.js"></script>
@@ -310,6 +310,9 @@
 <script src="dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
+<script src="paho.js"></script>
+<script type="text/javascript" src="toastify.js"></script>
+<script src="completionAlert.js"></script>
 
 
 </body>

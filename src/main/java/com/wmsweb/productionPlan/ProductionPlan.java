@@ -15,16 +15,8 @@ public class ProductionPlan {
     private String sku;
     private String batch_no;
     private int qty;
-    private String line_no;
     private String date;
-
-    public String getLine_no() {
-        return this.line_no;
-    }
-
-    public void setLine_no(String line_no) {
-        this.line_no = line_no;
-    }
+    private  String barcode;
 
     public long getId() {
         return this.id;
@@ -64,5 +56,13 @@ public class ProductionPlan {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getBarcode() {
+        return barcode;
+    }
+
+    public void setBarcode(String barcode) {
+        this.barcode = barcode;
     }
 }

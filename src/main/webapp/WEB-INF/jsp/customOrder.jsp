@@ -29,6 +29,7 @@
         <link rel="stylesheet" href="plugins/jvectormap/jquery-jvectormap-1.2.2.css">
         <!-- Date Picker -->
         <link rel="stylesheet" href="plugins/datepicker/datepicker3.css">
+          <link rel="stylesheet" type="text/css" href="toastify.min.css">
         <!-- Daterange picker -->
         <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
         <!-- bootstrap wysihtml5 - text editor -->
@@ -322,7 +323,9 @@
 <script src="dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
-
+<script src="paho.js"></script>
+<script type="text/javascript" src="toastify.js"></script>
+<script src="completionAlert.js"></script>
 
 </body>
 </html>

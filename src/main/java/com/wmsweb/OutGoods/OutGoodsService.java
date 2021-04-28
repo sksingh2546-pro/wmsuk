@@ -23,12 +23,12 @@ public class OutGoodsService {
         String message = "{\"message\":\"Unsuccessful\"}";
         int updateQty = sortingpurchaseRepository.updateQty(outgoods.getQty(),
                 outgoods.getOrder_id(),
-                outgoods.getBatch_no(), outgoods.getSku(), outgoods.getBay_no());
+                outgoods.getBatch_no(), outgoods.getSku(), outgoods.getBarcode());
 
         System.out.println("" + updateQty);
         if (updateQty > 0) {
             int insertData = outgoodsRepository.insertData(outgoods.getBatch_no(),
-                    outgoods.getBay_no(), outgoods.getSku(), cQty,
+                    outgoods.getBarcode(), outgoods.getSku(), cQty,
                     outgoods.getOrder_id());
             if (insertData > 0) {
                 message = "{\"message\":\"Successful\"}";

@@ -14,7 +14,7 @@ public class Order {
     private String sku;
     private String batch_no;
     private int qty;
-    private String bay;
+    private String barcode;
     private String permit_no;
     private String date;
 
@@ -58,12 +58,12 @@ public class Order {
         this.qty = qty;
     }
 
-    public String getBay() {
-        return this.bay;
+    public String getBarcode() {
+        return barcode;
     }
 
-    public void setBay(String bay) {
-        this.bay = bay;
+    public void setBarcode(String barcode) {
+        this.barcode = barcode;
     }
 
     public String getDate() {

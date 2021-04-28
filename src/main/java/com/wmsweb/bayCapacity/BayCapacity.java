@@ -12,6 +12,7 @@ public class BayCapacity {
     private Long id;
     private String bay;
     private double capacity;
+    private  String barcode;
 
     public Long getId() {
         return this.id;
@@ -35,5 +36,13 @@ public class BayCapacity {
 
     public void setCapacity(double capacity) {
         this.capacity = capacity;
+    }
+
+    public String getBarcode() {
+        return barcode;
+    }
+
+    public void setBarcode(String barcode) {
+        this.barcode = barcode;
     }
 }

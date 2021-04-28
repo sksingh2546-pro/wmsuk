@@ -12,9 +12,9 @@ import java.util.List;
 @Repository
 public interface OutGoodsRepository extends CrudRepository<OutGoods, Long> {
     @Modifying
-    @Query(value = "insert into outgoods (batch_no,bay_no,sku,qty,order_id)values(?1,?2,?3,?4,?5)", nativeQuery = true)
+    @Query(value = "insert into outgoods (batch_no,barcode,sku,qty,order_id)values(?1,?2,?3,?4,?5)", nativeQuery = true)
     @Transactional
-    int insertData(String batch_no, String bay_no, String sku, int qty, long order_id);
+    int insertData(String batch_no, String barcode, String sku, int qty, long order_id);
 
     @Query("select og from OutGoods og")
     List<OutGoods> getOutGoodsData();

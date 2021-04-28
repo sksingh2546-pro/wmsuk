@@ -11,7 +11,7 @@ public class OutGoods {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String batch_no;
-    private String bay_no;
+    private String barcode;
     private String sku;
     private int qty;
     private long order_id;
@@ -32,12 +32,12 @@ public class OutGoods {
         this.batch_no = batch_no;
     }
 
-    public String getBay_no() {
-        return bay_no;
+    public String getBarcode() {
+        return barcode;
     }
 
-    public void setBay_no(String bay_no) {
-        this.bay_no = bay_no;
+    public void setBarcode(String barcode) {
+        this.barcode = barcode;
     }
 
     public String getSku() {

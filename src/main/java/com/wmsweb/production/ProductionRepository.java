@@ -13,17 +13,17 @@ import java.util.List;
 @Repository
 public interface ProductionRepository extends CrudRepository<Production, Long> {
     @Modifying
-    @Query(value = "insert into production(batch_no,date,qty,sku,bay_no,status)values(?1,?2,?3,?4,?5,?6)", nativeQuery = true)
+    @Query(value = "insert into production(expiry,qty,sku,status,barcode)values(?1,?2,?3,?4,?5)", nativeQuery = true)
     @Transactional
-    int insertProduction(String batch_no, String date, int qty, String sku, String bay_no, String status);
+    int insertProduction(String expiry, int qty, String sku, String status,String barcode);
 
     @Modifying
-    @Query(value = "update production set date=?2,qty=?3,status=?6 where batch_no=?1 and sku=?4 and bay_no=?5 and status=?6", nativeQuery = true)
+    @Query(value = "update production set qty=?2 where expiry=?1 and sku=?3 and status=?4 and barcode=?5", nativeQuery = true)
     @Transactional
-    int updateProduction(String batch_no, String date, int qty, String sku, String bay_no, String status);
+    int updateProduction(String expiry, int qty, String sku, String status,String barcode);
 
-    @Query("select p from Production p where batch_no=?1 and sku=?2 and bay_no=?3 and status=?4")
-    List<Production> getProductionData(String batch_no, String sku, String bay_no, String status);
+    @Query("select p from Production p where expiry=?1 and sku=?2 and status=?3 and barcode=?4")
+    List<Production> getProductionData(String expiry, String sku, String status,String barcode);
 
     @Modifying
     @Query(value = "delete from production where qty=0", nativeQuery = true)
@@ -32,14 +32,17 @@ public interface ProductionRepository extends CrudRepository<Production, Long> {
 
     @Query("select p from Production p ")
     List<Production> getAllProductionData();
+    
+    @Query("select p.sku from Production p where status='PASS'")
+    List<String> getAllStateList();
 
     @Query("select p from Production p where day(date)=day(CURDATE()-1) ")
     List<Production> getTodayProductionData();
 
-    @Query("select p from Production p where bay_no=?1")
+ /*   @Query("select p from Production p where bay_no=?1")
     List<Production> getAllProductionData(String bayNo);
-
-    @Query("select p from Production p where sku=?1 and status=?2 order by batch_no,date asc")
+*/
+    @Query("select p from Production p where sku=?1 and status=?2 order by expiry,date asc")
     List<Production> getProductionData(String sku, String status);
 
     @Query("select p.sku from Production p where sku like %?1% ")
@@ -48,23 +51,23 @@ public interface ProductionRepository extends CrudRepository<Production, Long> {
     @Query("select sk from Production sk where sku=?1 and status=?2 ")
     List<Production> getQuantity(String sku, String status);
 
-  @Query("select sk from Production sk where sku=?1 and status=?2 and bay_no=?3 and batch_no=?4")
-    List<Production> getQuantity(String sku, String status,String bay_no,String batch_no);
+  @Query("select sk from Production sk where sku=?1 and status=?2 and barcode=?3 and expiry=?4")
+    List<Production> getQuantity(String sku, String status,String barcode,String expiry);
 
-    @Query("select p.batch_no from Production p ")
+    @Query("select p.expiry from Production p ")
     List<String> getBatchNo();
 
-    @Query("select p from Production p where sku=?1 OR batch_no=?2 OR bay_no=?3")
-    List<Production> getSearchProduct(String sku, String batch_no, String bay_no);
+    @Query("select p from Production p where sku=?1 OR expiry=?2 OR barcode=?3")
+    List<Production> getSearchProduct(String sku, String expiry, String barcode);
 
     @Query("select p from Production p")
     public List<Production> getProductionComplete();
 
-    @Query("select p.batch_no from Production p where sku=?1")
+    @Query("select p.expiry from Production p where sku=?1")
     public List<String> getBatchNo(String sku);
 
-    @Query("select p.bay_no from Production p where sku=?1 and batch_no=?2")
-    public List<String> getBay(String sku,String batch_no);
+    @Query("select p.barcode from Production p where sku=?1 and expiry=?2")
+    public List<String> getBay(String sku,String expiry);
 
 
     @Query("select SUM(p.qty) from Production p where  sku like %?1% and status='PASS'")

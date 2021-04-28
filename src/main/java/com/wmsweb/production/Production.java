@@ -10,14 +10,13 @@ public class Production {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String sku;
-    private String batch_no;
+    private String expiry;
     private int qty;
-    private String bay_no;
     private String status;
-    private String date;
+    private  String barcode;
 
     public long getId() {
-        return this.id;
+        return id;
     }
 
     public void setId(long id) {
@@ -25,52 +24,42 @@ public class Production {
     }
 
     public String getSku() {
-        return this.sku;
+        return sku;
     }
 
     public void setSku(String sku) {
         this.sku = sku;
     }
 
-    public String getBatch_no() {
-        return batch_no;
+    public String getExpiry() {
+        return expiry;
     }
 
-    public void setBatch_no(String batch_no) {
-        this.batch_no = batch_no;
+    public void setExpiry(String expiry) {
+        this.expiry = expiry;
     }
 
     public int getQty() {
-        return this.qty;
+        return qty;
     }
 
     public void setQty(int qty) {
         this.qty = qty;
     }
 
-    public String getBay_no() {
-        return this.bay_no;
-    }
-
-    public void setBay_no(String bay_no) {
-        this.bay_no = bay_no;
-    }
-
     public String getStatus() {
-        return this.status;
+        return status;
     }
 
     public void setStatus(String status) {
         this.status = status;
     }
 
-    public String getDate() {
-        return this.date;
+    public String getBarcode() {
+        return barcode;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setBarcode(String barcode) {
+        this.barcode = barcode;
     }
-
-
 }

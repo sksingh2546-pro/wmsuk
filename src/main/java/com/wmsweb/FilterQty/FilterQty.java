@@ -11,18 +11,9 @@ public class FilterQty {
     private long id;
     private String sku;
     private int qty;
-    private String bay;
     private String date;
-    private String line_no;
-    private String batch_no;
-
-    public String getBatch_no() {
-        return batch_no;
-    }
-
-    public void setBatch_no(String batch_no) {
-        this.batch_no = batch_no;
-    }
+    private String barcode;
+    private String expiry;
 
     public long getId() {
         return id;
@@ -56,19 +47,19 @@ public class FilterQty {
         this.date = date;
     }
 
-    public String getLine_no() {
-        return line_no;
+    public String getBarcode() {
+        return barcode;
     }
 
-    public void setLine_no(String line_no) {
-        this.line_no = line_no;
+    public void setBarcode(String barcode) {
+        this.barcode = barcode;
     }
 
-    public String getBay() {
-        return bay;
+    public String getExpiry() {
+        return expiry;
     }
 
-    public void setBay(String bay) {
-        this.bay = bay;
+    public void setExpiry(String expiry) {
+        this.expiry = expiry;
     }
 }

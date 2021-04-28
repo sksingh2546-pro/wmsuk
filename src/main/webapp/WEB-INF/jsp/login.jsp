@@ -21,7 +21,7 @@
         <link rel="stylesheet" href="assets/css/theme.css">
         <link rel="stylesheet" href="assets/css/forms.css">
         <link rel="stylesheet" href="assets/css/custom.css">
-
+              <link rel="stylesheet" type="text/css" href="toastify.min.css">
         <script src="assets/js/jquery-1.11.3.min.js"></script>
 
         <!--[if lt IE 9]><script src="assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -110,6 +110,7 @@
         <script src="assets/js/sabuj-api.js"></script>
         <script src="assets/js/jquery.validate.min.js"></script>
         <script src="assets/js/neon-login.js"></script>
+        <script type="text/javascript" src="toastify.js"></script>
         <script src="url.js"></script>
 
 

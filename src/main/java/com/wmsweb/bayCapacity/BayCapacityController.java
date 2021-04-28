@@ -19,15 +19,15 @@ public class BayCapacityController {
 
     @PostMapping("/insertBay")
     public String insertBay(@RequestBody BayCapacity bay) {
-        List<BayCapacity> bayList = this.bayCapacityRepository.getBay(bay.getBay());
+        List<BayCapacity> bayList = this.bayCapacityRepository.getBay(bay.getBarcode());
         String response = "{\"message\":\"Unsuccessful\"}";
         if (bayList.size() > 0) {
-            int update = this.bayCapacityRepository.updateBay(bay.getBay(), bay.getCapacity());
+            int update = this.bayCapacityRepository.updateBay(bay.getBay(), bay.getCapacity(),bay.getBarcode());
             if (update > 0) {
-                response = "{\"message\":\"Successful\"}";
+                response = "{\"message\":\"Updated\"}";
             }
         } else {
-            int insert = this.bayCapacityRepository.insertBay(bay.getBay(), bay.getCapacity());
+            int insert = this.bayCapacityRepository.insertBay(bay.getBay(), bay.getCapacity(),bay.getBarcode());
             if (insert > 0) {
                 response = "{\"message\":\"Successful\"}";
             }
@@ -41,5 +41,13 @@ public class BayCapacityController {
         HashMap<String, ArrayList<BayCapacity>> hmap = new HashMap<String, ArrayList<BayCapacity>>();
         hmap.put("bay", bayList);
         return hmap;
+    }
+
+    @GetMapping("getBarcodeWithBay")
+    public Map<String,List<BayCapacity>>getBayCapacity(@RequestParam("barcode")String barcode){
+        List<BayCapacity>bayCapacities=bayCapacityRepository.getBay(barcode);
+        HashMap<String,List<BayCapacity>>hMap=new HashMap<>();
+        hMap.put("barcodeList",bayCapacities);
+        return  hMap;
     }
 }

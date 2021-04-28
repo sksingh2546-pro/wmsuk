@@ -16,7 +16,7 @@ public class Purchase {
     private int qty;
     private int status;
     private String date;
-    private String bay_no;
+    private String barcode;
     private String batch_no;
 
     public long getOrder_id() {
@@ -75,12 +75,12 @@ public class Purchase {
         this.date = date;
     }
 
-    public String getBay_no() {
-        return bay_no;
+    public String getBarcode() {
+        return barcode;
     }
 
-    public void setBay_no(String bay_no) {
-        this.bay_no = bay_no;
+    public void setBarcode(String barcode) {
+        this.barcode = barcode;
     }
 
     public String getBatch_no() {

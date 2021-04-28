@@ -16,7 +16,7 @@ public class SortingPurchase {
     private String permit_no;
     private String sku;
     private String batch_no;
-    private String bay;
+    private String barcode;
     private int qty;
     private int status;
     private String date;
@@ -61,12 +61,12 @@ public class SortingPurchase {
         this.batch_no = batch_no;
     }
 
-    public String getBay() {
-        return this.bay;
+    public String getBarcode() {
+        return barcode;
     }
 
-    public void setBay(String bay) {
-        this.bay = bay;
+    public void setBarcode(String barcode) {
+        this.barcode = barcode;
     }
 
     public int getQty() {

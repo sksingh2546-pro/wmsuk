@@ -5,15 +5,13 @@ public class ProductionModel {
     private String sku;
     private String  batch_no;
     private int qty;
-    private String bay_no;
     private String status;
     private String date;
 
-    public ProductionModel(String sku, String batch_no, int qty, String bay_no, String status, String date) {
+    public ProductionModel(String sku, String batch_no, int qty,  String status, String date) {
         this.sku = sku;
         this.batch_no = batch_no;
         this.qty = qty;
-        this.bay_no = bay_no;
         this.status = status;
         this.date = date;
     }
@@ -42,13 +40,7 @@ public class ProductionModel {
         this.qty = qty;
     }
 
-    public String getBay_no() {
-        return this.bay_no;
-    }
 
-    public void setBay_no(String bay_no) {
-        this.bay_no = bay_no;
-    }
 
     public String getStatus() {
         return this.status;
