@@ -1,4 +1,4 @@
-
+/*generateProdExcel*/
 'use strict';
 var client = new Paho.MQTT.Client(gUrl.mqtt, Number(9001), "clientId");
 
@@ -37,16 +37,13 @@ function productionList() {
 			for ( var key in result.pData) {
 				tbody.innerHTML += '<tr>'
 						+ '<td>'
-						+ result.pData[key].bay
-						+ '</td>'
-						+ '<td >'
-						+ result.pData[key].batch_no
+						+ result.pData[key].barcode
 						+ '</td>'
 						+ '<td >'
 						+ result.pData[key].sku
 						+ '</td>'
 						+ '<td >'
-						+ result.pData[key].line_no
+						+ result.pData[key].expiry
 						+ '</td>'
 						+ '<td >'
 						+ result.pData[key].qty
@@ -71,43 +68,56 @@ qty=[];
 	var row = element.parentNode.parentNode.rowIndex
 	var tboby = document.getElementById("proTable");
 	var objCells = tboby.rows.item(row).cells;
-	document.getElementById("bayNo").innerHTML = objCells.item(0).innerHTML;
-	document.getElementById("batchNo").innerHTML = objCells.item(1).innerHTML;
-	document.getElementById("sku").innerHTML = objCells.item(2).innerHTML;
-	document.getElementById("line_no").innerHTML = objCells.item(3).innerHTML;
-	document.getElementById("quantity").innerHTML = objCells.item(4).innerHTML;
-	qty.push(objCells.item(4).innerHTML);
+	document.getElementById("barcode").innerHTML = objCells.item(0).innerHTML;
+	document.getElementById("expiry").innerHTML = objCells.item(2).innerHTML;
+	document.getElementById("sku").innerHTML = objCells.item(1).innerHTML;
+	document.getElementById("quantity").innerHTML = objCells.item(3).innerHTML;
+	qty.push(objCells.item(3).innerHTML);
 }
  
 
-   function verify(){
-  	 var bay=document.getElementById("bayNo").innerHTML;
-  	  var batch_no=document.getElementById("batchNo").innerHTML;
+  function verify(){
+  	 var barcode=document.getElementById("barcode").innerHTML;
+  	  var expiry=document.getElementById("expiry").innerHTML;
   	  var sku=document.getElementById("sku").innerHTML;
-  	  var line_no=document.getElementById("line_no").innerHTML;
   	  var qty1=document.getElementById("quantity").innerHTML;
   	  var XHR2 = new XMLHttpRequest();
   	  var qt=-parseInt(qty[0])+parseInt(qty1);
-  	  var hash={"bay_no":""+bay.trim()+"","batch_no":""+batch_no+"" ,"sku":""+sku+"" ,"qty":""+qt+"","status":"PASS" }
+  	  var hash={"barcode":""+barcode.trim()+"","expiry":""+expiry+"" ,"sku":""+sku+"" ,"qty":""+qt+"","status":"PASS" }
   	 console.log(hash)
-  	 XHR2.open("POST",gUrl.url+"/verify?line_no="+line_no);
+  	 XHR2.open("POST",gUrl.url+"/verify");
   	 XHR2.setRequestHeader("Content-Type","application/json;charset=UTF-8");
 
-  	  XHR2.onload = function() {
+  	 XHR2.onload = function() {
   		  console.log(XHR2.responseText);
   	      var response =JSON.parse(XHR2.responseText);
   	      if(response['message']=="Successful") {
-              alert("Successful");
+            /*  alert("Successful");*/
+             Toastify({
+                               text: "Successful",
+                               duration: 3000,
+                               gravity: "top",
+                               position: 'center',
+                               backgroundColor: "Green",
+                               close : true
+                               }).showToast();
 		  window.location.reload(true);
 
   	 } else {
 
-  	 alert("Unsuccessful"); } }
+  	 /*alert("Unsuccessful");*/
+  	 Toastify({
+                                    text: "unSuccessful",
+                                    duration: 3000,
+                                    gravity: "top",
+                                    position: 'center',
+                                    backgroundColor: "Red",
+                                    close : true
+                                    }).showToast();} }
 
   	 XHR2.send(JSON.stringify(hash));}
-  
+
   
 
-	
 
 	

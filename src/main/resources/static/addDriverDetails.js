@@ -18,6 +18,10 @@ function transportList() {
 						+ '<td >'
 						+ result.trans[key].party_name
 						+ '</td>'
+						+ '<td><div class="scrollable">'
+                        +result.trans[key].sku
+						+'</div></td>'
+						+ '</td>'
 						+ '<td >'
 						+ result.trans[key].address
 						+ '</td>'
@@ -37,7 +41,29 @@ function transportList() {
 
 window.onload = transportList();
 
+function truckBay() {
+	var xhttp1 = new XMLHttpRequest();
+	xhttp1.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			// Typical action to be performed when the document is ready:
+			var response = xhttp1.responseText;
+			var result = JSON.parse(response);
+			console.log(result);
 
+			var truckBay = document.getElementById("truckBay1");
+			truckBay.innerHTML="";
+
+				for(var key in result.bay){
+                truckBay.innerHTML+='<option value='+result.bay[key]+'>';
+                }
+
+		}
+	};
+	xhttp1.open("GET", gUrl.url+"/getTruckBay", true);
+
+	xhttp1.send();
+}
+window.onload=truckBay();
 
 function openForm(element) {
 
@@ -54,25 +80,60 @@ function openForm(element) {
   	  var driverName=document.getElementById("driverName").innerHTML;
   	  var Contact=document.getElementById("Contact").innerHTML;
   	  var Vehicle=document.getElementById("Vehicle").innerHTML;
-  	  var bayNo=document.getElementById("bayNo").value;
+  	  var bayNo=document.getElementById("truckBay").value;
+  	  var vehicle_type=document.getElementById("vehicleType").value;
   	  var XHR2 = new XMLHttpRequest();
   	  if(driverName==""){
-        alert("Enter Driver Name")
+        /*alert("Enter Driver Name")*/
+          Toastify({
+                            text: "Enter Driver Name ",
+                            duration: 3000,
+                            gravity: "top",
+                            position: 'center',
+                            backgroundColor: "Red",
+                            close : true
+                            }).showToast();
   	  }
   	  else if(Contact==""){
-        alert("Enter Contact Number")
+        /*alert("Enter Contact Number")*/
+        Toastify({
+                                    text: "Enter Contact Number ",
+                                    duration: 3000,
+                                    gravity: "top",
+                                    position: 'center',
+                                    backgroundColor: "Red",
+                                    close : true
+                                    }).showToast();
 
   	  }
   	 else if(Vehicle==""){
-        alert("Enter Vehicle Number")
+        /*alert("Enter Vehicle Number")*/
+         Toastify({
+                                            text: "Enter Vehicle Number",
+                                            duration: 3000,
+                                            gravity: "top",
+                                            position: 'center',
+                                            backgroundColor: "Red",
+                                            close : true
+                                            }).showToast();
 
   	  }
   	  else if(bayNo=="select"){
-        alert("Select Truck Bay")
+       /* alert("Select Truck Bay")*/
+        Toastify({
+                                                   text: "Select Truck Bay",
+                                                   duration: 3000,
+                                                   gravity: "top",
+                                                   position: 'center',
+                                                   backgroundColor: "Red",
+                                                   close : true
+                                                   }).showToast();
+
 
   	  }else{
   	  var hash={"order_id":""+orderId+"","driver_name":""+driverName+""
-  	  ,"contact_no":""+Contact+"" ,"vehicle_no":""+Vehicle+"","truck_bay_no":""+bayNo+"" }
+  	  ,"contact_no":""+Contact+"" ,"vehicle_no":""+Vehicle+"","truck_bay_no":""+bayNo+"",
+  	   "vehicle_type":""+vehicle_type+""}
   	 console.log(hash)
   	 XHR2.open("POST",gUrl.url+"/addDriverName");
   	 XHR2.setRequestHeader("Content-Type","application/json;charset=UTF-8");
@@ -81,15 +142,39 @@ function openForm(element) {
   		  console.log(XHR2.responseText);
   	      var response =JSON.parse(XHR2.responseText);
   	      if(response['message']=="Successful") {
-              alert("Successful");
+            /*  alert("Successful");*/
+             Toastify({
+                                                               text: "Successful",
+                                                               duration: 3000,
+                                                               gravity: "top",
+                                                               position: 'center',
+                                                               backgroundColor: "Green",
+                                                               close : true
+                                                               }).showToast();
 		  window.location.reload(true);
 
   	 } else {
 
-  	 alert("Unsuccessful"); } }
+  	 /*alert("Unsuccessful")*/
+  	  Toastify({
+                                                                    text: "unSuccessful",
+                                                                    duration: 3000,
+                                                                    gravity: "top",
+                                                                    position: 'center',
+                                                                    backgroundColor: "Green",
+                                                                    close : true
+                                                                    }).showToast();}}
 
-  	 XHR2.send(JSON.stringify(hash));}}
-  
+  	 XHR2.send(JSON.stringify(hash));} }
+  	 
+  	 
+  function limitInput(){
+
+ var limit=document.getElementById("truckBay").value;
+ if(limit>7){
+    document.getElementById("truckBay").value="";
+ }
+  }
   
 
 	

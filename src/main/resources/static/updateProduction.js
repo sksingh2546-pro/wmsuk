@@ -38,13 +38,13 @@ function productionList() {
 			for ( var key in result.productionData) {
 				tbody.innerHTML += '<tr>'
 						+ '<td>'
-						+ result.productionData[key].bay_no
-						+ '</td>'
-						+ '<td >'
-						+ result.productionData[key].batch_no
+						+ result.productionData[key].barcode
 						+ '</td>'
 						+ '<td >'
 						+ result.productionData[key].sku
+						+ '</td>'
+						+ '<td >'
+						+ result.productionData[key].expiry
 						+ '</td>'
 						+ '<td >'
 						+ result.productionData[key].qty
@@ -53,7 +53,7 @@ function productionList() {
 						+ result.productionData[key].status
 						+ '</td>'
 						+ '<td align="center"><input class="btn btn-primary" type="button" data-toggle="modal" data-target="#changeBay" onclick="openForm(this)" value="Change Bay" id="cBay"/></td>'
-						+ '<td align="center"><input class="btn btn-primary" type="button" data-toggle="modal" data-target="#changeStatus" onclick="openForm1(this)" value="Change Status" /></td></tr>'
+						<!--+ '<td align="center"><input class="btn btn-primary" type="button" data-toggle="modal" data-target="#changeStatus" onclick="openForm1(this)" value="Change Status" /></td>--></tr>'
 
 			}
 		}
@@ -103,7 +103,8 @@ function openForm1(element) {
 	  var batch_no=document.getElementById("batchNo").innerHTML; 
 	  var sku=document.getElementById("sku").innerHTML; 
 	  var qty=document.getElementById("quantity").innerHTML; 
-	  var status=document.getElementById("status").innerHTML; 	  
+	  var status=document.getElementById("status").innerHTML; 
+		if(confirm("Press ok to confirm")){	  
 	  var XHR2 = new XMLHttpRequest(); 
 	  var hash={"bay_no":""+bay.trim()+"","batch_no":""+batch_no+"" ,"sku":""+sku+"" ,"qty":""+qty+"","status":""+status.trim()+"" } 
 	 console.log(hash)
@@ -124,7 +125,15 @@ function openForm1(element) {
 	  var response =JSON.parse(XHR3.responseText); 
 	 if(response['message']=="Successful") {
 		 changeLocation(bay.trim(),batch_no,sku,qty,status,bayList[0].trim());
-	 alert("Successfully Inserted"); 
+/*	 alert("Successfully Inserted"); */
+Toastify({
+            text: "Successfully Inserted",
+            duration: 3000,
+            gravity: "top",
+            position: 'center',
+            backgroundColor: "Green",
+            close : true
+            }).showToast();
 	 
 	 productionList(); } 
 	 else {
@@ -138,6 +147,7 @@ function openForm1(element) {
 	 alert(response); } }
 	 
 	 XHR2.send(JSON.stringify(hash));}
+}
  
   function statusProduction(){
   var bay=document.getElementById("bayNo1").innerHTML;
@@ -146,12 +156,28 @@ function openForm1(element) {
    var qty=document.getElementById("quantity1").innerHTML; 
    var status=document.getElementById("status1").value;
    if(bay==""){ 
-	   alert("PleaseEnter bay"); } 
+	 /*  alert("PleaseEnter bay");*/
+	  Toastify({
+                  text: "Please Enter bay"",
+                  duration: 3000,
+                  gravity: "top",
+                  position: 'center',
+                  backgroundColor: "Red",
+                  close : true
+                  }).showToast();}
    else if(qty==""){
-	   alert("Please Enter Quantity"); } 
+	   /*alert("Please Enter Quantity");*/
+	   Toastify({
+                   text: "Please Enter Quantity",
+                   duration: 3000,
+                   gravity: "top",
+                   position: 'center',
+                   backgroundColor: "Red",
+                   close : true
+                   }).showToast();}
    else{
    }
-  
+  if(confirm("Press ok to confirm")){
   var XHR2 = new XMLHttpRequest(); 
   var hash={"bay_no":""+bay+"","batch_no":""+batch_no+"" ,"sku":""+sku+"" ,"qty":""+qty+"","status":""+status.trim()+"" } 
  XHR2.open("POST",gUrl.url+"/changeBayAndStatus"); XHR2.setRequestHeader("Content-Type","application/json;charset=UTF-8");
@@ -185,7 +211,9 @@ alert(response); } }
  
  alert(response); } }
  
- XHR2.send(JSON.stringify(hash)); }
+ XHR2.send(JSON.stringify(hash)); 
+	}
+}
  
   
   
@@ -199,7 +227,7 @@ alert(response); } }
 		   var bay=document.getElementById("bayNo");
 		    var result=JSON.parse(response);
 		       for(var key in result.bay){
-		    	   bay.innerHTML+= '<option value='+result.bay[key].bay+'>'+ result.bay[key].bay+ '</option>';    
+		    	   bay.innerHTML+= '<option value='+result.bay[key].barcode+'>'+ result.bay[key].barcode+ '</option>';
 
 		       }
 		    }
