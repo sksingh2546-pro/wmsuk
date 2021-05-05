@@ -27,7 +27,7 @@ public class SkuListController {
     @Autowired
     BayCapacityRepository bayCapacityRepository;
 
-/*    @PostMapping({"/uploadExcel"})
+    @PostMapping({"/uploadExcel"})
     public String uploadExcel(@RequestParam("file") MultipartFile multipartFile) {
         Workbook workbook = null;
        try {
@@ -62,25 +62,27 @@ public class SkuListController {
         if (bayCapacity.size() > 0) {
             response = "{\"message\":\"Allready Exist\"}";
         } else {
-            try {
+
                 for (int i = 1; i <= sheet2.getLastRowNum(); ++i) {
                     if (sheet2.getRow(i).getCell(0).getCellType() != CellType.BLANK) {
-                        List<BayCapacity> bayList = bayCapacityRepository.getBay(sheet2.getRow(i).getCell(0).getStringCellValue().trim());
+                        List<BayCapacity> bayList = bayCapacityRepository.getBay((int) sheet2.getRow(i).getCell(2).getNumericCellValue());
                         if (bayList.size() == 0) {
-                            int insert = this.bayCapacityRepository.insertBay(sheet2.getRow(i).getCell(0).getStringCellValue().trim(), sheet2.getRow(i).getCell(1).getNumericCellValue());
+                            try {
+                            int insert = this.bayCapacityRepository.insertBay(sheet2.getRow(i).getCell(0).getStringCellValue().trim(), sheet2.getRow(i).getCell(1).getNumericCellValue(),
+                                    (int)sheet2.getRow(i).getCell(2).getNumericCellValue());
                             if (insert > 0) {
                                 response = "{\"message\":\"Successful\"}";
+                            }} catch (Exception e3) {
+                                System.out.println("Exception Bay:  " + e3);
                             }
                         }
                     }
                 }
-            } catch (Exception e3) {
-                System.out.println("Exception Bay:  " + e3);
-            }
+
         }
         return response;
     }
-*/
+
     @PostMapping({"/updateSku"})
     public String updateSku(@RequestBody SkuList skuList) {
         List<SkuList> skList = (List<SkuList>) skuListRepository.getSkuList(skuList.getSku());

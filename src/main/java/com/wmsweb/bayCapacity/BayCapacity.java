@@ -12,7 +12,7 @@ public class BayCapacity {
     private Long id;
     private String bay;
     private double capacity;
-    private  String barcode;
+    private  int barcode;
 
     public Long getId() {
         return this.id;
@@ -38,11 +38,11 @@ public class BayCapacity {
         this.capacity = capacity;
     }
 
-    public String getBarcode() {
+    public int getBarcode() {
         return barcode;
     }
 
-    public void setBarcode(String barcode) {
+    public void setBarcode(int barcode) {
         this.barcode = barcode;
     }
 }

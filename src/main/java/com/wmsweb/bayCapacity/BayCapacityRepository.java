@@ -17,16 +17,16 @@ public interface BayCapacityRepository extends CrudRepository<BayCapacity, Long>
     @Modifying
     @Query(value = "insert into bay(bay,capacity,barcode)values(?1,?2,?3)", nativeQuery = true)
     @Transactional
-    int insertBay(String bay, double capacity, String  barcode);
+    int insertBay(String bay, double capacity, int  barcode);
 
     @Modifying
     @Query(value = "update bay set capacity=?2, bay=?1 where barcode=?3", nativeQuery = true)
     @Transactional
-    int updateBay(String bay, double capacity, String barcode);
+    int updateBay(String bay, double capacity, int barcode);
 
     @Query("select bay from BayCapacity bay")
     List<BayCapacity> getBay();
 
     @Query("select b1 from BayCapacity b1 where barcode=?1")
-    List<BayCapacity> getBay(String barcode);
+    List<BayCapacity> getBay(int barcode);
 }

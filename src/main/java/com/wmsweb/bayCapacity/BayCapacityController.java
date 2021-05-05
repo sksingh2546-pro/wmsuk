@@ -44,7 +44,7 @@ public class BayCapacityController {
     }
 
     @GetMapping("getBarcodeWithBay")
-    public Map<String,List<BayCapacity>>getBayCapacity(@RequestParam("barcode")String barcode){
+    public Map<String,List<BayCapacity>>getBayCapacity(@RequestParam("barcode")int barcode){
         List<BayCapacity>bayCapacities=bayCapacityRepository.getBay(barcode);
         HashMap<String,List<BayCapacity>>hMap=new HashMap<>();
         hMap.put("barcodeList",bayCapacities);
