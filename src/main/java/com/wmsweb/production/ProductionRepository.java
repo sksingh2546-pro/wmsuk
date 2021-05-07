@@ -73,5 +73,8 @@ public interface ProductionRepository extends CrudRepository<Production, Long> {
     @Query("select SUM(p.qty) from Production p where  sku like %?1% and status='PASS'")
     int getAllQty(String sku);
 
+    @Query("select sk from Production sk where barcode=?1 ")
+    List<Production> getProductionDetails(String barcode);
+
 
 }

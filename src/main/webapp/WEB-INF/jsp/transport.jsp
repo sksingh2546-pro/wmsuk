@@ -286,6 +286,10 @@ input:checked + .slider:before {
 												<input list="party1" class="form-control" id="partyName"
 													name="partyName" placeholder="Enter Party Name" required>
 												<datalist id="party1"></datalist>
+
+
+
+
 									</div>
 								</td>
 								<td>

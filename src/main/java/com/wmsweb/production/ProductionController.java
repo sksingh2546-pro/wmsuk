@@ -55,6 +55,7 @@ public class ProductionController {
     ManualOrderRepository ManualOrderRepository;
 
 
+
     /*@PostMapping("/insertProduction")
     public String insertProduction(@RequestBody Production production,
                                    @RequestParam("barcode") String barcode) {
@@ -954,4 +955,37 @@ public class ProductionController {
         return message;
     }
 
+
+    @GetMapping("getproductionDetails")
+    public Map<String,List<Production>>getProductionDetails(@RequestParam("barcode")String barcode){
+        List<Production>productionList=productionRepository.getProductionDetails(barcode);
+        HashMap<String,List<Production>>hMap=new HashMap<>();
+        hMap.put("productionDetails",productionList);
+        return  hMap;
+    }
+
+    @GetMapping("getBayWithProduction")
+    public Map<String,ModelProduction>getBAyWithProduction(){
+        List<Production>productionList= (List<Production>) productionRepository.findAll();
+
+        ModelProduction modelProduction = new ModelProduction();
+
+
+            for (Production production : productionList) {
+                List<BayCapacity> getBay = bayCapacityRepository.getBay(Integer.parseInt(production.getBarcode()));
+                if (getBay.size() > 0) {
+                    modelProduction.setBay(getBay.get(0).getBay());
+
+                    modelProduction.setBarcode(production.getBarcode());
+                    modelProduction.setSku(production.getSku());
+                    modelProduction.setExpiry(production.getExpiry());
+                    modelProduction.setQty(production.getQty());
+                    modelProduction.setStatus(production.getStatus());
+                }
+            }
+        HashMap<String,ModelProduction>hMap=new HashMap<>();
+        hMap.put("bayWithProduction",modelProduction);
+        return hMap;
+
+    }
 }
