@@ -48,7 +48,8 @@ public class SkuListController {
                     try {
                         List<SkuList> skList = (List<SkuList>) this.skuListRepository.getSkuList(sheet.getRow(i).getCell(0).getStringCellValue().trim());
                         if (skList.size() == 0) {
-                            int insert = skuListRepository.insertSku(sheet.getRow(i).getCell(0).getStringCellValue().trim(), sheet.getRow(i).getCell(1).getNumericCellValue(), sheet.getRow(i).getCell(2).getNumericCellValue());
+                            int insert = skuListRepository.insertSku(sheet.getRow(i).getCell(0).getStringCellValue().trim(), sheet.getRow(i).getCell(1).getNumericCellValue(), sheet.getRow(i).getCell(2).getNumericCellValue(),
+                                    sheet.getRow(i).getCell(3).getStringCellValue().trim());
                             if (insert > 0) {
                                 response = "{\"message\":\"Successful\"}";
                             }
@@ -93,7 +94,8 @@ public class SkuListController {
                 response = "{\"message\":\"Successful\"}";
             }
         } else {
-            int insert = skuListRepository.insertSku(skuList.getSku(), skuList.getCases_of_pallets(), skuList.getPallet_weight());
+            int insert = skuListRepository.insertSku(skuList.getSku(), skuList.getCases_of_pallets(), skuList.getPallet_weight(),
+                    skuList.getP_barcode());
             if (insert > 0) {
                 response = "{\"message\":\"Successful\"}";
             }

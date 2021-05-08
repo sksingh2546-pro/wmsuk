@@ -13,12 +13,12 @@ import java.util.List;
 @Repository
 public interface SkuListRepository extends CrudRepository<SkuList, Long> {
     @Modifying
-    @Query(value = "insert into sku(sku,cases_of_pallets,pallet_weight)values(?1,?2,?3)", nativeQuery = true)
+    @Query(value = "insert into sku(sku,cases_of_pallets,pallet_weight,p_barcode)values(?1,?2,?3,?4)", nativeQuery = true)
     @Transactional
-    int insertSku(String sku, double cases_of_pallets, double pallet_weight);
+    int insertSku(String sku, double cases_of_pallets, double pallet_weight,String p_barcode);
 
     @Modifying
-    @Query(value = "update sku set cases_of_pallets=?2, pallet_weight=?3 where sku=?1", nativeQuery = true)
+    @Query(value = "update sku set cases_of_pallets=?2, pallet_weight=?3 where sku=?1 ", nativeQuery = true)
     @Transactional
     int updateSku(String sku, double cases_of_pallets, double pallet_weight);
 

@@ -12,6 +12,7 @@ public class SkuList {
     private String sku;
     private double cases_of_pallets;
     private double pallet_weight;
+    private String p_barcode;
 
     public long getId() {
         return this.id;
@@ -43,5 +44,13 @@ public class SkuList {
 
     public void setPallet_weight(double pallet_weight) {
         this.pallet_weight = pallet_weight;
+    }
+
+    public String getP_barcode() {
+        return p_barcode;
+    }
+
+    public void setP_barcode(String p_barcode) {
+        this.p_barcode = p_barcode;
     }
 }

@@ -14,6 +14,8 @@ public class CancelOrder {
     private String qty;
     private String batch;
 
+
+
     public long getId() {
         return id;
     }
