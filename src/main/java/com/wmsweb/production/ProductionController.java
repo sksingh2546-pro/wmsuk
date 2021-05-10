@@ -966,12 +966,12 @@ public class ProductionController {
     }
 
     @GetMapping("getBayWithProduction")
-    public Map<String,ModelProduction>getBAyWithProduction(){
+    public Map<String,List<ModelProduction>>getBAyWithProduction(){
         List<Production>productionList= (List<Production>) productionRepository.findAll();
 
         ModelProduction modelProduction = new ModelProduction();
 
-
+             List<ModelProduction> barCodeList=new ArrayList<>();
             for (Production production : productionList) {
                 List<BayCapacity> getBay = bayCapacityRepository.getBay(Integer.parseInt(production.getBarcode()));
                 List<SkuList> getSkuList=skuListRepository.getSkuList(production.getSku());
@@ -983,11 +983,14 @@ public class ProductionController {
                     modelProduction.setQty(production.getQty());
                     modelProduction.setStatus(production.getStatus());
                     modelProduction.setP_barcode(getSkuList.get(0).getP_barcode());
+                    barCodeList.add(modelProduction);
                 }
             }
-        HashMap<String,ModelProduction>hMap=new HashMap<>();
-        hMap.put("bayWithProduction",modelProduction);
+        HashMap<String,List<ModelProduction>>hMap=new HashMap<>();
+        hMap.put("bayWithProduction",barCodeList);
         return hMap;
 
     }
+
+
 }

@@ -127,6 +127,14 @@ public class SkuListController {
         return hmap;
     }
 
+  @GetMapping({"/getSkuListWithBarcode"})
+    public Map<String, List<SkuList>> getSkuListWithBarcode(@RequestParam("p_barcode")String p_barcode) {
+        HashMap<String, List<SkuList>> hMap = new HashMap<>();
+        List<SkuList> list =  skuListRepository.getSkuListWithBarcode(p_barcode);
+        hMap.put("SkuData", list);
+        return hMap;
+    }
+
 
 
 }

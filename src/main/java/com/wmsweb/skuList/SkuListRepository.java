@@ -28,6 +28,9 @@ public interface SkuListRepository extends CrudRepository<SkuList, Long> {
     @Query("select sk from SkuList sk where sku=?1 ")
     List<SkuList> getSkuList(String sku);
 
+@Query("select sk from SkuList sk where p_barcode=?1 ")
+    List<SkuList> getSkuListWithBarcode(String p_barcode);
+
     @Query("select sk.pallet_weight from SkuList sk where sku=?1")
     @Transactional
     public List<String> getpalletWeight(String sku);
