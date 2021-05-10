@@ -39,9 +39,10 @@ function orderProduct() {
                 + '<td >'
                 +(parseInt(key)+1)
                 + '</td>'
-                + '<td >'
-                + result.OrderIdProduct[key].bay
-                + '</td>'
+                 + '<td >'
+                  + result.OrderIdProduct[key].barcode
+                  + '</td>'
+
                 + '<td>'
                  + result.OrderIdProduct[key].batch_no
                 + '</td>'
@@ -70,7 +71,7 @@ function orderProduct() {
 window.onload = orderProduct();
 
  function confirmed(element) {
-    if (confirm("Are you sure you want to delete this item?")) {
+    if (confirm("Are you sure you want to edit this item?")) {
     editQuantity(element);
     }
     else {

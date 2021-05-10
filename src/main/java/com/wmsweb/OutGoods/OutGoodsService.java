@@ -29,7 +29,7 @@ public class OutGoodsService {
         if (updateQty > 0) {
             int insertData = outgoodsRepository.insertData(outgoods.getBatch_no(),
                     outgoods.getBarcode(), outgoods.getSku(), cQty,
-                    outgoods.getOrder_id());
+                    outgoods.getOrder_id(),outgoods.getExpiry(),outgoods.getP_barcode());
             if (insertData > 0) {
                 message = "{\"message\":\"Successful\"}";
             }

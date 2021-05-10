@@ -15,6 +15,8 @@ public class OutGoods {
     private String sku;
     private int qty;
     private long order_id;
+    private String expiry;
+    private String p_barcode;
 
     public long getId() {
         return id;
@@ -64,5 +66,19 @@ public class OutGoods {
         this.order_id = order_id;
     }
 
+    public String getExpiry() {
+        return expiry;
+    }
 
+    public void setExpiry(String expiry) {
+        this.expiry = expiry;
+    }
+
+    public String getP_barcode() {
+        return p_barcode;
+    }
+
+    public void setP_barcode(String p_barcode) {
+        this.p_barcode = p_barcode;
+    }
 }

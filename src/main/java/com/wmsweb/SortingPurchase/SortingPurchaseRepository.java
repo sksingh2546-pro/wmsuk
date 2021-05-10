@@ -14,9 +14,9 @@ import java.util.List;
 @Repository
 public interface SortingPurchaseRepository extends CrudRepository<SortingPurchase, Long> {
     @Modifying
-    @Query(value = "insert into sorting_purchase(order_id,permit_no,sku,batch_no,barcode,qty,status,date)values(?1,?2,?3,?4,?5,?6,?7,?8)", nativeQuery = true)
+    @Query(value = "insert into sorting_purchase(order_id,permit_no,sku,batch_no,barcode,qty,status,date,expiry,p_barcode)values(?1,?2,?3,?4,?5,?6,?7,?8,?9,?10)", nativeQuery = true)
     @Transactional
-    int insertData(long order_id, String permit_no, String sku, String batch_no, String barcode, int qty, int Status, String date);
+    int insertData(long order_id, String permit_no, String sku, String batch_no, String barcode, int qty, int Status, String date,String expiry,String p_barcode);
 
     @Modifying
     @Query(value = "update sorting_purchase set status=?2 where id=?1", nativeQuery = true)

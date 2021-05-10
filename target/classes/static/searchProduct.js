@@ -25,7 +25,7 @@ function getSku(){
 		   var bay=document.getElementById("bay");
 		    var result=JSON.parse(response);
 		       for(var key in result.bay){
-		    	   bay.innerHTML+= '<option value='+result.bay[key].bay+'>'+ result.bay[key].barcode+ '</option>';
+		    	   bay.innerHTML+= '<option value='+result.bay[key].barcode+'>'+ result.bay[key].barcode+ '</option>';
 
 		       }
 		    }
@@ -122,7 +122,7 @@ function getSearchWithBatch(){
 
 		};
 				   var batch_no=document.getElementById("batch").value;
-		xhttp.open("GET", gUrl.url+"/getSearchProduct?expiry="+expiry, true);
+		xhttp.open("GET", gUrl.url+"/getSearchProduct?expiry="+batch_no, true);
 
 		xhttp.send();
 		}
@@ -157,7 +157,8 @@ function getSearchWithBay(){
 
 		};
 				   var bay_no=document.getElementById("bay").value;
-		xhttp.open("GET", gUrl.url+"/getSearchProduct?barcode="+barcode, true);
+				   console.log(bay_no)
+		xhttp.open("GET", gUrl.url+"/getSearchProduct?barcode="+bay_no, true);
 
 		xhttp.send();
 		}

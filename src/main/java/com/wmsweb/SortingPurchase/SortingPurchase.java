@@ -20,6 +20,8 @@ public class SortingPurchase {
     private int qty;
     private int status;
     private String date;
+    private String expiry;
+    private String p_barcode;
 
     public long getId() {
         return this.id;
@@ -91,5 +93,21 @@ public class SortingPurchase {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getExpiry() {
+        return expiry;
+    }
+
+    public void setExpiry(String expiry) {
+        this.expiry = expiry;
+    }
+
+    public String getP_barcode() {
+        return p_barcode;
+    }
+
+    public void setP_barcode(String p_barcode) {
+        this.p_barcode = p_barcode;
     }
 }

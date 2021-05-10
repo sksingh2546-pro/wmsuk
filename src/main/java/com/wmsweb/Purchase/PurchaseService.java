@@ -119,10 +119,13 @@ public class PurchaseService {
 
                         if (mainQty <= 0) {
                             System.out.println();
-                            sortingPurchaseRepository.insertData(uPurchase.getOrder_id(), uPurchase.getPermit_no(), uPurchase.getSku(), getProductionData.get(count).getExpiry(), getProductionData.get(count).getBarcode(), sendQty, 0, uPurchase.getDate());
+                            sortingPurchaseRepository.insertData(uPurchase.getOrder_id(), uPurchase.getPermit_no(), uPurchase.getSku(), getProductionData.get(count).getExpiry(), getProductionData.get(count).getBarcode()
+                                    , sendQty, 0, uPurchase.getDate(),getProductionData.get(count).getExpiry(),getProductionData.get(count).getP_barcode());
                             System.out.println("first_1" + mainQty);
                         } else if (mainQty > 0) {
-                            sortingPurchaseRepository.insertData(uPurchase.getOrder_id(), uPurchase.getPermit_no(), uPurchase.getSku(), getProductionData.get(count).getExpiry(), getProductionData.get(count).getBarcode(), tQty, 0, uPurchase.getDate());
+                            sortingPurchaseRepository.insertData(uPurchase.getOrder_id(), uPurchase.getPermit_no(),
+                                    uPurchase.getSku(), getProductionData.get(count).getExpiry(), getProductionData.get(count).getBarcode(), tQty, 0, uPurchase.getDate()
+                                  ,getProductionData.get(count).getExpiry(),getProductionData.get(count).getP_barcode());
                             System.out.println("second_1" + mainQty);
                             purchaseQty -= tQty;
                             ++increment;
@@ -142,10 +145,10 @@ public class PurchaseService {
 
 
                     if (mainQty <= 0) {
-                        sortingPurchaseRepository.insertData(uPurchase.getOrder_id(), uPurchase.getPermit_no(), uPurchase.getSku(), getProductionData.get(count).getExpiry(), getProductionData.get(count).getBarcode(), sendQty, 0, uPurchase.getDate());
+                        sortingPurchaseRepository.insertData(uPurchase.getOrder_id(), uPurchase.getPermit_no(), uPurchase.getSku(), getProductionData.get(count).getExpiry(), getProductionData.get(count).getBarcode(), sendQty, 0, uPurchase.getDate(),getProductionData.get(count).getExpiry(),getProductionData.get(count).getP_barcode());
                         System.out.println("first_2" + mainQty);
                     } else if (mainQty > 0) {
-                        sortingPurchaseRepository.insertData(uPurchase.getOrder_id(), uPurchase.getPermit_no(), uPurchase.getSku(), getProductionData.get(count).getExpiry(), getProductionData.get(count).getBarcode(), getProductionData.get(count).getQty(), 0, uPurchase.getDate());
+                        sortingPurchaseRepository.insertData(uPurchase.getOrder_id(), uPurchase.getPermit_no(), uPurchase.getSku(), getProductionData.get(count).getExpiry(), getProductionData.get(count).getBarcode(), getProductionData.get(count).getQty(), 0, uPurchase.getDate(),getProductionData.get(count).getExpiry(),getProductionData.get(count).getP_barcode());
                         System.out.println("second_2" + mainQty);
                         purchaseQty -= getProductionData.get(count).getQty();
                         ++increment;

@@ -196,7 +196,8 @@
                         <thead>
                         <tr>
                           <th>Sr</th>
-                          <th>Bay</th>
+                          <th>Barcode</th>
+
                           <th>Batch</th>
                           <th>SKU</th>
                           <th>Quantity</th>

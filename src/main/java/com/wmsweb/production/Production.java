@@ -14,6 +14,7 @@ public class Production {
     private int qty;
     private String status;
     private  String barcode;
+    private String p_barcode;
 
     public long getId() {
         return id;
@@ -61,5 +62,13 @@ public class Production {
 
     public void setBarcode(String barcode) {
         this.barcode = barcode;
+    }
+
+    public String getP_barcode() {
+        return p_barcode;
+    }
+
+    public void setP_barcode(String p_barcode) {
+        this.p_barcode = p_barcode;
     }
 }

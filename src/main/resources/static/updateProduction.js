@@ -158,7 +158,7 @@ Toastify({
    if(bay==""){ 
 	 /*  alert("PleaseEnter bay");*/
 	  Toastify({
-                  text: "Please Enter bay"",
+                  text: "Please Enter bay",
                   duration: 3000,
                   gravity: "top",
                   position: 'center',

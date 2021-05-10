@@ -197,7 +197,7 @@ public class ProductionController {
                 production.setQty(-production.getQty());
                 int update = productionRepository.updateProduction(production.getExpiry()
                        , productionList.get(0).getQty() + production.getQty()
-                        , production.getSku(), "PASS",production.getBarcode());
+                        , production.getSku(), "PASS",production.getBarcode(),production.getP_barcode());
                 if (update > 0) {
                     response = "{\"message\":\"Successful\"}";
                     response = "{\"message\":\"Successful\"}";
@@ -213,7 +213,7 @@ public class ProductionController {
 
                 int update = productionRepository.updateProduction(production.getExpiry(),
                         productionList.get(0).getQty() - production.getQty()
-                        , production.getSku(),  "PASS",production.getBarcode());
+                        , production.getSku(),  "PASS",production.getBarcode(),production.getP_barcode());
                 if (update > 0) {
                     response = "{\"message\":\"Successful\"}";
                     ManualOrder manualOrder=new ManualOrder();
@@ -229,7 +229,7 @@ public class ProductionController {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             int insert = productionRepository.insertProduction(production.getExpiry(),
                      productionList.get(0).getQty() + production.getQty()
-                    , production.getSku(), "PASS",production.getBarcode());
+                    , production.getSku(), "PASS",production.getBarcode(),production.getP_barcode());
             if (insert > 0) {
                 response = "{\"message\":\"Successful\"}";
                 response = "{\"message\":\"Successful\"}";
@@ -262,7 +262,7 @@ public class ProductionController {
         if (productionList.size() > 0) {
             int update = productionRepository.updateProduction(production.getExpiry()
                     , productionList.get(0).getQty() + production.getQty()
-                    , production.getSku(),  production.getStatus(),production.getBarcode());
+                    , production.getSku(),  production.getStatus(),production.getBarcode(),production.getP_barcode());
             if (update > 0) {
                 response = "{\"message\":\"Successful\"}";
 
@@ -270,7 +270,7 @@ public class ProductionController {
         } else {
             int insert = productionRepository.insertProduction(production.getExpiry()
                     , production.getQty()
-                    , production.getSku(), production.getStatus(),production.getBarcode());
+                    , production.getSku(), production.getStatus(),production.getBarcode(),production.getP_barcode());
             if (insert > 0) {
                 response = "{\"message\":\"Successful\"}";
 
@@ -291,13 +291,13 @@ public class ProductionController {
         if (productionList.size() > 0) {
             int update = productionRepository.updateProduction(production.getExpiry()
                     , productionList.get(0).getQty() + production.getQty()
-                    , production.getSku(), production.getStatus(),production.getBarcode());
+                    , production.getSku(), production.getStatus(),production.getBarcode(),production.getP_barcode());
             if (update > 0) {
                 response = "{\"message\":\"Successful\"}";
                 List<FilterQty> getFilter = filterQtyRepo.getFilterData(sdf1.format(date), production.getSku(),
                         production.getBarcode(), production.getExpiry());
                 filterQtyRepo.updateData(production.getSku(), production.getQty() + getFilter.get(0).getQty(),
-                        sdf1.format(date),production.getExpiry(),production.getBarcode());
+                        sdf1.format(date),production.getExpiry(),production.getBarcode(),production.getP_barcode());
 
             }
         }
@@ -395,12 +395,13 @@ public class ProductionController {
     }
 
     @GetMapping("/getSearchProduct")
-    public Map<String, ArrayList<Production>> getSearchProduct(@RequestParam(name = "sku", required = false) String sku, @RequestParam(name = "expiry", required = false) String expiry, @RequestParam(name = "barcode", required = false) String barcode) {
+    public Map<String, ArrayList<Production>> getSearchProduct(@RequestParam(name = "sku", required = false) String sku, @RequestParam(name = "expiry", required = false) String expiry, @RequestParam(name = "barcode", required = false) String barcode,
+                                                               @RequestParam(name = "p_barcode",required = false)String p_barcode ) {
         HashMap<String, ArrayList<Production>> hmap = new HashMap<String, ArrayList<Production>>();
         if (expiry == null || expiry.equalsIgnoreCase("select") || expiry.isEmpty()) {
             expiry = "0";
         }
-        ArrayList<Production> list = (ArrayList<Production>) productionRepository.getSearchProduct(sku, expiry, barcode);
+        ArrayList<Production> list = (ArrayList<Production>) productionRepository.getSearchProduct(sku, expiry, barcode,p_barcode);
         hmap.put("SearchData", list);
         return hmap;
     }
@@ -872,15 +873,12 @@ public class ProductionController {
         SimpleDateFormat sdf2 = new SimpleDateFormat("yy");
         SimpleDateFormat sdf3 = new SimpleDateFormat("MM");
         SimpleDateFormat sdf4 = new SimpleDateFormat("dd");
-      //  int mn = Integer.parseInt(sdf3.format(date));
-        //String batch_format = String.format("%04d", Integer.parseInt(production.getExpiry()));
-    //  String batch_no = companyCodeRepository.getCompanyCode() + "-" + batch_format + "-" + mn + sdf2.format(date);
-        List<Production> productionList = productionRepository.getProductionData(production.getExpiry(),
+         List<Production> productionList = productionRepository.getProductionData(production.getExpiry(),
                 production.getSku(),  production.getStatus(),production.getBarcode());
         if (productionList.size() > 0) {
             int update = productionRepository.updateProduction(production.getExpiry(),
                      productionList.get(0).getQty() + production.getQty()
-                    , production.getSku(), production.getStatus(),production.getBarcode());
+                    , production.getSku(), production.getStatus(),production.getBarcode(),production.getP_barcode());
             if (update > 0) {
                 response = "{\"message\":\"Successful\"}";
 
@@ -888,7 +886,7 @@ public class ProductionController {
         } else {
             int insert = productionRepository.insertProduction(production.getExpiry(),
                      production.getQty()
-                    , production.getSku(), production.getStatus(),production.getBarcode());
+                    , production.getSku(), production.getStatus(),production.getBarcode(),production.getP_barcode());
             if (insert > 0) {
                 response = "{\"message\":\"Successful\"}";
 
@@ -925,14 +923,14 @@ public class ProductionController {
         if(productionList.size()>0){
             int update=productionRepository.updateProduction(production.getExpiry(),
                     productionList.get(0).getQty()+production.getQty(),production.getSku(),
-                    production.getStatus(),production.getBarcode());
+                    production.getStatus(),production.getBarcode(),production.getP_barcode());
             if(update>0){
                 message="{\"message\":\"Updated\"}";
             }
         }else {
             int insert = productionRepository.insertProduction(production.getExpiry(),
                     production.getQty(), production.getSku(),
-                    production.getStatus(),production.getBarcode());
+                    production.getStatus(),production.getBarcode(),production.getP_barcode());
             if (insert > 0) {
                 message = "{\"message\":\"Successful\"}";
 
@@ -942,13 +940,13 @@ public class ProductionController {
                 production.getBarcode(),production.getExpiry());
         if (filterQtyList.size()>0){
             int update=filterQtyRepo.updateData(production.getSku(),filterQtyList.get(0).getQty()+production.getQty(),
-                    sdf.format(date),production.getExpiry(),production.getBarcode());
+                    sdf.format(date),production.getExpiry(),production.getBarcode(),production.getP_barcode());
             if(update>0){
                 message="{\"message\":\"Updated\"}";
             }
         }else{
             int insert= filterQtyRepo.insertData(production.getSku(),production.getQty(), sdf.format(date),
-                    production.getExpiry(),production.getBarcode());
+                    production.getExpiry(),production.getBarcode(),production.getP_barcode());
             if(insert>0){
                 message="{\"message\":\"Successful\"}";
             }
@@ -969,13 +967,14 @@ public class ProductionController {
     public Map<String,List<ModelProduction>>getBAyWithProduction(){
         List<Production>productionList= (List<Production>) productionRepository.findAll();
 
-        ModelProduction modelProduction = new ModelProduction();
+
 
              List<ModelProduction> barCodeList=new ArrayList<>();
             for (Production production : productionList) {
                 List<BayCapacity> getBay = bayCapacityRepository.getBay(Integer.parseInt(production.getBarcode()));
                 List<SkuList> getSkuList=skuListRepository.getSkuList(production.getSku());
                 if (getBay.size() > 0 && getSkuList.size()>0) {
+                    ModelProduction modelProduction = new ModelProduction();
                     modelProduction.setBay(getBay.get(0).getBay());
                     modelProduction.setBarcode(production.getBarcode());
                     modelProduction.setSku(production.getSku());

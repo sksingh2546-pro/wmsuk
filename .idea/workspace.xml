@@ -4,11 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ac0d9763-2405-4149-a2f7-8cd9e2cc5b77" name="Default Changelist" comment="Done2021-05-10;">
+    <list default="true" id="ac0d9763-2405-4149-a2f7-8cd9e2cc5b77" name="Default Changelist" comment="insert product and getproduct with barcode added">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wmsweb/FilterQty/FilterQty.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wmsweb/FilterQty/FilterQty.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wmsweb/FilterQty/FilterQtyRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wmsweb/FilterQty/FilterQtyRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wmsweb/OutGoods/OutGoods.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wmsweb/OutGoods/OutGoods.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wmsweb/OutGoods/OutGoodsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wmsweb/OutGoods/OutGoodsRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wmsweb/OutGoods/OutGoodsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wmsweb/OutGoods/OutGoodsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wmsweb/Purchase/PurchaseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wmsweb/Purchase/PurchaseService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wmsweb/SortingPurchase/SortingPurchase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wmsweb/SortingPurchase/SortingPurchase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wmsweb/SortingPurchase/SortingPurchaseRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wmsweb/SortingPurchase/SortingPurchaseRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wmsweb/production/Production.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wmsweb/production/Production.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/wmsweb/production/ProductionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wmsweb/production/ProductionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wmsweb/skuList/SkuListController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wmsweb/skuList/SkuListController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wmsweb/skuList/SkuListRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wmsweb/skuList/SkuListRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wmsweb/production/ProductionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wmsweb/production/ProductionRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/edit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/edit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/searchProduct.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/searchProduct.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/updateProduction.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/updateProduction.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/editDetail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/editDetail.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/updateProduction.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/updateProduction.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/wmsweb/production/ProductionController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wmsweb/production/ProductionController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/wmsweb/production/ProductionRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wmsweb/production/ProductionRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/searchProduct.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/searchProduct.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/updateProduction.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/updateProduction.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,7 +131,14 @@
       <option name="project" value="LOCAL" />
       <updated>1620622291683</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="insert product and getproduct with barcode added">
+      <created>1620624371937</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1620624371937</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -138,7 +162,8 @@
     <MESSAGE value="Done2021-05-07;" />
     <MESSAGE value="Done2021-05-08;" />
     <MESSAGE value="Done2021-05-10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Done2021-05-10;" />
+    <MESSAGE value="insert product and getproduct with barcode added" />
+    <option name="LAST_COMMIT_MESSAGE" value="insert product and getproduct with barcode added" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -147,6 +172,16 @@
           <url>file://$PROJECT_DIR$/src/main/java/com/wmsweb/skuList/SkuListController.java</url>
           <line>43</line>
           <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/wmsweb/Purchase/PurchaseService.java</url>
+          <line>96</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/wmsweb/Purchase/PurchaseService.java</url>
+          <line>84</line>
+          <option name="timeStamp" value="10" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

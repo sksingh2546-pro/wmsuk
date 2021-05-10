@@ -13,16 +13,16 @@ import java.util.List;
 @Repository
 public interface ProductionRepository extends CrudRepository<Production, Long> {
     @Modifying
-    @Query(value = "insert into production(expiry,qty,sku,status,barcode)values(?1,?2,?3,?4,?5)", nativeQuery = true)
+    @Query(value = "insert into production(expiry,qty,sku,status,barcode,p_barcode)values(?1,?2,?3,?4,?5,?6)", nativeQuery = true)
     @Transactional
-    int insertProduction(String expiry, int qty, String sku, String status,String barcode);
+    int insertProduction(String expiry, int qty, String sku, String status,String barcode,String p_barcode);
 
     @Modifying
-    @Query(value = "update production set qty=?2 where expiry=?1 and sku=?3 and status=?4 and barcode=?5", nativeQuery = true)
+    @Query(value = "update production set qty=?2 where expiry=?1 and sku=?3 and status=?4 and barcode=?5 and p_barcode=?6", nativeQuery = true)
     @Transactional
-    int updateProduction(String expiry, int qty, String sku, String status,String barcode);
+    int updateProduction(String expiry, int qty, String sku, String status,String barcode,String p_barcode);
 
-    @Query("select p from Production p where expiry=?1 and sku=?2 and status=?3 and barcode=?4")
+    @Query("select p from Production p where expiry=?1 and sku=?2 and status=?3 and barcode=?4 ")
     List<Production> getProductionData(String expiry, String sku, String status,String barcode);
 
     @Modifying
@@ -42,13 +42,13 @@ public interface ProductionRepository extends CrudRepository<Production, Long> {
  /*   @Query("select p from Production p where bay_no=?1")
     List<Production> getAllProductionData(String bayNo);
 */
-    @Query("select p from Production p where sku=?1 and status=?2 order by expiry,date asc")
+    @Query("select p from Production p where sku=?1 and status=?2 order by expiry asc")
     List<Production> getProductionData(String sku, String status);
 
     @Query("select p.sku from Production p where sku like %?1% ")
     List<String> getAllSku(String sku);
 
-    @Query("select sk from Production sk where sku=?1 and status=?2 ")
+    @Query("select sk from Production sk where sku=?1 and status=?2")
     List<Production> getQuantity(String sku, String status);
 
   @Query("select sk from Production sk where sku=?1 and status=?2 and barcode=?3 and expiry=?4")
@@ -57,8 +57,8 @@ public interface ProductionRepository extends CrudRepository<Production, Long> {
     @Query("select p.expiry from Production p ")
     List<String> getBatchNo();
 
-    @Query("select p from Production p where sku=?1 OR expiry=?2 OR barcode=?3")
-    List<Production> getSearchProduct(String sku, String expiry, String barcode);
+    @Query("select p from Production p where sku=?1 OR expiry=?2 OR barcode=?3 OR p_barcode=?4")
+    List<Production> getSearchProduct(String sku, String expiry, String barcode,String p_barcode);
 
     @Query("select p from Production p")
     public List<Production> getProductionComplete();
