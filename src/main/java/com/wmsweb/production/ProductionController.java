@@ -969,13 +969,14 @@ public class ProductionController {
     public Map<String,List<ModelProduction>>getBAyWithProduction(){
         List<Production>productionList= (List<Production>) productionRepository.findAll();
 
-        ModelProduction modelProduction = new ModelProduction();
+
 
              List<ModelProduction> barCodeList=new ArrayList<>();
             for (Production production : productionList) {
                 List<BayCapacity> getBay = bayCapacityRepository.getBay(Integer.parseInt(production.getBarcode()));
                 List<SkuList> getSkuList=skuListRepository.getSkuList(production.getSku());
                 if (getBay.size() > 0 && getSkuList.size()>0) {
+                    ModelProduction modelProduction = new ModelProduction();
                     modelProduction.setBay(getBay.get(0).getBay());
                     modelProduction.setBarcode(production.getBarcode());
                     modelProduction.setSku(production.getSku());
