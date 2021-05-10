@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @RestController
@@ -38,6 +39,8 @@ public class SkuListController {
         XSSFSheet sheet = (XSSFSheet) workbook.getSheetAt(0);
         XSSFSheet sheet2 = (XSSFSheet) workbook.getSheetAt(1);
         String response = "{\"message\":\"Unsuccessful\"}";
+        Date date=new Date();
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         List<SkuList> skuList = (List<SkuList>) this.skuListRepository.getSkuList();
         List<BayCapacity> bayCapacity = this.bayCapacityRepository.getBay();
         if (skuList.size() > 0) {
@@ -49,7 +52,8 @@ public class SkuListController {
                         List<SkuList> skList = (List<SkuList>) this.skuListRepository.getSkuList(sheet.getRow(i).getCell(0).getStringCellValue().trim());
                         if (skList.size() == 0) {
                             int insert = skuListRepository.insertSku(sheet.getRow(i).getCell(0).getStringCellValue().trim(), sheet.getRow(i).getCell(1).getNumericCellValue(), sheet.getRow(i).getCell(2).getNumericCellValue(),
-                                    sheet.getRow(i).getCell(3).getStringCellValue().trim());
+                                    sheet.getRow(i).getCell(3).getStringCellValue().trim(),sdf.format(date),
+                                    sheet.getRow(i).getCell(4).getStringCellValue().trim());
                             if (insert > 0) {
                                 response = "{\"message\":\"Successful\"}";
                             }
@@ -87,6 +91,8 @@ public class SkuListController {
     @PostMapping({"/updateSku"})
     public String updateSku(@RequestBody SkuList skuList) {
         List<SkuList> skList = (List<SkuList>) skuListRepository.getSkuList(skuList.getSku());
+        Date date=new Date();
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String response = "{\"message\":\"Unsuccessful\"}";
         if (skList.size() > 0) {
             int update = skuListRepository.updateSku(skuList.getSku(), skuList.getCases_of_pallets(), skuList.getPallet_weight());
@@ -95,7 +101,7 @@ public class SkuListController {
             }
         } else {
             int insert = skuListRepository.insertSku(skuList.getSku(), skuList.getCases_of_pallets(), skuList.getPallet_weight(),
-                    skuList.getP_barcode());
+                    skuList.getP_barcode(),sdf.format(date),skuList.getExpiry_date());
             if (insert > 0) {
                 response = "{\"message\":\"Successful\"}";
             }

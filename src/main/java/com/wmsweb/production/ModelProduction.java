@@ -7,6 +7,7 @@ public class ModelProduction {
     private String status;
     private  String barcode;
     private String bay;
+    private String p_barcode;
 
     public String getSku() {
         return sku;
@@ -54,5 +55,13 @@ public class ModelProduction {
 
     public void setBay(String bay) {
         this.bay = bay;
+    }
+
+    public String getP_barcode() {
+        return p_barcode;
+    }
+
+    public void setP_barcode(String p_barcode) {
+        this.p_barcode = p_barcode;
     }
 }

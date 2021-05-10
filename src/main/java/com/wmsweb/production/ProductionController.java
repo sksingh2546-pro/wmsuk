@@ -15,6 +15,8 @@ import com.wmsweb.model.ProductionModel;
 import com.wmsweb.productionPlan.ProductionPlan;
 import com.wmsweb.productionPlan.ProductionPlanRepository;
 
+import com.wmsweb.skuList.SkuList;
+import com.wmsweb.skuList.SkuListRepository;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.BorderStyle;
@@ -47,12 +49,11 @@ public class ProductionController {
     SortingPurchaseRepository sortingPurchaseRepository;
     @Autowired
     FilterQtyRepo filterQtyRepo;
-    @Autowired
-    ProductionPlanRepository productionPlanRepository;
-    @Autowired
-    CompanyCodeRepository companyCodeRepository;
+
     @Autowired
     ManualOrderRepository ManualOrderRepository;
+    @Autowired
+    SkuListRepository skuListRepository;
 
 
 
@@ -973,14 +974,15 @@ public class ProductionController {
 
             for (Production production : productionList) {
                 List<BayCapacity> getBay = bayCapacityRepository.getBay(Integer.parseInt(production.getBarcode()));
-                if (getBay.size() > 0) {
+                List<SkuList> getSkuList=skuListRepository.getSkuList(production.getSku());
+                if (getBay.size() > 0 && getSkuList.size()>0) {
                     modelProduction.setBay(getBay.get(0).getBay());
-
                     modelProduction.setBarcode(production.getBarcode());
                     modelProduction.setSku(production.getSku());
                     modelProduction.setExpiry(production.getExpiry());
                     modelProduction.setQty(production.getQty());
                     modelProduction.setStatus(production.getStatus());
+                    modelProduction.setP_barcode(getSkuList.get(0).getP_barcode());
                 }
             }
         HashMap<String,ModelProduction>hMap=new HashMap<>();

@@ -13,6 +13,8 @@ public class SkuList {
     private double cases_of_pallets;
     private double pallet_weight;
     private String p_barcode;
+    private String date;
+    private String expiry_date;
 
     public long getId() {
         return this.id;
@@ -53,4 +55,21 @@ public class SkuList {
     public void setP_barcode(String p_barcode) {
         this.p_barcode = p_barcode;
     }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getExpiry_date() {
+        return expiry_date;
+    }
+
+    public void setExpiry_date(String expiry_date) {
+        this.expiry_date = expiry_date;
+    }
+
 }
