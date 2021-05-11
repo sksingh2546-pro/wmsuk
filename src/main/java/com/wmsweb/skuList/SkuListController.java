@@ -91,17 +91,18 @@ public class SkuListController {
 
     @PostMapping({"/updateSku"})
     public String updateSku(@RequestBody SkuList skuList) {
-        List<SkuList> skList = (List<SkuList>) skuListRepository.getSkuList(skuList.getSku());
+        String sku=skuList.getSku().replaceAll(" ", "_");
+        List<SkuList> skList = (List<SkuList>) skuListRepository.getSkuList(sku);
         Date date = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String response = "{\"message\":\"Unsuccessful\"}";
         if (skList.size() > 0) {
-            int update = skuListRepository.updateSku(skuList.getSku().replaceAll(" ", "_"), skuList.getCases_of_pallets(), skuList.getPallet_weight());
+            int update = skuListRepository.updateSku(sku, skuList.getCases_of_pallets(), skuList.getPallet_weight());
             if (update > 0) {
                 response = "{\"message\":\"Successful\"}";
             }
         } else {
-            int insert = skuListRepository.insertSku(skuList.getSku(), skuList.getCases_of_pallets(), skuList.getPallet_weight(),
+            int insert = skuListRepository.insertSku(sku, skuList.getCases_of_pallets(), skuList.getPallet_weight(),
                     skuList.getP_barcode(), sdf.format(date), skuList.getExpiry_date());
             if (insert > 0) {
                 response = "{\"message\":\"Successful\"}";

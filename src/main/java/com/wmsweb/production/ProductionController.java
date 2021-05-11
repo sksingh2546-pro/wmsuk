@@ -861,7 +861,7 @@ public class ProductionController {
     @PostMapping("/insertManualProduction")
     public String insertManualProduction(@RequestBody Production production) throws ParseException {
 
-
+        String sku=production.getSku().replaceAll(" ", "_");
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM");
         SimpleDateFormat sdf1 = new SimpleDateFormat("HH:mm:ss");
         Date date1 = new Date();
@@ -874,11 +874,12 @@ public class ProductionController {
         SimpleDateFormat sdf3 = new SimpleDateFormat("MM");
         SimpleDateFormat sdf4 = new SimpleDateFormat("dd");
          List<Production> productionList = productionRepository.getProductionData(production.getExpiry(),
-                production.getSku(),  production.getStatus(),production.getBarcode());
+                sku,  production.getStatus(),production.getBarcode());
         if (productionList.size() > 0) {
+
             int update = productionRepository.updateProduction(production.getExpiry(),
                      productionList.get(0).getQty() + production.getQty()
-                    , production.getSku(), production.getStatus(),production.getBarcode(),production.getP_barcode());
+                    ,sku , production.getStatus(),production.getBarcode(),production.getP_barcode());
             if (update > 0) {
                 response = "{\"message\":\"Successful\"}";
 
@@ -886,7 +887,7 @@ public class ProductionController {
         } else {
             int insert = productionRepository.insertProduction(production.getExpiry(),
                      production.getQty()
-                    , production.getSku(), production.getStatus(),production.getBarcode(),production.getP_barcode());
+                    , sku, production.getStatus(),production.getBarcode(),production.getP_barcode());
             if (insert > 0) {
                 response = "{\"message\":\"Successful\"}";
 
