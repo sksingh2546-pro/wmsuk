@@ -922,14 +922,14 @@ public class ProductionController {
                 production.getSku(),production.getStatus(),production.getBarcode());
         if(productionList.size()>0){
             int update=productionRepository.updateProduction(production.getExpiry(),
-                    productionList.get(0).getQty()+production.getQty(),production.getSku(),
+                    productionList.get(0).getQty()+production.getQty(),production.getSku().replaceAll(" ", "_"),
                     production.getStatus(),production.getBarcode(),production.getP_barcode());
             if(update>0){
                 message="{\"message\":\"Updated\"}";
             }
         }else {
             int insert = productionRepository.insertProduction(production.getExpiry(),
-                    production.getQty(), production.getSku(),
+                    production.getQty(), production.getSku().replaceAll(" ", "_"),
                     production.getStatus(),production.getBarcode(),production.getP_barcode());
             if (insert > 0) {
                 message = "{\"message\":\"Successful\"}";
