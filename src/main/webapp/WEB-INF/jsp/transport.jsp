@@ -204,9 +204,9 @@ input:checked + .slider:before {
                                                 </span>
                                             </a>
                                             <ul class="treeview-menu">
-                                             <li><a href="productionPlan"><i class="fa fa-circle-o"></i>Production Plan</a></li>
+                                            <!-- <li><a href="productionPlan"><i class="fa fa-circle-o"></i>Production Plan</a></li>-->
                                              <li class="active"><a href="#" title="This Option is disable in Out"><i class="fa fa-circle-o"></i>Manual Insert Product</a></li>
-                                             <li class="active"><a href="updateProduction"><i class="fa fa-circle-o"></i>Update Product</a></li>
+                                             <!--<li class="active"><a href="updateProduction"><i class="fa fa-circle-o"></i>Update Product</a></li>-->
                                              <li><a href="verifyProduct"><i class="fa fa-circle-o"></i>Verify Production</a></li>
                                              <li><a href="searchProduct"><i class="fa fa-circle-o"></i>Search Product</a></li>
                                              <li><a href="excelImport" "><i class="fa fa-circle-o"></i>Add SKU</a></li>

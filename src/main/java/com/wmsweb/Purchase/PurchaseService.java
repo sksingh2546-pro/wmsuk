@@ -92,11 +92,18 @@ public class PurchaseService {
                 purchaseQty += purchase.getQty();
             }
             List<Production> getProductionData = productionRepository.getProductionData(uPurchase.getSku(), "PASS");
+
+            for(Production production:getProductionData){
+                List<SortingPurchase> getSortingPurchase = sortingPurchaseRepository.getSortingPurchase(
+                        production.getSku(),production.getExpiry()
+                        ,production.getBarcode(),production.getP_barcode()
+                );
+            }
             for (int count = 0; count < increment; ++count) {
                 int mainQty = 0;
                 List<SortingPurchase> getSortingPurchase = sortingPurchaseRepository.getSortingPurchase(
                         getProductionData.get(count).getSku(), getProductionData.get(count).getExpiry()
-                        , getProductionData.get(count).getBarcode()
+                        , getProductionData.get(count).getBarcode(),getProductionData.get(count).getP_barcode()
                 );
                 if (getSortingPurchase.size() > 0) {
                     int qty = getProductionData.get(count).getQty();

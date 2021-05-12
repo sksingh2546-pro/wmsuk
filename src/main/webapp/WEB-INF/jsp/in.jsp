@@ -131,7 +131,7 @@
                                           <ul class="treeview-menu">
                                             <!-- <li><a href="productionPlan"><i class="fa fa-circle-o"></i>Production Plan</a></li>-->
                                              <li class="active"><a data-toggle="modal" data-target="#modalid"><i class="fa fa-circle-o"></i>Insert Product</a></li>
-                                                    <li class="active"><a href="updateProduction"><i class="fa fa-circle-o"></i>Update Product</a></li>
+                                                  <!--  <li class="active"><a href="updateProduction"><i class="fa fa-circle-o"></i>Update Product</a></li>-->
                                                      <li><a href="verifyProduct"><i class="fa fa-circle-o"></i>Verify Production</a></li>
                                                     <li><a href="searchProduct"><i class="fa fa-circle-o"></i>Search Product</a></li>
                                                     <li><a href="excelImport" "><i class="fa fa-circle-o"></i>Add SKU</a></li>
@@ -155,10 +155,10 @@
                                                   <li><a href="transport"><i class="fa fa-circle-o"></i>Make A Plan</a></li>
                                                   <li><a href="addDriverDetails"><i class="fa fa-circle-o"></i> Place Order To Bay</a></li>
                                                   <li><a href="orderDetails"><i class="fa fa-circle-o"></i> Order List</a></li>
-                                                  <li><a href="dispatchExcelImport"><i class="fa fa-circle-o"></i> Import Dispatch Plan</a></li>
+                                                 <!--- <li><a href="dispatchExcelImport"><i class="fa fa-circle-o"></i> Import Dispatch Plan</a></li>--->
                                                   <li><a href="/api/generateTExcel"><i class="fa fa-circle-o"></i> Generate Report</a></li>
                                                   <li><a href="downloadTransportExcel"><i class="fa fa-circle-o"></i>Download Dispatch Plan</a></li>
-                                                  <li><a href="manualOrder"><i class="fa fa-circle-o"></i>Mannual Order</a></li>
+                                                  <!---<li><a href="manualOrder"><i class="fa fa-circle-o"></i>Mannual Order</a></li>--->
                                                   <li><a href="complete"><i class="fa fa-circle-o"></i> Complete Order</a></li>
                                            </ul>
                                       </li>
@@ -191,102 +191,65 @@
         <section class="content">
             <!-- Small boxes (Stat box) -->
          <div class="row">
-              <!--   <div class="col-md-6 mr-5 ml-5 mb-2  " >
-                          <a class="small-box bg-red" href="productionPlan"><div class="small-box bg-red">
-                          <div class="inner">
-                          <h3>Production <sup style="font-size: 20px"></sup></h3>
-                          <h3>Plan</h3>
-                          </div>
-                          <div class="icon">
-                          <i class="fa fa-calendar"></i>
-                          </div>
+         <div class="col-md-6 mr-5 ml-5 mb-2  " >
+         <a class="small-box bg-red" data-toggle="modal" data-target="#modalid"><div class="small-box bg-red">
+                                   <div class="inner">
+                                   <h3>Insert<sup style="font-size: 20px"></sup></h3>
+                                   <h3>Production</h3>
+                                   </div>
+                                   <div class="icon">
+                                   <i class="fa fa-calendar"></i>
+                                   </div>
 
-                          </div></a>
-                          </div>-->
-
-
-       <div class="col-md-6 mb-2 ml-5 mr-5 " >
-                          <a class="small-box bg-red" data-toggle="modal" data-target="#modalid"><div class="small-box bg-red">
-                          <div class="inner">
-                          <h3>Insert<sup style="font-size: 20px"></sup></h3>
-                          <h3>Production</h3>
-                          </div>
-                          <div class="icon">
-                          <i class="fa fa-calendar"></i>
-                          </div>
-
-                          </div></a>
-                          </div>
-
-	<!--	</div>-->
-
-		<!--<div class="row mt-5">-->
-          <div class="col-md-6 mb-2 ml-5 mr-5" >
-                             <!-- small box -->
-                            <a class="small-box bg-aqua" href="updateProduction"> <div class="small-box bg-aqua">
-                                 <div class="inner">
-                                     <h3>Update</h3>
-                                     <h3>Product</h3>
-                                 </div>
-                                 <div class="icon">
-                                     <i class="fa fa-shopping-basket"></i>
-                                 </div>
-
-                             </div></a>
-                         </div>
-         <!--**-->       </div>
-  <!--add-->          <div class="row mt-5">
-                           <div class="col-md-6 ml-5 mr-3  mb-2 " >
-                                          <a class="small-box bg-red" href="verifyProduct"><div class="small-box bg-red">
-                                          <div class="inner">
-                                          <h3>Verify<sup style="font-size: 20px"></sup></h3>
-                                          <h3>Production</h3>
-                                          </div>
-                                          <div class="icon">
-                                          <i class="fa fa-shopping-basket"></i>
-                                          </div>
-
-                                          </div></a>
-
-                                          
-                </div>
-            <!--    <div class="row">   -->
-             <div class="col-md-6 mb-2 " >
-
-              <a class="small-box bg-green" href="searchProduct"><div class="small-box bg-green">
-              <div class="inner">
-              <h3>Search<sup style="font-size: 20px"></sup></h3>
-              <h3>Product</h3>
-
-              </div>
-              <div class="icon">
-              <i class="fa fa-search"></i>
-              </div>
-              </div></a>
-              </div>
-</div>
-
-                <!-- ./col -->
+                                   </div></a>
+                                   </div>
 
 
+        <div class="col-md-6 mb-2 ml-5 mr-5  " >
+        <a class="small-box bg-red" href="verifyProduct"><div class="small-box bg-red">
+                                                  <div class="inner">
+                                                  <h3>Verify<sup style="font-size: 20px"></sup></h3>
+                                                  <h3>Production</h3>
+                                                  </div>
+                                                  <div class="icon">
+                                                  <i class="fa fa-shopping-basket"></i>
+                                                  </div>
 
-                   <!-- ./col -->
-                <div class="row">
-                 <div class="col-md-6 mb-2  " >
-                  <a class="small-box bg-blue" href="excelImport"><div class="small-box bg-blue">
-                  <div class="inner">
-                  <h3>Add<sup style="font-size: 20px"></sup></h3>
-                  <h3>SKU</h3>
-                  </div>
-                  <div class="icon">
-                  <i class="fa fa-plus"></i>
-                  </div>
+                                                  </div></a>
 
-                  </div></a>
-                  </div>
 
-              <!-- ./col -->
-				<!--<div class="row">-->
+                        </div>
+                        </div>
+
+                        <div class="row mt-5">
+                          <div class="col-md-6 mb-2 ml-5 mr-5" >
+                           <a class="small-box bg-green" href="searchProduct"><div class="small-box bg-green">
+                            <div class="inner">
+                            <h3>Search<sup style="font-size: 20px"></sup></h3>
+                            <h3>Product</h3>
+                            </div>
+                            <div class="icon">
+                            <i class="fa fa-search"></i>
+                            </div>
+                            </div></a>
+                            </div>
+
+                          <div class="col-md-6 ml-5 mr-3  mb-2 " >
+                          <a class="small-box bg-blue" href="excelImport"><div class="small-box bg-blue">
+                                            <div class="inner">
+                                            <h3>Add<sup style="font-size: 20px"></sup></h3>
+                                            <h3>SKU</h3>
+                                            </div>
+                                            <div class="icon">
+                                            <i class="fa fa-plus"></i>
+                                            </div>
+
+                                            </div></a>
+                                            </div>
+                                            </div>
+
+
+             <div class="row">
                  <div class="col-md-6 mb-2  " >
                  <a class="small-box bg-orange" href="changeSkuCapacity"><div class="small-box bg-orange">
                  <div class="inner">
@@ -299,8 +262,7 @@
 
                  </div></a>
                  </div>
-                </div>
-                <div class="row">
+
                 <div class="col-md-6  mb-2  ">
                  <a class="small-box bg-red" href="changeBayCapacity"><div class="small-box bg-red">
                  <div class="inner">
@@ -313,9 +275,9 @@
 
                  </div></a>
                  </div>
+                    </div>
 
-
-				<!--<div class="row">-->
+				<div class="row">
 
       <div class="col-md-6 mb-2  " >
                  <a class="small-box bg-red" href="/api/generateExcel"><div class="small-box bg-red">
@@ -329,8 +291,7 @@
 
                  </div></a>
                  </div>
-                    </div>
-                    <div class="row">
+
       <div class="col-md-6 mb-2  ">
                  <a class="small-box bg-red" href="downloadProductionExcel"><div class="small-box bg-red">
                  <div class="inner">
@@ -343,27 +304,9 @@
 
                  </div></a>
                  </div>
+                     </div>
 
-               <!--  <div class="col-md-6 mb-2  ">
-                                  <a class="small-box bg-red" href="productionPlanImport"><div class="small-box bg-red">
-                                  <div class="inner">
-                                  <h3>Import Production<sup style="font-size: 20px"></sup></h3>
-                                  <h3>Plan</h3>
-                                  </div>
-                                  <div class="icon">
-                                  <i class="fa fa-file-excel-o"></i>
-                                  </div>
-
-                                  </div></a>
-                                  </div>-->
-                    </div>
-
-
-        </div>
-
-
-         
-        </section>
+       </section>
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->

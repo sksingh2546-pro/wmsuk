@@ -57,6 +57,7 @@ function getProduction(){
 	      table.innerHTML=' <tr  style="background:#3c8dbc;color:white;height:40px;text-align:center">'+
                                                          '<th style="text-align:center">BARCODE</th>'+
                                                          '<th style="text-align:center">SKU</th>'+
+                                                         '<th style="text-align:center">PBARCODE</th>'+
                                                          '<th style="text-align:center">EXPIRY</th>'+
                                                          '<th style="text-align:center">QTY</th>'+
                                                          '</tr>';
@@ -64,6 +65,7 @@ function getProduction(){
         	  table.innerHTML+='<tr  style="text-align:center">'+
                                       '<td style="text-align:center">'+result.production[key].barcode+'</td>'+
                                       '<td style="text-align:center">'+result.production[key].sku+'</td>'+
+                                      '<td style="text-align:center">'+result.production[key].p_barcode+'</td>'+
                                       '<td style="text-align:center">'+result.production[key].expiry+'</td>'+
                                       '<td style="text-align:center">'+result.production[key].qty+'</td>'+
                                       '</tr>';
@@ -84,6 +86,7 @@ function insertManualProduction(){
 	var sku=document.getElementById("sku").value;
 	var expiry=document.getElementById("date").value;
 	var qty=document.getElementById("qty").value;
+	var p_barcode=document.getElementById("p_barcode").value;
 	if(barcode==""||barcode=="select"){
 		/*alert("Please Select Barcode");*/
 		 Toastify({
@@ -117,10 +120,11 @@ function insertManualProduction(){
                                                     close : true
                                                   }).showToast();
 	}
-	else if(qty==""){
+
+	else if(p_barcode==""){
 		/*alert("Select Any Quantity")*/
 		Toastify({
-                                                            text: "Select Any Quantity ",
+                                                            text: "Enter Product Barcode ",
                                                             duration: 3000,
                                                             gravity: "top",
                                                             position: 'center',
@@ -130,7 +134,11 @@ function insertManualProduction(){
 	}
 	else{
 		 var XHR2 = new XMLHttpRequest();
-         var hash={"barcode":""+barcode+"","sku":""+sku+"","expiry":""+expiry+"","qty":""+qty+""}
+         var hash={"barcode":""+barcode+"",
+         "sku":""+sku+"",
+         "expiry":""+expiry+"",
+         "qty":""+qty+"",
+         "p_barcode":""+p_barcode+""}
 
 		XHR2.open("POST", "/api/insertManualProduction");
 		XHR2.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
@@ -152,7 +160,7 @@ function insertManualProduction(){
 	           	   document.getElementById("barcode").value="";
 	           	   document.getElementById("sku").value="";
 	           	   document.getElementById("date").value="";
-	           	   document.getElementById("qty").value="";
+	           	   document.getElementById("p_barcode").value="";
                    getProduction()
 	          }
 			  else {
@@ -217,4 +225,27 @@ function bayList(){
 
 window.onload=bayList();
 
+
+/*
+function p_barcode(){
+	var xhttp1 = new XMLHttpRequest();
+	xhttp1.onreadystatechange = function() {
+	    if (this.readyState == 4 && this.status == 200) {
+	       // Typical action to be performed when the document is ready:
+	        var response = xhttp1.responseText;
+	        var result=JSON.parse(response);
+	        console.log(result);
+	      var select1=document.getElementById("select1");
+	      select1.innerHTML="";
+          for(var key in result.sku){
+        	  select1.innerHTML+='<option value='+result.sku[key].p_barcode+'>';
+          }
+	    }
+	};
+	xhttp1.open("GET", gUrl.url+"/getSkuList", true);
+
+	xhttp1.send();
+	}
+
+window.onload=p_barcode();*/
 

@@ -22,8 +22,9 @@ public interface ProductionRepository extends CrudRepository<Production, Long> {
     @Transactional
     int updateProduction(String expiry, int qty, String sku, String status,String barcode,String p_barcode);
 
-    @Query("select p from Production p where expiry=?1 and sku=?2 and status=?3 and barcode=?4 ")
-    List<Production> getProductionData(String expiry, String sku, String status,String barcode);
+
+    @Query("select p from Production p where expiry=?1 and sku=?2 and status=?3 and barcode=?4 and p_barcode=?5")
+    List<Production> getProductionData(String expiry, String sku, String status,String barcode,String p_barcode);
 
     @Modifying
     @Query(value = "delete from production where qty=0", nativeQuery = true)

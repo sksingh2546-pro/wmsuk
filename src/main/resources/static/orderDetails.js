@@ -57,7 +57,7 @@ function orderDetails() {
                 + result.orderDetails[key].quantity
                 + '</td>'
                 + '<td style="background:orange;" class="text-center">Pending Order</td>'
-                +'<td class="text-center"><button class="btn btn-secondary" name="edit" onclick="editDetail(this)">Edit</button></td>'
+              <!--  +'<td class="text-center"><button class="btn btn-secondary" name="edit" onclick="editDetail(this)">Edit</button></td>'-->
 				+'<td class="text-center"><button class="btn btn-danger" name="orders" onclick="confirmed(this)">Cancel</button></td></tr>'
         }
             else if(result.orderDetails[key].status==1){
@@ -81,7 +81,7 @@ function orderDetails() {
                  + result.orderDetails[key].quantity
                  + '</td>'
                 + '<td style="background:lightgreen;" class="text-center">Order Process</td>'
-               +'<td class="text-center"><button class="btn btn-secondary" name="edit" onclick="editDetail(this)">Edit</button></td>'
+              <!-- +'<td class="text-center"><button class="btn btn-secondary" name="edit" onclick="editDetail(this)">Edit</button></td>'--->
 				+'<td class="text-center"><button class="btn btn-danger" onclick="confirmed(this)">Cancel</button></td></tr>'
             }
 
@@ -158,16 +158,16 @@ window.location.href="completeProduct";
 }
 
 }
-
+/*
 function editDetail(element){
-/*	console.log(element);*/
+	console.log(element);
 	var ed=element.parentNode.parentNode;
 	var td=ed.getElementsByTagName("td")[0].innerHTML;
 	console.log(td);
 	localStorage.setItem("order_id",td);
 	location.href="editDetail"
 }
-
+*/
 function cancelOrder(order_id){
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {

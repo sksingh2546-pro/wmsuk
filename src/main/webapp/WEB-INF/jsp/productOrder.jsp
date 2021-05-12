@@ -129,9 +129,9 @@
                                                    </span>
                                                </a>
                                                <ul class="treeview-menu">
-                                            <li><a href="productionPlan"><i class="fa fa-circle-o"></i>Production Plan</a></li>
+                                           <!--- <li><a href="productionPlan"><i class="fa fa-circle-o"></i>Production Plan</a></li>-->
                                                   <li class="active"><a href="#" title="This Option is disable in Out"><i class="fa fa-circle-o"></i>Manual Insert Product</a></li>
-                                                   <li class="active"><a href="updateProduction"><i class="fa fa-circle-o"></i>Update Product</a></li>
+                                                   <!--<li class="active"><a href="updateProduction"><i class="fa fa-circle-o"></i>Update Product</a></li>--->
                                                     <li><a href="verifyProduct"><i class="fa fa-circle-o"></i>Verify Production</a></li>
                                                    <li><a href="searchProduct"><i class="fa fa-circle-o"></i>Search Product</a></li>
                                                    <li><a href="excelImport" "><i class="fa fa-circle-o"></i>Add SKU</a></li>
@@ -154,9 +154,9 @@
                                                   <li><a href="transport"><i class="fa fa-circle-o"></i>Make A Plan</a></li>
                                                   <li><a href="addDriverDetails"><i class="fa fa-circle-o"></i> Place Order To Bay</a></li>
                                                   <li><a href="orderDetails"><i class="fa fa-circle-o"></i> Order List</a></li>
-                                                  <li><a href="dispatchExcelImport"><i class="fa fa-circle-o"></i> Import Dispatch Plan</a></li>
+                                                 <!--- <li><a href="dispatchExcelImport"><i class="fa fa-circle-o"></i> Import Dispatch Plan</a></li>--->
                                                   <li><a href="/api/generateTExcel"><i class="fa fa-circle-o"></i> Generate Report</a></li>
-                                                   <li><a href="manualOrder"><i class="fa fa-circle-o"></i>Mannual Order</a></li>
+                                                  <!-- <li><a href="manualOrder"><i class="fa fa-circle-o"></i>Mannual Order</a></li>--->
                                                    <li><a href="complete"><i class="fa fa-circle-o"></i> Complete Order</a></li>
                                                </ul>
                                            </li>

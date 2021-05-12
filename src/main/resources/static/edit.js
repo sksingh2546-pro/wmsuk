@@ -49,6 +49,9 @@ function orderProduct() {
                 + '<td >'
                + result.OrderIdProduct[key].sku
                 + '</td>'
+                 + '<td >'
+                  + result.OrderIdProduct[key].p_barcode
+                  + '</td>'
                 + '<td  contenteditable="true">'
                 + result.OrderIdProduct[key].qty
                 + '</td>'

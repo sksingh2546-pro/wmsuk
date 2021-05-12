@@ -26,6 +26,9 @@ public interface SortingPurchaseRepository extends CrudRepository<SortingPurchas
     @Query("select sp from SortingPurchase sp where status=0")
     List<SortingPurchase> getSortingPurchase();
 
+    @Query("select sp from SortingPurchase sp where sku=?1 and batch_no=?2 and barcode=?3 and p_barcode=?4")
+    List<SortingPurchase> getSortingPurchase(String sku,String batch_no,String barcode,String p_barcode);
+
     @Query("select sp from SortingPurchase sp where sku=?1 and batch_no=?2 and barcode=?3")
     List<SortingPurchase> getSortingPurchase(String sku,String batch_no,String barcode);
 

@@ -188,7 +188,7 @@ public class ProductionController {
                                        ) {
         List<Production> productionList = null;
         productionList = productionRepository.getProductionData(production.getExpiry(),
-                production.getSku(),"PASS",production.getBarcode());
+                production.getSku(),"PASS",production.getBarcode(),production.getP_barcode());
         String response = "{\"message\":\"Unsuccessful\"}";
         if (productionList.size() > 0) {
         	
@@ -258,7 +258,7 @@ public class ProductionController {
             production.setStatus("PASS");
         }
         List<Production> productionList = productionRepository.getProductionData(production.getExpiry(),
-                production.getSku(), production.getStatus(),production.getBarcode());
+                production.getSku(), production.getStatus(),production.getBarcode(),production.getP_barcode());
         if (productionList.size() > 0) {
             int update = productionRepository.updateProduction(production.getExpiry()
                     , productionList.get(0).getQty() + production.getQty()
@@ -287,7 +287,7 @@ public class ProductionController {
 
         String response = "{\"message\":\"Unsuccessful\"}";
         List<Production> productionList = productionRepository.getProductionData(production.getExpiry(),
-                production.getSku(),production.getStatus(),production.getBarcode());
+                production.getSku(),production.getStatus(),production.getBarcode(),production.getP_barcode());
         if (productionList.size() > 0) {
             int update = productionRepository.updateProduction(production.getExpiry()
                     , productionList.get(0).getQty() + production.getQty()
@@ -874,7 +874,7 @@ public class ProductionController {
         SimpleDateFormat sdf3 = new SimpleDateFormat("MM");
         SimpleDateFormat sdf4 = new SimpleDateFormat("dd");
          List<Production> productionList = productionRepository.getProductionData(production.getExpiry(),
-                production.getSku(),  production.getStatus(),production.getBarcode());
+                production.getSku(),  production.getStatus(),production.getBarcode(),production.getP_barcode());
         if (productionList.size() > 0) {
             int update = productionRepository.updateProduction(production.getExpiry(),
                      productionList.get(0).getQty() + production.getQty()
@@ -919,7 +919,7 @@ public class ProductionController {
         Date date=new Date();
         SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
         List<Production>productionList=productionRepository.getProductionData(production.getExpiry(),
-                production.getSku(),production.getStatus(),production.getBarcode());
+                production.getSku(),production.getStatus(),production.getBarcode(),production.getP_barcode());
         if(productionList.size()>0){
             int update=productionRepository.updateProduction(production.getExpiry(),
                     productionList.get(0).getQty()+production.getQty(),production.getSku(),

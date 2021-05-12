@@ -161,7 +161,7 @@
                                              <ul class="treeview-menu">
                                           <!--  <li><a href="productionPlan"><i class="fa fa-circle-o"></i>Production Plan</a></li>-->
                                                   <li class="active"><a href="#" title="This is Current page"><i class="fa fa-circle-o"></i>Insert Product</a></li>
-                                                   <li class="active"><a href="updateProduction"><i class="fa fa-circle-o"></i>Update Product</a></li>
+                                                   <!----<li class="active"><a href="updateProduction"><i class="fa fa-circle-o"></i>Update Product</a></li>--->
                                                     <li><a href="verifyProduct"><i class="fa fa-circle-o"></i>Verify Production</a></li>
                                                    <li><a href="searchProduct"><i class="fa fa-circle-o"></i>Search Product</a></li>
                                                    <li><a href="excelImport" "><i class="fa fa-circle-o"></i>Add SKU</a></li>
@@ -183,10 +183,10 @@
                                                                    <li><a href="transport"><i class="fa fa-circle-o"></i>Make A Plan</a></li>
                                                                    <li><a href="addDriverDetails"><i class="fa fa-circle-o"></i> Place Order To Bay</a></li>
                                                                    <li><a href="orderDetails"><i class="fa fa-circle-o"></i> Order List</a></li>
-                                                                    <li><a href="dispatchExcelImport"><i class="fa fa-circle-o"></i> Import Dispatch Plan</a></li>
+                                                                   <!--- <li><a href="dispatchExcelImport"><i class="fa fa-circle-o"></i> Import Dispatch Plan</a></li>--->
                                                                    <li><a href="/api/generateTExcel"><i class="fa fa-circle-o"></i> Generate Report</a></li>
                                                                     <li><a href="downloadTransportExcel"><i class="fa fa-circle-o"></i>Download Dispatch Plan</a></li>
-                                                                     <li><a href="manualOrder"><i class="fa fa-circle-o"></i>Mannual Order</a></li>
+                                                                   <!--  <li><a href="manualOrder"><i class="fa fa-circle-o"></i>Mannual Order</a></li>--->
                                                                      <li><a href="complete"><i class="fa fa-circle-o"></i> Complete Order</a></li>
                                             </ul>
                                          </li>
@@ -250,6 +250,17 @@
                                         <datalist id="select2">
                                         </datalist>-->
                                     </div>    </td></tr>
+
+                                    <tr>
+                                    <td>
+                                    <div class="form-group" >
+                                    <h5 style="font-weight:bold;"> P BARCODE: &nbsp;<label for="product_name" style="font-weight:bold;color:red;"> *</label></h5>
+                                    <input type="text" id="p_barcode"  style="width:248px" class="form-control" value="" placeholder="Enter PBarcode ...">
+
+                                    </div>    </td>
+                                    </tr>
+
+
                                     <tr>
                                     <td>
                                      <div class="form-group" >
@@ -275,8 +286,8 @@
 
                                             <div class="form-group" >
                                             <br>
-                                               <h5 style="font-weight:bold;">Quantity: &nbsp; <label for="code" style="font-weight:bold;color:red;"> *</label><br></h5>
-                                                <input type="number" class="form-control" id="qty" name="qty" placeholder="Enter Quantity ..." required>
+                                               <h5 style="font-weight:bold;">Quantity: &nbsp; <label for="code" style="font-weight:bold;color:red;"> *</label><br ></h5>
+                                                <input type="number" class="form-control" id="qty" name="qty"value="1" placeholder="Enter Quantity ..." readonly>
 
                                             </div>
 
@@ -309,6 +320,7 @@
                                 <tr  style="background:#3c8dbc;color:white;height:40px;text-align:center">
                                 <th style="text-align:center">BARCODE</th>
                                 <th style="text-align:center">SKU</th>
+                                <th style="text-align:center">PBARCODE</th>
                                 <th style="text-align:center">EXPIRY</th>
                                 <th style="text-align:center">QTY</th>
                                 </tr>
