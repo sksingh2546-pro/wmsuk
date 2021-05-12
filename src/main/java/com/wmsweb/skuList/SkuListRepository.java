@@ -15,7 +15,7 @@ public interface SkuListRepository extends CrudRepository<SkuList, Long> {
     @Modifying
     @Query(value = "insert into sku(sku,cases_of_pallets,pallet_weight,p_barcode,date,expiry_date)values(?1,?2,?3,?4,?5,?6)", nativeQuery = true)
     @Transactional
-    int insertSku(String sku, double cases_of_pallets, double pallet_weight,String p_barcode,String date,String expiry_date);
+    int insertSku(String sku, double cases_of_pallets, double pallet_weight, String p_barcode, String date, String expiry_date);
 
     @Modifying
     @Query(value = "update sku set cases_of_pallets=?2, pallet_weight=?3 where sku=?1 ", nativeQuery = true)
@@ -28,7 +28,7 @@ public interface SkuListRepository extends CrudRepository<SkuList, Long> {
     @Query("select sk from SkuList sk where sku=?1 ")
     List<SkuList> getSkuList(String sku);
 
-@Query("select sk from SkuList sk where p_barcode=?1 ")
+    @Query("select sk from SkuList sk where p_barcode=?1 ")
     List<SkuList> getSkuListWithBarcode(String p_barcode);
 
     @Query("select sk.pallet_weight from SkuList sk where sku=?1")
@@ -36,5 +36,5 @@ public interface SkuListRepository extends CrudRepository<SkuList, Long> {
     public List<String> getpalletWeight(String sku);
 
     @Query("select sk.sku from SkuList sk")
-    List<String>getAllSku();
+    List<String> getAllSku();
 }

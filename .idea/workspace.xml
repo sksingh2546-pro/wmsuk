@@ -4,11 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ac0d9763-2405-4149-a2f7-8cd9e2cc5b77" name="Default Changelist" comment="insert production with p_barcode">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/wmsweb/SortingPurchase/PurchaseSortingModel.java" afterDir="false" />
+    <list default="true" id="ac0d9763-2405-4149-a2f7-8cd9e2cc5b77" name="Default Changelist" comment="upload with final verification">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/wmsweb/SortingPurchase/SortingPurchaseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wmsweb/SortingPurchase/SortingPurchaseService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/wmsweb/SortingPurchase/SortingPurchaseService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wmsweb/SortingPurchase/SortingPurchaseService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wmsweb/production/ProductionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wmsweb/production/ProductionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wmsweb/production/ProductionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wmsweb/production/ProductionRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wmsweb/skuList/SkuListController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wmsweb/skuList/SkuListController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wmsweb/skuList/SkuListRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wmsweb/skuList/SkuListRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/wmsweb/bayCapacity/BayCapacityController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wmsweb/bayCapacity/BayCapacityController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/wmsweb/bayCapacity/BayCapacityRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wmsweb/bayCapacity/BayCapacityRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/wmsweb/production/ProductionController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wmsweb/production/ProductionController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/wmsweb/production/ProductionRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wmsweb/production/ProductionRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/wmsweb/skuList/SkuListController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wmsweb/skuList/SkuListController.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,7 +157,14 @@
       <option name="project" value="LOCAL" />
       <updated>1620802122748</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="upload with final verification">
+      <created>1620803401326</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1620803401326</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -177,7 +191,8 @@
     <MESSAGE value="Done2021-05-10;" />
     <MESSAGE value="insert product and getproduct with barcode added" />
     <MESSAGE value="insert production with p_barcode" />
-    <option name="LAST_COMMIT_MESSAGE" value="insert production with p_barcode" />
+    <MESSAGE value="upload with final verification" />
+    <option name="LAST_COMMIT_MESSAGE" value="upload with final verification" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
