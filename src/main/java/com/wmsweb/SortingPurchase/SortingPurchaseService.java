@@ -3,6 +3,8 @@ package com.wmsweb.SortingPurchase;
 
 import com.wmsweb.Purchase.Purchase;
 import com.wmsweb.Purchase.PurchaseRepository;
+import com.wmsweb.bayCapacity.BayCapacity;
+import com.wmsweb.bayCapacity.BayCapacityRepository;
 import com.wmsweb.production.Production;
 import com.wmsweb.production.ProductionRepository;
 import com.wmsweb.transport.Transport;
@@ -26,7 +28,7 @@ public class SortingPurchaseService {
     @Autowired
     TransportRepository transportRepository;
     @Autowired
-    ProductionRepository productionRepository;
+    BayCapacityRepository bayCapacityRepository;
 
     @PostMapping({"/updateSortingPurchaseStatus"})
     public String updatePurchaseStatus(@RequestBody SortingPurchase sortingPurchase) {
@@ -47,11 +49,30 @@ public class SortingPurchaseService {
     }
 
     @GetMapping({"/getOrderProduct"})
-    public Map<String, ArrayList<SortingPurchase>> getOrderProduct(@RequestParam("order_id") long order_id) {
-        HashMap<String, ArrayList<SortingPurchase>> hmap = new HashMap<String, ArrayList<SortingPurchase>>();
+    public Map<String, List<PurchaseSortingModel>> getOrderProduct(@RequestParam("order_id") long order_id) {
+        Map<String, List<PurchaseSortingModel>> hMap = new HashMap<>();
+        List<PurchaseSortingModel> purchaseSortingModelList=new ArrayList<>();
+
         ArrayList<SortingPurchase> list = (ArrayList<SortingPurchase>) sortingPurchaseRepository.getOrderProduct(order_id);
-        hmap.put("OrderIdProduct", list);
-        return hmap;
+        list.forEach(sortingPurchase -> {
+            List<BayCapacity> getBayList=bayCapacityRepository.getBay(Integer.parseInt(sortingPurchase.getBarcode()));
+           if(getBayList.size()>0) {
+               PurchaseSortingModel purchaseSortingModel = new PurchaseSortingModel();
+               purchaseSortingModel.setBarcode(sortingPurchase.getBarcode());
+               purchaseSortingModel.setOrder_id(sortingPurchase.getOrder_id());
+               purchaseSortingModel.setBatch_no(sortingPurchase.getBatch_no());
+               purchaseSortingModel.setBay(getBayList.get(0).getBay());
+               purchaseSortingModel.setExpiry(sortingPurchase.getExpiry());
+               purchaseSortingModel.setP_barcode(sortingPurchase.getP_barcode());
+               purchaseSortingModel.setPermit_no(sortingPurchase.getPermit_no());
+               purchaseSortingModel.setSku(sortingPurchase.getSku());
+
+               purchaseSortingModelList.add(purchaseSortingModel);
+
+           }
+        });
+        hMap.put("OrderIdProduct", purchaseSortingModelList);
+        return hMap;
     }
 
     @PostMapping({"/updateWithOrderId"})

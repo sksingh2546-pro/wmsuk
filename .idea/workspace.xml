@@ -5,50 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ac0d9763-2405-4149-a2f7-8cd9e2cc5b77" name="Default Changelist" comment="insert production with p_barcode">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/wmsweb/SortingPurchase/PurchaseSortingModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wmsweb/Purchase/PurchaseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wmsweb/Purchase/PurchaseService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wmsweb/SortingPurchase/SortingPurchaseRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wmsweb/SortingPurchase/SortingPurchaseRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wmsweb/production/ProductionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wmsweb/production/ProductionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wmsweb/production/ProductionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wmsweb/production/ProductionRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/edit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/edit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/insertProduction.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/insertProduction.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/orderDetails.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/orderDetails.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/MannualOrderReport.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/MannualOrderReport.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/addDriverDetails.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/addDriverDetails.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/cancel.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/cancel.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/changeBayCapacity.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/changeBayCapacity.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/changeSkuCapacity.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/changeSkuCapacity.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/complete.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/complete.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/completeProduct.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/completeProduct.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/dispatchExcelImport.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/dispatchExcelImport.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/downloadProductionExcel.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/downloadProductionExcel.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/downloadTransportExcel.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/downloadTransportExcel.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/editDetail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/editDetail.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/excelImport.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/excelImport.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/in.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/in.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/insertProduction.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/insertProduction.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/orderDetails.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/orderDetails.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/out.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/out.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/productOrder.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/productOrder.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/productionPlan.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/productionPlan.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/productionPlanImport.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/productionPlanImport.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/searchProduct.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/searchProduct.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/transport.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/transport.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/updateProduction.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/updateProduction.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/varifyProduction.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/varifyProduction.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/wmsweb/FilterQty/FilterQty.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wmsweb/FilterQty/FilterQty.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/wmsweb/FilterQty/FilterQtyRepo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wmsweb/FilterQty/FilterQtyRepo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/wmsweb/OutGoods/OutGoods.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wmsweb/OutGoods/OutGoods.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/wmsweb/OutGoods/OutGoodsRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wmsweb/OutGoods/OutGoodsRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/wmsweb/OutGoods/OutGoodsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wmsweb/OutGoods/OutGoodsService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/wmsweb/Purchase/PurchaseService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wmsweb/Purchase/PurchaseService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/wmsweb/SortingPurchase/SortingPurchase.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wmsweb/SortingPurchase/SortingPurchase.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/wmsweb/SortingPurchase/SortingPurchaseRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wmsweb/SortingPurchase/SortingPurchaseRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/wmsweb/production/Production.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wmsweb/production/Production.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/wmsweb/production/ProductionController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wmsweb/production/ProductionController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/wmsweb/production/ProductionRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wmsweb/production/ProductionRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/orderDetails.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/orderDetails.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wmsweb/SortingPurchase/SortingPurchaseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wmsweb/SortingPurchase/SortingPurchaseService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/wmsweb/SortingPurchase/SortingPurchaseService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wmsweb/SortingPurchase/SortingPurchaseService.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -183,7 +143,14 @@
       <option name="project" value="LOCAL" />
       <updated>1620708773439</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="insert production with p_barcode">
+      <created>1620802122748</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1620802122748</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="UnknownFeatures">
