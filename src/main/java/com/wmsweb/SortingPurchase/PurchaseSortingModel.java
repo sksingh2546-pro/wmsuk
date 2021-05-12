@@ -9,6 +9,7 @@ public class PurchaseSortingModel {
     private String expiry;
     private String p_barcode;
     private String bay;
+    private  int qty;
 
     public long getOrder_id() {
         return order_id;
@@ -72,5 +73,13 @@ public class PurchaseSortingModel {
 
     public void setBay(String bay) {
         this.bay = bay;
+    }
+
+    public int getQty() {
+        return qty;
+    }
+
+    public void setQty(int qty) {
+        this.qty = qty;
     }
 }

@@ -66,6 +66,7 @@ public class SortingPurchaseService {
                purchaseSortingModel.setP_barcode(sortingPurchase.getP_barcode());
                purchaseSortingModel.setPermit_no(sortingPurchase.getPermit_no());
                purchaseSortingModel.setSku(sortingPurchase.getSku());
+               purchaseSortingModel.setQty(sortingPurchase.getQty());
                purchaseSortingModelList.add(purchaseSortingModel);
 
            }
