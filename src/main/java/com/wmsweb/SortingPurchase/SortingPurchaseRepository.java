@@ -54,7 +54,7 @@ public interface SortingPurchaseRepository extends CrudRepository<SortingPurchas
     int updateStatus(long order_id);
 
     @Modifying
-    @Query(value = "update sorting_purchase set qty=?1 where order_id=?2 and batch_no=?3 and sku=?4 and barocde=?5", nativeQuery = true)
+    @Query(value = "update sorting_purchase set qty=?1 where order_id=?2 and batch_no=?3 and sku=?4 and barcode=?5", nativeQuery = true)
     @Transactional
     public int updateQty(int qty, long order_id, String batch_no, String sku, String barcode);
 

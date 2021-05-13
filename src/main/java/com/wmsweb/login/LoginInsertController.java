@@ -17,7 +17,7 @@ public class LoginInsertController {
          if(list.size()==0){
         	 Login login=new Login();
         	 login.setPassword("12345");
-        	 login.setUser_name("pernod");
+        	 login.setUser_name("admin");
           loginRepository.save(login);
          }
         return "save Addition password";

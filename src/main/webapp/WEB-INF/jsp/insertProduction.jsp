@@ -254,7 +254,7 @@
                                     <tr>
                                     <td>
                                     <div class="form-group" >
-                                    <h5 style="font-weight:bold;"> P BARCODE: &nbsp;<label for="product_name" style="font-weight:bold;color:red;"> *</label></h5>
+                                    <h5 style="font-weight:bold;"> PRODUCT BARCODE: &nbsp;<label for="product_name" style="font-weight:bold;color:red;"> *</label></h5>
                                     <input type="text" id="p_barcode"  style="width:248px" class="form-control" value="" placeholder="Enter PBarcode ...">
 
                                     </div>    </td>

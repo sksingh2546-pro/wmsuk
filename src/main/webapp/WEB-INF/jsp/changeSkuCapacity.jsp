@@ -254,12 +254,12 @@
                                                 <input type="number" class="form-control" id="capacity" name="capacity" placeholder="Enter Capacity ..." required>
 
                                             </div>
-											
+
                                         </td>
                                         
                                     </tr>                                    
                                    
-                                       
+                                       <tr>
                  <tr>
                                         <td>
 

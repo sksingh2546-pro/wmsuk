@@ -49,15 +49,15 @@ public class SkuListController {
             for (int i = 1; i <= sheet.getLastRowNum(); ++i) {
                 if (sheet.getRow(i).getCell(0).getCellType() != CellType.BLANK) {
                     try {
-                        List<SkuList> skList = (List<SkuList>) this.skuListRepository.getSkuList(sheet.getRow(i).getCell(0).getStringCellValue().trim());
-                        if (skList.size() == 0) {
-                            int insert = skuListRepository.insertSku(sheet.getRow(i).getCell(0).getStringCellValue().trim().replaceAll(" ", "_"), sheet.getRow(i).getCell(1).getNumericCellValue(), sheet.getRow(i).getCell(2).getNumericCellValue(),
-                                    sheet.getRow(i).getCell(3).getStringCellValue().trim(), sdf.format(date),
-                                    sheet.getRow(i).getCell(4).getStringCellValue().trim());
-                            if (insert > 0) {
-                                response = "{\"message\":\"Successful\"}";
-                            }
-                        }
+//                        List<SkuList> skList = (List<SkuList>) this.skuListRepository.getSkuList(sheet.getRow(i).getCell(0).getStringCellValue().trim());
+//                        if (skList.size() == 0) {
+//                            int insert = skuListRepository.insertSku(sheet.getRow(i).getCell(0).getStringCellValue().trim().replaceAll(" ", "_"), sheet.getRow(i).getCell(1).getNumericCellValue(), sheet.getRow(i).getCell(2).getNumericCellValue(),
+//                                    sheet.getRow(i).getCell(3).getStringCellValue().trim(), sdf.format(date),
+//                                    sheet.getRow(i).getCell(4).getStringCellValue().trim());
+//                            if (insert > 0) {
+//                                response = "{\"message\":\"Successful\"}";
+//                            }
+//                        }
                     } catch (Exception e2) {
                         System.out.println("Exception Sku:  " + e2.getMessage());
                     }
@@ -92,7 +92,7 @@ public class SkuListController {
     @PostMapping({"/updateSku"})
     public String updateSku(@RequestBody SkuList skuList) {
         String sku=skuList.getSku().replaceAll(" ", "_");
-        List<SkuList> skList = (List<SkuList>) skuListRepository.getSkuList(sku);
+        List<SkuList> skList = (List<SkuList>) skuListRepository.getSkuList(sku ,skuList.getP_barcode());
         Date date = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String response = "{\"message\":\"Unsuccessful\"}";

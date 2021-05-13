@@ -16,7 +16,7 @@ public class AdditionInsertController {
     public String insertAddProPassword(){
     	 List<AdditionDeletion>list=(List<AdditionDeletion>) additionDeletionRepository.findAll();
          if(list.size()==0){
-          additionDeletionRepository.insertPassword("pernod@123");
+          additionDeletionRepository.insertPassword("admin@123");
          }
         return "save Addition password";
     }

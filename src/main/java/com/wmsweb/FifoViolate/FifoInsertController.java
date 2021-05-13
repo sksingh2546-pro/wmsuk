@@ -17,7 +17,7 @@ public class FifoInsertController {
     public String insertFifoPassword(){
     	List<FifoViolate>list=(List<FifoViolate>) fifoViolateRepository.findAll();
         if(list.size()==0){
-            fifoViolateRepository.insertFifoPassword("pernod@123");
+            fifoViolateRepository.insertFifoPassword("admin@123");
                    }
         return "save Fifo password";
     }

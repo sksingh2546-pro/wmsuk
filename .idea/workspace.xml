@@ -6,16 +6,26 @@
   <component name="ChangeListManager">
     <list default="true" id="ac0d9763-2405-4149-a2f7-8cd9e2cc5b77" name="Default Changelist" comment="upload with final verification">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wmsweb/SortingPurchase/SortingPurchaseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wmsweb/SortingPurchase/SortingPurchaseService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wmsweb/production/ProductionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wmsweb/production/ProductionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wmsweb/production/ProductionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wmsweb/production/ProductionRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wmsweb/AdditionDeletion/AdditionInsertController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wmsweb/AdditionDeletion/AdditionInsertController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wmsweb/FifoViolate/FifoInsertController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wmsweb/FifoViolate/FifoInsertController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wmsweb/SortingPurchase/SortingPurchaseRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wmsweb/SortingPurchase/SortingPurchaseRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wmsweb/login/LoginInsertController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wmsweb/login/LoginInsertController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/wmsweb/skuList/SkuListController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wmsweb/skuList/SkuListController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/wmsweb/skuList/SkuListRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wmsweb/skuList/SkuListRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/Image/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/Image/logo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/Image/logo2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/Image/logo2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/changeSkuCapacity.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/changeSkuCapacity.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/insertProduction.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/insertProduction.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/wmsweb/SortingPurchase/SortingPurchaseRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wmsweb/SortingPurchase/SortingPurchaseRepository.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/wmsweb/bayCapacity/BayCapacityController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wmsweb/bayCapacity/BayCapacityController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/wmsweb/bayCapacity/BayCapacityRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wmsweb/bayCapacity/BayCapacityRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/wmsweb/production/ProductionController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wmsweb/production/ProductionController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/wmsweb/production/ProductionRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wmsweb/production/ProductionRepository.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/wmsweb/skuList/SkuListController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wmsweb/skuList/SkuListController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/wmsweb/skuList/SkuListRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wmsweb/skuList/SkuListRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/Image/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/Image/logo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/Image/logo2.png" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/Image/logo2.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,8 +65,13 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="last_opened_file_path" value="D:/JavaWorkSpace/shehreenProject/wmsweb" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/static/Image" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Projects\wmsuk\wmsweb\src\main\resources\static\Image" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="WmswebApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -164,7 +179,21 @@
       <option name="project" value="LOCAL" />
       <updated>1620803401326</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="upload with final verification">
+      <created>1620804029935</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1620804029935</updated>
+    </task>
+    <task id="LOCAL-00013" summary="upload with final verification">
+      <created>1620804179962</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1620804179962</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="UnknownFeatures">
