@@ -34,19 +34,19 @@ public interface PurchaseRepository extends CrudRepository<Purchase, Long> {
     @Transactional
     int updatePurchaseQty(int qty,long order_id,String sku);
 
-    @Query("select pr from Purchase pr where status=0")
+    @Query("select pr from Purchase pr where pr.status=0")
     List<Purchase> getPurchaseDetails();
 
-    @Query("select pr from Purchase pr where status=0 and sku=?1 and order_id=?2")
+    @Query("select pr from Purchase pr where pr.status=0 and pr.sku=?1 and pr.order_id=?2")
     List<Purchase> getPurchaseDetails(String sku, long order_id);
 
-    @Query("select pr from Purchase pr where order_id=?1 and sku=?2")
+    @Query("select pr from Purchase pr where pr.order_id=?1 and pr.sku=?2")
     List<Purchase> getPurchaseList(long order_id,String sku);
 
-    @Query("select pr from Purchase pr where order_id=?1")
+    @Query("select pr from Purchase pr where pr.order_id=?1")
     List<Purchase> getQuantity(long order_id);
 
-    @Query("select pr from Purchase pr where sku=?1 and order_id=?2")
+    @Query("select pr from Purchase pr where pr.sku=?1 and pr.order_id=?2")
     List<Purchase> update(String sku,long order_id);
 
     @Modifying
@@ -71,7 +71,7 @@ public interface PurchaseRepository extends CrudRepository<Purchase, Long> {
     @Transactional
     public int purchaseOrderComplete(long order_id);
 
-    @Query("select od from Purchase od where order_id=?1 ")
+    @Query("select od from Purchase od where od.order_id=?1 ")
     List<Purchase> getPurchseQuantity(long order_id);
 
     @Modifying
@@ -84,10 +84,10 @@ public interface PurchaseRepository extends CrudRepository<Purchase, Long> {
     @Transactional
     public int updatePurchaseQty(int qty, long order_id,String sku,String batch_no,String barcode);
 
-    @Query("select od from Purchase od where order_id=?1 and sku=?2")
+    @Query("select od from Purchase od where od.order_id=?1 and od.sku=?2")
     List<Purchase> getPurchseSkuQuantity(long order_id,String sku);
 
-    @Query("select od from Purchase od where order_id=?1 and sku=?2 and batch_no=?3 and barcode=?4")
+    @Query("select od from Purchase od where od.order_id=?1 and od.sku=?2 and od.batch_no=?3 and od.barcode=?4")
     List<Purchase>getPurchaseQtyBatchNo(long order_id,String sku,String batch_no,String barcode);
 
 
